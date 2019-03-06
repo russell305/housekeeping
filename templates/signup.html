@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Signup Form </title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		<style>
+
+				form{
+					margin-bottom: 15px;
+					margin-top: 10px
+          margin-right: 8%;
+          margin-left: 8%;
+				}
+        button{
+					margin-top:5px;
+				}
+				.input-fields{
+					margin: 10px;
+				}
+				.container-fluid{
+					background-color: #eed5b7;
+				}
+				p{
+					font-family: Montserrat;
+					color: blue;
+					font-size:15px;
+				}
+		</style>
+		</head>
+
+	<body>
+    <div class="container-fluid">
+  		<div class="row">
+  				<div class="col-md-2">
+  				</div>
+
+  				<div class="col-md-8" align="center">
+  						<div >
+  								<h1>Mechanic Sign Up/Registro Mecánico</h1>
+  								<form action="{{ url_for('signup_check') }}" method="post">
+										<div class = "input-fields" >
+	  	 					 				<input type="text" name="name" placeholder="Name/Nombre" maxlength="20" required>
+	  	 					 		</div>
+										<div class = "input-fields" >
+	  	 					 				<input type="text" placeholder="Password/Contraseña" maxlength="20" size = "36" required>
+	  	 					 		</div>
+										<div class = "input-fields" >
+	  	 					 				<input type="text" name="password" placeholder="Re-enter Password/Contraseña otra vez" maxlength="20" size = "36" required>
+	  	 					 		</div>
+										<div class = "input-fields" >
+	  	 					 				<input type="text" name="email" placeholder="Email" maxlength="40" size = "36" required>
+	  	 					 		</div>
+
+										<div class = "input-fields">
+
+	  										<input type="number" name="phone1" placeholder="Area" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+												<input type="number" name="phone2" placeholder="Phone" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+												<input type="number" name="phone3" placeholder="Num" oninput="if(value.length>4)value=value.slice(0,4)" min="1" max="99999" required>
+	  								</div>
+	  	 					 		<div class = "input-fields">
+	  	 					 			 	<input type="text" name="street" placeholder="Street/Calle" maxlength="90" required>
+	  	 					 		</div>
+	  	 					 		<div class = "input-fields">
+	  	 					 			 	<input type="text" name="city" placeholder="City/Ciudad" maxlength="20" required>
+	  	 					 		</div>
+	  	 					 		<div class = "input-fields">
+	  	 					 			 	<input type="text" name="state" placeholder="State/Estado" maxlength="20" required>
+	  	 					 		</div>
+	  								<div class = "input-fields">
+	  	 					 			 	<input type="text" name="zip_code" placeholder="Zip Code/Código" maxlength="20" >
+	  	 					 		</div>
+
+										<div class = "input-fields">
+	  										<span >How many years a mechanic?/¿Cuántos años es mecánico?</span>
+	  										<input type="number" name="years" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+										<div class = "input-fields">
+	  										<span >Hourly Rate/Tarifa Por Hora</span>
+	  										<input type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class="form-group">
+	  										<textarea class="form-control" name="description" placeholder="Experience, Certifications, and Specialties. Days/Hours Available. | Experiencia, Certificaciones y Especialidades.  Horas días disponibles" rows="3"  maxlength="400"  required></textarea>
+	  							  </div>
+	  								<p>How much would you charge for labor on an average 2016 Honda Accord? | ¿Cuánto cobraría por mano de obra en un Honda Accord promedio de 2016?</p>
+
+	  								<div class = "input-fields">
+	  										<span >Oil Change/Cambio de Aceite</span>
+	  										<input type="number" name="oil_change" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Battery Replacement/Cambio de Batería</span>
+	  										<input type="number" name="battery" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Brake Pads Front Replacement/Reemplazo delantero de Pastillas de Freno</span>
+	  										<input type="number" name="pads_front" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Brake Pads Rear Replacement/Reemplazo Trasero de Pastillas de Freno</span>
+	  										<input type="number" name="pads_back" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Car Not Starting Inspection/Inspección del Coche Que no Arranca</span>
+	  										<input type="number" name="starting_problem" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Check Engine Light Inspection/Revisar la Inspección de la Luz del Motor</span>
+	  										<input type="number" name="check_engine" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Tune Up/Afinar</span>
+	  										<input type="number" name="tune_up" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Starter Replacement/Reemplazo de Arranque</span>
+	  										<input type="number" name="starter" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Alternator Replacement/Reemplazo del Alternador</span>
+	  										<input type="number" name="alternator" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Spark Plugs Replacement/Reemplazo de Bujías</span>
+	  										<input type="number" name="spark_plugs" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Valve Cover Gasket Replacement/Reemplazo de la Tapa de la Válvula</span>
+	  										<input type="number" name="valve_cover" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<div class = "input-fields">
+	  										<span >Air Filter Replacement/Reemplazo del Filtro de Aire</span>
+	  										<input type="number" name="air_filter" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+	  								<p>Check any of the following extra services. Leave blank otherwise | Marque cualquiera de los siguientes servicios adicionales. Deje en blanco de lo contrario.</p>
+
+	  								<div class="input-fields">
+	  										<input type="checkbox" name="air_conditioning"> Air Conditioning/Aire Acondicionado<br>
+	  								</div>
+	  								<div class="input-fields">
+	  										<input type="checkbox" name="auto_body"> Auto Body Work/Auto Cuerpo<br>
+	  								</div>
+	  								<div class="input-fields">
+	  									<input type="checkbox"  name="fix_flat"> Fix Flat Tire/Arreglar Llanta<br>
+	  								</div>
+	  								<div class="input-fields">
+	  										<input type="checkbox" name="tire_rotation"> Tire Rotation/Rotación de Llanta<br>
+	  								</div>
+
+	  								<button class="btn btn-success btn-md ">Submit</button>
+  								</form>
+  								</div>
+  					</div>
+  					<div class="col-md-2">
+  							 <div>
+  								</div>
+  					</div>
+  			</div>
+  	</div>
+
+	</body>
+
+</html>

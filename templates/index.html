@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>  </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM&callback=initMap">
+      src = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM"
+    </script>
+		<script src="https://unpkg.com/eva-icons"></script>
+		<script
+			  src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			  crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		<script>
+
+	     var mechanic_list=JSON.parse('{{ mechanic_list| tojson | safe }}');
+
+	     function initMap() {
+	         var map = new google.maps.Map(document.getElementById('map'), {
+	           zoom: 12,
+	           center: {lat: 25.8317, lng: -80.2}
+	         });
+
+	         var marker = {}
+	         var myLatLng =[]
+
+	         for (var i = 0; i < mechanic_list.length; i++) {
+
+
+						 if (mechanic_list[i]['air_conditioning']==true) {
+							  mechanic_list[i]['air_conditioning']="YES"
+						 }
+						 else	{
+								mechanic_list[i]['air_conditioning']="NO"
+						 }
+
+						 if (mechanic_list[i]['auto_body']==true) {
+							  mechanic_list[i]['auto_body']="YES"
+						 }
+						 else	{
+								mechanic_list[i]['auto_body']="NO"
+						 }
+
+						 if (mechanic_list[i]['tire_rotation']==true) {
+							  mechanic_list[i]['tire_rotation']="YES"
+						 }
+						 else	{
+								mechanic_list[i]['tire_rotation']="NO"
+						 }
+
+						 if (mechanic_list[i]['fix_flat']==true) {
+							  mechanic_list[i]['fix_flat']="YES"
+						 }
+						 else	{
+								mechanic_list[i]['fix_flat']="NO"
+						 }
+
+						 var goldStar = {
+						    path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+						    fillColor: 'yellow',
+						    fillOpacity: 0.8,
+						    scale: .061,
+						    strokeColor: 'red',
+						    strokeWeight: 1
+						  };
+						 var href = "tel:"+mechanic_list[i]['phone'];
+						 myLatLng[i] = {lat: mechanic_list[i]['latitude'], lng: mechanic_list[i]['longitude']};
+						 var image = 'https://upload.wikimedia.org/wikipedia/en/8/80/Wikipedia-logo-v2.svg';
+
+	           marker = new google.maps.Marker({
+	           position: myLatLng[i],
+	           map: map,
+	           
+
+						 labelContent: '<i class="fas fa-truck-pickup" style="color:rgba(153,102,102,0.8);"></i>',
+			       labelAnchor: new google.maps.Point(22, 50),
+			       labelClass: "labels" // the CSS class for the label
+	           });
+
+
+	           // process multiple info windows
+	           (function(marker, i) {
+	             google.maps.event.addListener(marker, 'click', function() {
+	                   infowindow = new google.maps.InfoWindow({
+	                       content: '<div class="container-fluid text-center">'+
+
+												 						'<div class="row" id = "top-row">'+
+
+																			'<div class="col-md-2 ">'+
+																				'<p id = "column-title" >Name</p>'+
+																				'<div>'+mechanic_list[i]['name']+'</div>'+
+																			'</div>'+
+
+																			'<div class="col-md-3">'+
+																				'<p id = "column-title">Address</p>'+
+																				'<div>'+mechanic_list[i]['address']+'</div>'+
+																			'</div>'+
+
+																			'<div class="col-md-2">'+
+																				'<p id = "column-title">Phone</p>'+
+																				'<a href='+href+'>'+"Press to Call "+mechanic_list[i]['phone']+'</a>'+
+																			'</div>'+
+
+																			'<div class="col-md-3">'+
+																				'<p id = "column-title">Experience</p>'+
+																				'<div>'+"Mechanic for "+mechanic_list[i]['years']+" years"+'</div>'+
+																			'</div>'+
+
+																			'<div class="col-md-2">'+
+																				'<p id = "column-title">Rate</p>'+
+																				'<div>'+"$"+mechanic_list[i]['hourly_rate']+"/hr"+'</div>'+
+																			'</div>'+
+
+																		'</div>'+
+
+																		'<div class="text-center" id = "description">'+'<b>'+"About: "+'</b>'+mechanic_list[i]['description']+'</div>'+
+
+																		'<div class="text-center" id = "prices">'+"Price estimates for popular services on 2016 Honda Accord, call for your specific vehicle."+'</div>'+
+
+																		'<div class="row" id = "middle-row">'+
+
+																				'<div class="col-md-3">'+
+																				'<div class="text-center" id = "description">'+"Oil Change: $"+mechanic_list[i]['oil_change']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Starting Problem: $"+mechanic_list[i]['starting_problem']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Alternator: $"+mechanic_list[i]['alternator']+'</div>'+
+																			'</div>'+
+
+																			'<div class="col-md-3">'+
+																				'<div class="text-center" id = "description">'+"Battery: $"+mechanic_list[i]['battery']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Check Engine: $"+mechanic_list[i]['check_engine']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Spark Plugs: $"+mechanic_list[i]['spark_plugs']+'</div>'+
+																			'</div>'+
+
+																			'<div class="col-md-3">'+
+																				'<div class="text-center" id = "description">'+"Brake Pads Front: $"+mechanic_list[i]['pads_front']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Tune Up: $"+mechanic_list[i]['tune_up']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Valve Cover: $"+mechanic_list[i]['valve_cover']+'</div>'+
+																			'</div>'+
+
+																			'<div class="col-md-3">'+
+																				'<div class="text-center" id = "description">'+"Brake Pads Back: $"+mechanic_list[i]['pads_back']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Starter: $"+mechanic_list[i]['starter']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Air Filter: $"+mechanic_list[i]['air_filter']+'</div>'+
+																			'</div>'+
+
+																		'</div>'+
+
+																		'<div class="text-center" id = "prices">'+"Other Services:"+'</div>'+
+
+																		'<div class="row" id = "middle-row">'+
+
+																			'<div class="col-md-6">'+
+																				'<div class="text-center" id = "description">'+"Tire Rotation: "+mechanic_list[i]['tire_rotation']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Fix Flat: "+mechanic_list[i]['fix_flat']+'</div>'+
+																			'</div>'+
+
+																			'<div class="col-md-6">'+
+																				'<div class="text-center" id = "description">'+"Air Conditioning: "+mechanic_list[i]['air_conditioning']+'</div>'+
+																				'<div class="text-center" id = "description">'+"Auto Body: "+mechanic_list[i]['auto_body']+'</div>'+
+																			'</div>'+
+
+
+
+																		'</div>'+
+
+												 					'</div>'
+	                   });
+	                   infowindow.open(map, marker);
+	               });
+	           })(marker, i);
+	         }
+	     }
+			 $(document).ready(function() {
+				    initMap();
+				});
+
+ 		 </script>
+
+		<style>
+				html, body {
+					height: 100%;
+					background-color: #eed5b7;
+					margin: 0;
+					padding: 0;
+					font: monseratt;
+				}
+				button{
+					margin-top: 0%;
+				}
+				p{
+
+				}
+
+				.top-part{
+					margin-top: 4%;
+					margin-right: 8%;
+					margin-left: 8%;
+				}
+				#description{
+					margin-bottom: 15px;
+				}
+				#prices{
+					margin-bottom: 10px;
+
+					font-weight: 450;
+					font-size: 16px;
+				}
+				#column-title{
+					font-size:20px;
+					font-weight: 500;
+					margin-bottom: 3px;
+				}
+				#top-row{
+					margin-bottom: 10px;
+				}
+				#map {
+					height: 95%;
+					margin-right: 8%;
+					margin-left: 8%;
+					margin-bottom: 3%;
+				}
+				#exp{
+					color:blue;
+					margin: 5px;
+					font-size: 15px;
+				}
+
+				#name{
+					font-size:20px;
+				}
+				#red-text{
+					color:red;
+				}
+				#green-text{
+					color:green;
+				}
+				#blue-text{
+					color:blue;
+				}
+				#marker-text{
+					font-size: 25px;
+				}
+				.bottom-margin{
+					margin-bottom: 3%;
+				}
+
+		</style>
+	</head>
+  <body>
+
+		<div class="container-fluid text-center top-part">
+			<h1>Mobile Mechanics Near Me | Mecánica Móvil Cerca de Mí</h1>
+			<h3>Are you a mobile mechanic? Sign up free! | ¿Eres mecánico móvil? ¡Regístrate gratis!</h3>
+			<form action="{{ url_for('signup') }}" method="post">
+
+		 		<button class="btn btn-success btn-md active" aria-pressed="true">Sign Up</button>
+	 		</form>
+			<div>
+						<i data-eva="car" data-eva-fill="green" data-eva-height="24" data-eva-width="24" data-eva-animation=""
+						data-eva-hover="false" data-eva-infinite="true"></i>
+						 <script>
+					      eva.replace();
+							</script>
+							<i class="fas fa-truck-pickup"></i>
+						</div>
+
+
+			<h4>Click on marker for mobile mecahnic info | Haga clic en el marcador para información mecánico móvil</h4>
+	</div>
+
+		<div id="map"></div>
+		<div class="text-center bottom-margin" id="blue-text">
+			<h5>Mechanic Sign In | Ingreso mecánico</h5>
+			<form action="{{ url_for('signin') }}" method="post">
+				<button class="btn btn-primary btn-sm active" aria-pressed="true">Sign In</button>
+			</form>
+
+		 </div>
+
+
+  </body>
+</html>
