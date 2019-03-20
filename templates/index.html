@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<link rel="shortcut icon" href="{{ url_for('static', filename='image/broom.png') }}">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='image/clean-1.png') }}">
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM&callback=initMap">
       src = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM"
     </script>
@@ -15,6 +15,7 @@
 			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 			  crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
 		<script>
 
 	     var houseclean_list=JSON.parse('{{ houseclean_list | tojson | safe }}');
@@ -46,10 +47,13 @@
 	                       content: '<div class="container-fluid text-center">'+
 
 												 						'<div class="row" id = "top-row">'+
-																			'<img src="pic_trulli.jpg" alt="Italian Trulli">'+
+																		'<img src="{{ photo }}" alt="Red dot" />'+
+																				'<img src="{{ url_for("static", filename = "image/clean-1.png") }}" alt="User Image" width="64" height="64">'+
+																				// '<div>'+houseclean_list[i]['image']+'</div>'+
+																				'<form action="{{ url_for('signup') }}" method="post">'+'<button class="btn btn-success btn-md active" aria-pressed="true">Sign Up</button>'+'</form>'+
 																			'<div class="col-md-2 ">'+
 																				'<p id = "column-title" >Name</p>'+
-																				'<div>'+houseclean_list[i]['name']+'</div>'+
+
 																			'</div>'+
 
 																			'<div class="col-md-3">'+
@@ -119,7 +123,7 @@
 
 					height: 100%;
         width: 100%;
-					background-color: #b19cd9;
+					background-color: ;
 					margin: 0;
 					padding: 0;
 					font: monseratt;
@@ -192,9 +196,12 @@
 
 	<div class="container-fluid text-center ">
 			<h1>House Cleaning Miami </h1>
-			<h4>Click on markers for house cleaner info.</h4>
-			<div id="map" style="clear:both; height:500px;"></div>
+			<h1>{{photo}}</h1>
+			<img src="{{ photo }}" alt="User Image" width="64" height="64">
+			<h4>"photo"</h4>
 
+			<div id="map" style="clear:both; height:500px;"></div>
+			<img src="{{ photo }}" alt="Red dot" />
 			<div class="row bottom" >
 			    <div class="col-md-2">
 

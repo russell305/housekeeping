@@ -4,8 +4,9 @@
 # http://exploreflask.com
 #secret: 0kmzCjBS62odOXkfg4EcYnoBND3IM28ANuEFlTlWig
 #import datetime
-from flask import Flask, render_template, request, session, redirect, url_for# Import the class `Flask` from the `flask` module, written by someone else.
+from flask import Flask, render_template, request, session, redirect, url_for, send_file # Import the class `Flask` from the `flask` module, written by someone else.
 from flask_session import Session
+from flask_mail import Mail, Message
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -14,11 +15,28 @@ from pprint import pprint
 import json #for Python to Javascript
 import requests #for JSON
 import hashlib
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import ImmutableOrderedMultiDict
+from io import BytesIO
+
+import argparse
+import re
+
+
 
 
 
 app = Flask(__name__) # Instantiate a new web application called `app`, with `__name__` representing the current file
-
+# mail=Mail(app)
+UPLOAD_FOLDER = '/static/image'
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'housecleanmiami@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Brewster1!'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+mail = Mail(app)
 GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
 app.config["SESSION_PERMANENT"] = False
@@ -36,22 +54,62 @@ houseclean_list=[]
 #flight = db.execute("SELECT * FROM flights WHERE origin = :origin AND destination = :dest",  {"origin": origin, "dest": destination} ).fetchone()
 #print("flight",flight)
 #db.execute("DELETE FROM flights WHERE origin = :origin", {"origin": origin})
+#there's this function encode in postgreSQL
+#encode(data bytea, format text)
 
-
+#so if you have a column named profilePic then it would be like
+#encode(profilePic, 'base64')
+#db.execute("CREATE TABLE user(id SERIAL PRIMARY KEY, name VARCHAR, email VARCHAR, image BYTEA)")
+#db.execute("CREATE TABLE photos(id SERIAL PRIMARY KEY, image BYTEA)")
+#image = request.form.get("image") #from html form
+#db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":image})
 #db.execute("CREATE TABLE houseclean1(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL, password VARCHAR NOT NULL, phone VARCHAR NOT NULL UNIQUE, address VARCHAR NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, email VARCHAR NOT NULL, years SMALLINT NOT NULL, description VARCHAR NOT NULL, hourly_rate SMALLINT NOT NULL, paid_subscription BOOLEAN, image BYTEA)")
 #db.commit()
 #print("dbcreated")
+image = db.execute("SELECT encode(image,'base64') FROM photos LIMIT 1").fetchone()
+#print ("image", image[0]) #image <memory at 0x109f34108>
 
+# image_encode = image[0].encode('base64')
+# print (image_encode,"image_encode")
+#select encode(image,'base64') from photos limit 1 ****
+# encode(data bytea, format text)
+# str = "this is string example....wow!!!"
+# print ("Encoded String: ",str.encode('base64','strict'))
+image_string = "data:image/png;base64," + image[0]
+print("image_string",image_string)
+if "\n" in image_string:
+    print ("There's a newline in variable foo")
+
+#Check if the string starts with "The" and ends with "Spain":
+
+txt = "The rain in Spain"
+x = re.search("^The.*Spain$", txt)
+
+if (x):
+  print("YES! We have a match!")
+else:
+  print("No match")
+
+str = "The rain in Spain"
+
+#Find all lower case characters alphabetically between "a" and "m":
+
+# x = re.findall("\n", image_string )
+x = re.sub("\n", "", image_string)
+print("x",x)
+print("image_string",image_string)
 @app.route("/", methods = ["GET"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
 def index():
-	housecleanDB = db.execute("SELECT * FROM houseclean1").fetchall()
-	print("housecleanDB",housecleanDB)
 
+
+
+	housecleanDB = db.execute("SELECT * FROM houseclean1").fetchall()
+	# housecleanPhoto1 = db.execute("SELECT image FROM houseclean1").fetchone()
+	# housecleanPhoto=request.files[housecleanPhoto1]
+	# print("housecleanPhoto1",housecleanPhoto1)
+	# image = photo[0]
 	for i in housecleanDB:
-		#print("housecleansD",i)
-		m = memoryview(i.image)
-		image = m.hex()
-		print("image",image)
+
 		houseclean_data = {
 			"name": i.name,
 			"phone": i.phone,
@@ -62,19 +120,29 @@ def index():
 			"years": i.years,
 			"description": i.description,
 			"hourly_rate": i.hourly_rate,
-		 	"image": image,
+			# "image": image_string
+		 	# "image": 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
 
 			}
-		# image_binary = read_image(i.image)
 
-		# img = open(i.image, 'rb').read()
-		# response = requests.post(URL, data=img)
+		y = json.dumps(houseclean_data)
+		print(y)
+			# the result is a JSON string:
+		# print("y.image",image_string)
+		# image_string = houseclean_data[image]
+		# print("image_string", image_string)
+		# return send_file(io.BytesIO(obj.logo.read()), attachment_filename='logo.png',mimetype='image/png')
+		# bytes=(BytesIO(i.image))
+		# print ("i.image",i.image)
 
-		#print ("description",i.description)
-		print ("years",i.years)
-		print ("image",i.image)
+		# print ("image",i.image)
+
+
 		houseclean_list.append(houseclean_data)
-	return render_template("index.html", houseclean_list=houseclean_list)
+	print ("houseclean_data",houseclean_data)
+	headline = "Hello Russ"
+	photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
+	return render_template("index.html", houseclean_list=houseclean_list, photo=x)
 
 @app.route("/signup", methods = ["POST"]) #way to get sign in from index to sign-up page
 def signup():
@@ -107,6 +175,37 @@ def user():
 		user = db.execute("SELECT * FROM houseclean1 WHERE name = :name AND password = :password", {"name": name, "password": password}).fetchall()
 	print ("user",user)
 	return render_template("user.html", user=user)
+
+@app.route('/ipn/',methods=['POST'])
+def ipn():
+	arg = ''
+	request.parameter_storage_class = ImmutableOrderedMultiDict
+	values = request.form
+	for x, y in values.iteritems():
+		arg += "&{x}={y}".format(x=x,y=y)
+
+	validate_url = 'https://www.paypal.com' \
+				   '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
+				   .format(arg=arg)
+	r = requests.get(validate_url)
+	if r.text == 'VERIFIED':
+		return redirect(url_for("success"))
+	else:
+		return "Failure"
+
+@app.route('/success/')
+def success():
+	return render_template("success.html")
+
+@app.route('/uploader', methods = ['GET', 'POST'])
+def uploader():
+	if request.method == 'POST':
+		image = request.files['image']
+		image_binary = image.read()
+		print ("image_binary",image_binary)
+		db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":image_binary})
+		db.commit()
+		return 'file uploaded successfully'
 
 @app.route("/signup_check", methods = ["POST"])
 def signup_check():
@@ -165,8 +264,12 @@ def signup_check():
 		print("check_houseclean=False")
 
 
-	#db.execute("INSERT INTO houseclean1(name, password, phone, address, email, latitude, longitude, years, description, hourly_rate, image) VALUES (:name, :password, :phone, :address, :email, :latitude, :longitude,  :years, :description, :hourly_rate, :image)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "latitude":latitude, "longitude":longitude,  "years":years, "description":description, "hourly_rate":hourly_rate, "image":image})
+	db.execute("INSERT INTO houseclean1(name, password, phone, address, email, latitude, longitude, years, description, hourly_rate, image) VALUES (:name, :password, :phone, :address, :email, :latitude, :longitude,  :years, :description, :hourly_rate, :image)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "latitude":latitude, "longitude":longitude,  "years":years, "description":description, "hourly_rate":hourly_rate, "image":image})
 	db.commit()
 	session["check_houseclean"] = True
 	print("check_houseclean=True")
+	msg = Message('Hello From House Cleaning Miami', sender = 'housecleanmiami@gmail.com', recipients = [email])
+	msg.body = 'Hello Testing'
+	mail.send(msg)
+	#return "Mail Sent"
 	return redirect(url_for("index"))

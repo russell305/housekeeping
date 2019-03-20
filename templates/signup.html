@@ -13,7 +13,7 @@
 
 				form{
 					margin-bottom: 15px;
-					margin-top: 10px
+					margin-top: 10px;
           margin-right: 8%;
           margin-left: 8%;
 				}
@@ -24,7 +24,7 @@
 					margin: 10px;
 				}
 				.container-fluid{
-					background-color: #b19cd9;
+					background-color: ;
 				}
 				p{
 					font-family: Montserrat;
@@ -42,48 +42,52 @@
 
   				<div class="col-md-8" align="center">
   						<div >
-  								<h1>Mechanic Sign Up/Registro Mecánico</h1>
-  								<form action="{{ url_for('signup_check') }}" method="post">
+  								<h1>House Cleaner Sign Up</h1>
+  								<form action="{{ url_for('signup_check') }}" method="post"  enctype="multipart/form-data">
 										<div class = "input-fields" >
-	  	 					 				<input type="text" name="name" placeholder="Name/Nombre" maxlength="20" required>
+	  	 					 				<input type="text" name="name" placeholder="Name" maxlength="20" required>
 	  	 					 		</div>
 										<div class = "input-fields" >
-	  	 					 				<input type="text" placeholder="Password/Contraseña" maxlength="20" size = "36" required>
+	  	 					 				<input type="text" placeholder="Password" maxlength="20" size = "20" required>
 	  	 					 		</div>
 										<div class = "input-fields" >
-	  	 					 				<input type="text" name="password" placeholder="Re-enter Password/Contraseña otra vez" maxlength="20" size = "36" required>
+	  	 					 				<input type="text" name="password" placeholder="Re-enter Password" maxlength="20" size = "20" required>
 	  	 					 		</div>
 
 										<div class = "input-fields" >
-	  	 					 				<input type="text" name="email" placeholder="Email" maxlength="40" size = "36" required>
-												<input type="file" name="image"  enctype="multipart/form-data" accept="image/*">
+	  	 					 				<input type="text" name="email" placeholder="Email" maxlength="40" size = "30" required>
+
+	  	 					 		</div>
+										<div class = "input-fields" >
+												<span >Picture</span>
+												<input type="file" name="file">
 	  	 					 		</div>
 
 										<div class = "input-fields">
 
 	  										<input type="number" name="phone1" placeholder="Area" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 												<input type="number" name="phone2" placeholder="Phone" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
-												<input type="number" name="phone3" placeholder="Num" oninput="if(value.length>4)value=value.slice(0,4)" min="1" max="99999" required>
+												<input type="number" name="phone3" placeholder="Number" oninput="if(value.length>4)value=value.slice(0,4)" min="1" max="99999" required>
 	  								</div>
 	  	 					 		<div class = "input-fields">
-	  	 					 			 	<input type="text" name="street" placeholder="Street/Calle" maxlength="90" required>
+	  	 					 			 	<input type="text" name="street" placeholder="Street" maxlength="90" required>
 	  	 					 		</div>
 	  	 					 		<div class = "input-fields">
-	  	 					 			 	<input type="text" name="city" placeholder="City/Ciudad" maxlength="20" required>
+	  	 					 			 	<input type="text" name="city" placeholder="City" maxlength="20" required>
 	  	 					 		</div>
 	  	 					 		<div class = "input-fields">
-	  	 					 			 	<input type="text" name="state" placeholder="State/Estado" maxlength="20" required>
+	  	 					 			 	<input type="text" name="state" placeholder="State" maxlength="20" required>
 	  	 					 		</div>
 	  								<div class = "input-fields">
-	  	 					 			 	<input type="text" name="zip_code" placeholder="Zip Code/Código" maxlength="20" >
+	  	 					 			 	<input type="text" name="zip_code" placeholder="Zip Code" maxlength="20" >
 	  	 					 		</div>
 
 										<div class = "input-fields">
-	  										<span >How many years a house cleaning?</span>
+	  										<span >How many years house cleaning?</span>
 	  										<input type="number" name="years" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 	  								</div>
 										<div class = "input-fields">
-	  										<span >Hourly Rate/Tarifa Por Hora</span>
+	  										<span >Hourly Rate</span>
 	  										<input type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 	  								</div>
 	  								<div class="form-group">
@@ -93,6 +97,30 @@
 	  								<button class="btn btn-success btn-md ">Submit</button>
   								</form>
   								</div>
+									<h3 class="text-center">Subscribe $2.99 Month</h3>
+									<form name="topaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+										<input type="hidden" name="cmd" value="_xclick-subscriptions">
+										<!-- <input type="hidden" name="custom" value="{{session['username']}}"/> -->
+										<input type="hidden" name="business" value="russm305@gmail.com">
+										<input type="hidden" name="item_name" value="subscription">
+										<input type="hidden" name="item_number" value="500">
+										<input type="hidden" name="no_shipping" value="1">
+										<input type="hidden" name="a3" value="2.99">
+										<input type="hidden" name="p3" value="1">
+										<input type="hidden" name="t3" value="M">
+										<input type="hidden" name="src" value="1">
+										<input type="hidden" name="sra" value="1">
+										<input type="hidden" name="return" value="http://104.236.221.91/success/">
+										<input type="hidden" name="cancel_return" value="http://104.236.221.91/">
+										<input type="hidden" name="notify_url" value="http://104.236.221.91/ipn/">
+										<!-- <input type="submit" value="Subscribe" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary"> -->
+									</form>
+
+									<form action = "{{ url_for('uploader') }}" method = "POST"
+						         enctype = "multipart/form-data">
+						         <input type = "file" name = "image" />
+						         <input type = "submit"/>
+						      </form>
   					</div>
   					<div class="col-md-2">
   							 <div>
