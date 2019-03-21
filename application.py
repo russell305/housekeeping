@@ -74,23 +74,19 @@ image_list=[]
 #select encode(image,'base64') from photos limit 1 ****
 # encode(data bytea, format text)
 
-image = db.execute("SELECT encode(image,'base64') FROM houseclean1 Limit 1").fetchone()
-
-# imageDB = db.execute("SELECT encode(image,'base64') FROM houseclean1").fetchall()
-# print("imageDB",image[0])
-# for i in image:
-
+image = db.execute("SELECT encode(image,'base64') FROM houseclean1").fetchone()
+print (image[0])
 row_count = db.execute("SELECT COUNT(*) FROM houseclean1").fetchall()
 print("row_count",(row_count[0][0]))
-for i in range(row_count[0][0]):
-	image_list.append(image[i])
-	print("image***",image_list[i] )
-	print("number",i)
-	image_string = "data:image/png;base64," + image[0]
-	print("image_string",image_string)
+# for i in range(row_count[0][0]):
+image_list.append(image[0])
+	# print("image***",image_list[i] )
+	# print("number",i)
+image_string = "data:image/png;base64," + image[0]
+print("image_string",image_string)
 
-	x = re.sub("\n", "", image_string)
-	print("x",x)
+	# x = re.sub("\n", "", image_string)
+	# print("x",x)
 
 @app.route("/", methods = ["GET"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
 def index():
