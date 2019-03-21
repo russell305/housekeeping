@@ -61,7 +61,7 @@ image_list=[]
 #so if you have a column named profilePic then it would be like
 #encode(profilePic, 'base64')
 #db.execute("CREATE TABLE user(id SERIAL PRIMARY KEY, name VARCHAR, email VARCHAR, image BYTEA)")
-#db.execute("CREATE TABLE photos(id SERIAL PRIMARY KEY, image BYTEA)")
+# db.execute("CREATE TABLE photos1(id SERIAL PRIMARY KEY, image BYTEA(max 30000))")
 #image = request.form.get("image") #from html form
 #db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":image})
 #db.execute("CREATE TABLE houseclean1(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL, password VARCHAR NOT NULL, phone VARCHAR NOT NULL UNIQUE, address VARCHAR NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, email VARCHAR NOT NULL, years SMALLINT NOT NULL, description VARCHAR NOT NULL, hourly_rate SMALLINT NOT NULL, paid_subscription BOOLEAN, image BYTEA)")
@@ -73,20 +73,26 @@ image_list=[]
 
 #select encode(image,'base64') from photos limit 1 ****
 # encode(data bytea, format text)
-
-image = db.execute("SELECT encode(image,'base64') FROM houseclean1").fetchone()
-print (image[0])
+name_id = 16
+image_string = None
+# image = db.execute("SELECT encode(image,'base64') FROM houseclean1 WHERE id = :id",{"id": name_id).fetchone()
+# image = db.execute("SELECT encode(image,'base64') FROM houseclean1 WHERE id = :id",{"id": 15}).fetchall()
+image = db.execute("SELECT encode(image,'base64') FROM houseclean1").fetchall()
+# image1 = db.execute("SELECT * FROM houseclean1").fetchall()
+# print (image[0][0])
+# print (image1)
 row_count = db.execute("SELECT COUNT(*) FROM houseclean1").fetchall()
 print("row_count",(row_count[0][0]))
-# for i in range(row_count[0][0]):
-image_list.append(image[0])
+for i in range(row_count[0][0]):
+# image_list.append(image[0])
 	# print("image***",image_list[i] )
-	# print("number",i)
-image_string = "data:image/png;base64," + image[0]
-print("image_string",image_string)
-
-	# x = re.sub("\n", "", image_string)
+	print("number",i)
+	image_string = "data:image/png;base64," + image[i][0]
+	# print("image_string",image_string)
+	x = re.sub("\n", "", image_string)
 	# print("x",x)
+	image_list.append(x)
+# print("image_list",image_list)
 
 @app.route("/", methods = ["GET"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
 def index():
@@ -94,6 +100,7 @@ def index():
 
 
 	housecleanDB = db.execute("SELECT * FROM houseclean1").fetchall()
+	index=0
 	for i in housecleanDB:
 
 		houseclean_data = {
@@ -106,14 +113,15 @@ def index():
 			"years": i.years,
 			"description": i.description,
 			"hourly_rate": i.hourly_rate,
-			# "image": image_string
+			"image": image_list[index]
 		 	# "image": 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
 
 			}
-
+		index=index+1	
+		print("image*********************************",x)
 
 			# the result is a JSON string:
-		# print("y.image",image_string)
+
 
 		# print("image_string", image_string)
 		# return send_file(io.BytesIO(obj.logo.read()), attachment_filename='logo.png',mimetype='image/png')
@@ -127,7 +135,7 @@ def index():
 	# print ("houseclean_data",houseclean_data)
 	headline = "Hello Russ"
 	# photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
-	return render_template("index.html", houseclean_list=houseclean_list, photo=x)
+	return render_template("index.html", houseclean_list=houseclean_list, photo=image_list)
 
 @app.route("/signup", methods = ["POST"]) #way to get sign in from index to sign-up page
 def signup():

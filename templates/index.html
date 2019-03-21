@@ -30,7 +30,8 @@
 	         var myLatLng =[]
 
 	         for (var i = 0; i < houseclean_list.length; i++) {
-					 var href = "tel:"+houseclean_list[i]['phone'];
+
+						 var href = "tel:"+houseclean_list[i]['phone'];
 						 myLatLng[i] = {lat: houseclean_list[i]['latitude'], lng: houseclean_list[i]['longitude']};
 
 
@@ -50,7 +51,16 @@
 
 																		'<div class="col-md-2 ">'+
 																			'<p id = "column-title" >Photo</p>'+
-																			'<div>'+'<img src="{{ photo }}" alt="Red dot width="64" height="64"" />'+'</div>'+
+																			'{% for i in photo %}'+
+
+																			// '<img src="{{i}}" alt="User Image">'+
+																			'{% endfor %}'+
+																			' {% block body %} '+
+
+																				// '<img src='{{photo['+0+']}}'alt='User Image'>'+
+																			'{% endblock %}'+
+
+																		'<div>'+'<img src='+houseclean_list[i]['image']+' alt="Red dot width="64" height="64"" />'+'</div>'+
 																		'</div>'+
 
 																				// '<form action="{{ url_for('signup') }}" method="post">'+'<button class="btn btn-success btn-md active" aria-pressed="true">Sign Up</button>'+'</form>'+
@@ -200,9 +210,15 @@
 	<div class="container-fluid text-center ">
 		<div>
 			<span >
-				<img src="{{ url_for("static", filename = "image/clean-1.png") }}" alt="User Image" width="64" height="64">		</span >
+				<img src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="64" height="64">		</span >
 			<h1>House Cleaning Miami </h1>
 
+			<img src="{{photo}}" alt="User Image">
+			{% for i in photo %}
+
+				<!-- <img src="{{i}}" alt="User Image"> -->
+				<!-- <li> {{i}} </li> -->
+			{% endfor %}
 
 		</div>
 			<div id="map" style="clear:both; height:500px;"></div>
