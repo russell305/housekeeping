@@ -49,6 +49,7 @@ engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d9
 db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 
 houseclean_list=[]
+image_list=[]
 #origin="NY"
 #destination="Tokyo"
 #flight = db.execute("SELECT * FROM flights WHERE origin = :origin AND destination = :dest",  {"origin": origin, "dest": destination} ).fetchone()
@@ -66,48 +67,37 @@ houseclean_list=[]
 #db.execute("CREATE TABLE houseclean1(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL, password VARCHAR NOT NULL, phone VARCHAR NOT NULL UNIQUE, address VARCHAR NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, email VARCHAR NOT NULL, years SMALLINT NOT NULL, description VARCHAR NOT NULL, hourly_rate SMALLINT NOT NULL, paid_subscription BOOLEAN, image BYTEA)")
 #db.commit()
 #print("dbcreated")
-image = db.execute("SELECT encode(image,'base64') FROM photos LIMIT 1").fetchone()
-#print ("image", image[0]) #image <memory at 0x109f34108>
+# image = db.execute("SELECT encode(image,'base64') FROM photos LIMIT 1").fetchone()
 
-# image_encode = image[0].encode('base64')
-# print (image_encode,"image_encode")
+
+
 #select encode(image,'base64') from photos limit 1 ****
 # encode(data bytea, format text)
-# str = "this is string example....wow!!!"
-# print ("Encoded String: ",str.encode('base64','strict'))
-image_string = "data:image/png;base64," + image[0]
-print("image_string",image_string)
-if "\n" in image_string:
-    print ("There's a newline in variable foo")
 
-#Check if the string starts with "The" and ends with "Spain":
+image = db.execute("SELECT encode(image,'base64') FROM houseclean1 Limit 1").fetchone()
 
-txt = "The rain in Spain"
-x = re.search("^The.*Spain$", txt)
+# imageDB = db.execute("SELECT encode(image,'base64') FROM houseclean1").fetchall()
+# print("imageDB",image[0])
+# for i in image:
 
-if (x):
-  print("YES! We have a match!")
-else:
-  print("No match")
+row_count = db.execute("SELECT COUNT(*) FROM houseclean1").fetchall()
+print("row_count",(row_count[0][0]))
+for i in range(row_count[0][0]):
+	image_list.append(image[i])
+	print("image***",image_list[i] )
+	print("number",i)
+	image_string = "data:image/png;base64," + image[0]
+	print("image_string",image_string)
 
-str = "The rain in Spain"
+	x = re.sub("\n", "", image_string)
+	print("x",x)
 
-#Find all lower case characters alphabetically between "a" and "m":
-
-# x = re.findall("\n", image_string )
-x = re.sub("\n", "", image_string)
-print("x",x)
-print("image_string",image_string)
 @app.route("/", methods = ["GET"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
 def index():
 
 
 
 	housecleanDB = db.execute("SELECT * FROM houseclean1").fetchall()
-	# housecleanPhoto1 = db.execute("SELECT image FROM houseclean1").fetchone()
-	# housecleanPhoto=request.files[housecleanPhoto1]
-	# print("housecleanPhoto1",housecleanPhoto1)
-	# image = photo[0]
 	for i in housecleanDB:
 
 		houseclean_data = {
@@ -125,11 +115,10 @@ def index():
 
 			}
 
-		y = json.dumps(houseclean_data)
-		print(y)
+
 			# the result is a JSON string:
 		# print("y.image",image_string)
-		# image_string = houseclean_data[image]
+
 		# print("image_string", image_string)
 		# return send_file(io.BytesIO(obj.logo.read()), attachment_filename='logo.png',mimetype='image/png')
 		# bytes=(BytesIO(i.image))
@@ -139,9 +128,9 @@ def index():
 
 
 		houseclean_list.append(houseclean_data)
-	print ("houseclean_data",houseclean_data)
+	# print ("houseclean_data",houseclean_data)
 	headline = "Hello Russ"
-	photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
+	# photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
 	return render_template("index.html", houseclean_list=houseclean_list, photo=x)
 
 @app.route("/signup", methods = ["POST"]) #way to get sign in from index to sign-up page
@@ -209,7 +198,8 @@ def uploader():
 
 @app.route("/signup_check", methods = ["POST"])
 def signup_check():
-	image = request.form.get("image")
+	imageF = request.files['image']
+	image = imageF.read()
 
 	name = request.form.get("name")
 	password1 = request.form.get("password")
@@ -227,8 +217,8 @@ def signup_check():
 	string3 = str(phone3)
 	phone=string1+string2+string3
 
-	if db.execute("SELECT * FROM houseclean1 WHERE phone = :phone", {"phone": phone}).rowcount > 0:
-		return "Number already taken, please contact support at 786-873-7526"
+	#if db.execute("SELECT * FROM houseclean1 WHERE phone = :phone", {"phone": phone}).rowcount > 0:
+		# return "Number already taken, please contact support at 786-873-7526"
 	street = request.form.get("street")
 	city = request.form.get("city")
 	state = request.form.get("state")
