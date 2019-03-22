@@ -48,8 +48,7 @@ engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d9
 #Sending data to and from database
 db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 
-houseclean_list=[]
-image_list=[]
+
 #origin="NY"
 #destination="Tokyo"
 #flight = db.execute("SELECT * FROM flights WHERE origin = :origin AND destination = :dest",  {"origin": origin, "dest": destination} ).fetchone()
@@ -74,31 +73,28 @@ image_list=[]
 #select encode(image,'base64') from photos limit 1 ****
 # encode(data bytea, format text)
 name_id = 16
-image_string = None
+
 # image = db.execute("SELECT encode(image,'base64') FROM houseclean1 WHERE id = :id",{"id": name_id).fetchone()
 # image = db.execute("SELECT encode(image,'base64') FROM houseclean1 WHERE id = :id",{"id": 15}).fetchall()
-image = db.execute("SELECT encode(image,'base64') FROM houseclean1").fetchall()
-# image1 = db.execute("SELECT * FROM houseclean1").fetchall()
-# print (image[0][0])
-# print (image1)
-row_count = db.execute("SELECT COUNT(*) FROM houseclean1").fetchall()
-print("row_count",(row_count[0][0]))
-for i in range(row_count[0][0]):
-# image_list.append(image[0])
-	# print("image***",image_list[i] )
-	print("number",i)
-	image_string = "data:image/png;base64," + image[i][0]
-	# print("image_string",image_string)
-	x = re.sub("\n", "", image_string)
-	# print("x",x)
-	image_list.append(x)
-# print("image_list",image_list)
+
 
 @app.route("/", methods = ["GET"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
 def index():
+	houseclean_list=[]
+	image_list=[]
+	image_string = None
+	image = db.execute("SELECT encode(image,'base64') FROM houseclean1").fetchall()
+	row_count = db.execute("SELECT COUNT(*) FROM houseclean1").fetchall()
+	print("row_count",(row_count[0][0]))
+	for i in range(row_count[0][0]):
 
 
+		print("number",i)
+		image_string = "data:image/png;base64," + image[i][0]
 
+		x = re.sub("\n", "", image_string)
+
+		image_list.append(x)
 	housecleanDB = db.execute("SELECT * FROM houseclean1").fetchall()
 	index=0
 	for i in housecleanDB:
@@ -117,8 +113,8 @@ def index():
 		 	# "image": 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
 
 			}
-		index=index+1	
-		print("image*********************************",x)
+		index=index+1
+		# print("image*********************************",x)
 
 			# the result is a JSON string:
 
@@ -221,8 +217,8 @@ def signup_check():
 	string3 = str(phone3)
 	phone=string1+string2+string3
 
-	#if db.execute("SELECT * FROM houseclean1 WHERE phone = :phone", {"phone": phone}).rowcount > 0:
-		# return "Number already taken, please contact support at 786-873-7526"
+	if db.execute("SELECT * FROM houseclean1 WHERE phone = :phone", {"phone": phone}).rowcount > 0:
+		return "Number already taken, please contact support at 786-873-7526"
 	street = request.form.get("street")
 	city = request.form.get("city")
 	state = request.form.get("state")

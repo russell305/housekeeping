@@ -51,14 +51,7 @@
 
 																		'<div class="col-md-2 ">'+
 																			'<p id = "column-title" >Photo</p>'+
-																			'{% for i in photo %}'+
-
-																			// '<img src="{{i}}" alt="User Image">'+
-																			'{% endfor %}'+
-																			' {% block body %} '+
-
-																				// '<img src='{{photo['+0+']}}'alt='User Image'>'+
-																			'{% endblock %}'+
+																
 
 																		'<div>'+'<img src='+houseclean_list[i]['image']+' alt="Red dot width="64" height="64"" />'+'</div>'+
 																		'</div>'+
@@ -213,12 +206,6 @@
 				<img src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="64" height="64">		</span >
 			<h1>House Cleaning Miami </h1>
 
-			<img src="{{photo}}" alt="User Image">
-			{% for i in photo %}
-
-				<!-- <img src="{{i}}" alt="User Image"> -->
-				<!-- <li> {{i}} </li> -->
-			{% endfor %}
 
 		</div>
 			<div id="map" style="clear:both; height:500px;"></div>
