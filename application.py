@@ -36,7 +36,7 @@ app.config['MAIL_PASSWORD'] = 'Brewster1!'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-mail = Mail(app)
+# mail = Mail(app)
 GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
 app.config["SESSION_PERMANENT"] = False
@@ -258,8 +258,8 @@ def signup_check():
 	db.commit()
 	session["check_houseclean"] = True
 	print("check_houseclean=True")
-	msg = Message('Hello From House Cleaning Miami', sender = 'housecleanmiami@gmail.com', recipients = [email])
-	msg.body = 'Hello Testing'
-	mail.send(msg)
+	# msg = Message('Hello From House Cleaning Miami', sender = 'housecleanmiami@gmail.com', recipients = [email])
+	# msg.body = 'Hello Testing'
+	# mail.send(msg)
 	#return "Mail Sent"
 	return redirect(url_for("index"))
