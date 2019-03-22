@@ -6,7 +6,7 @@
 #import datetime
 from flask import Flask, render_template, request, session, redirect, url_for, send_file # Import the class `Flask` from the `flask` module, written by someone else.
 from flask_session import Session
-from flask_mail import Mail, Message
+# from flask_mail import Mail, Message
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
