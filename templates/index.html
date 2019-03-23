@@ -100,18 +100,14 @@ function initMap() {
 								houseclean_list[i]['paper_towels']="NO"
 						 }
 
-
 						 var href = "tel:"+houseclean_list[i]['phone'];
 						 myLatLng[i] = {lat: houseclean_list[i]['latitude'], lng: houseclean_list[i]['longitude']};
-
 
 	           marker = new google.maps.Marker({
 	           position: myLatLng[i],
 	           map: map,
 	           });
 
-
-	           // process multiple info windows
 	           (function(marker, i) {
 	             google.maps.event.addListener(marker, 'click', function() {
 	                   infowindow = new google.maps.InfoWindow({
@@ -204,8 +200,6 @@ function initMap() {
 
 																'</div>'+
 
-
-
 												 			'</div>'
 	                   });
 	                   infowindow.open(map, marker);
@@ -270,8 +264,8 @@ function initMap() {
 				}
 				#map {
 					height: 200%;
-					margin-left: 7%;
-					margin-right: 7%;
+					margin-left: 17%;
+					margin-right: 17%;
 					margin-bottom: 3%;
 				}
 				#exp{
@@ -295,14 +289,12 @@ function initMap() {
 				#marker-text{
 					font-size: 25px;
 				}
-				.bottom-margin{
-					margin-bottom: 3%;
-				}
+
 				.left-side{
 					margin-top: 5%
 				};
 				.bottom{
-					margin-bottom: 8%
+					margin-bottom: 16%
 				}
 
 		</style>
@@ -311,32 +303,21 @@ function initMap() {
 
 	<div class="container-fluid text-center ">
 		<div>
-			<span >
-				<img src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="64" height="64">		</span >
-			<h1>House Cleaning Miami </h1>
 
+
+			<h1>House Cleaning Miami </h1>
+			<img src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="64" height="64">
 
 		</div>
 			<div id="map" style="clear:both; height:500px;"></div>
 			<div class="row bottom container-fluid text-center" >
-
 
 						<h7>House Cleaner? Sign up free!</h7>
 						<form action="{{ url_for('signup') }}" method="post">
 							<button class="btn btn-success btn-sm active" aria-pressed="true">Sign Up</button>
 						</form>
 
-
-					
-
-
-
-
-
 			  </div>
-
-
-
 
   </body>
 </html>

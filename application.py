@@ -11,15 +11,16 @@ from flask_session import Session
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from pprint import pprint
+# from pprint import pprint
 #import csv
 import json #for Python to Javascript
 import requests #for JSON
-import hashlib
-from werkzeug.utils import secure_filename
+import hashlib #password
+import re  #regex
+# import base64
 
 
-import re
+# import re
 
 #https://pythonhosted.org/flask-mail/  redo email
 
@@ -195,8 +196,9 @@ def uploader():
 @app.route("/signup_check", methods = ["POST"])
 def signup_check():
 	imageF = request.files['image']
-	image = imageF.read()
 
+	image = imageF.read()
+	
 	name = request.form.get("name")
 	password1 = request.form.get("password")
 	salt = "6Agz"
