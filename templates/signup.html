@@ -43,6 +43,12 @@
   				<div class="col-md-8" align="center">
   						<div >
   								<h1>House Cleaner Sign Up</h1>
+								<div >
+									<span>Already a Member? Sign in.</span>
+									<form action="{{ url_for('signin') }}" method="post">
+										<button class="btn btn-primary btn-sm active" aria-pressed="true">Sign In</button>
+									</form>
+								</div>
   								<form action="{{ url_for('signup_check') }}" method="post"  enctype = "multipart/form-data">
 										<div class = "input-fields" >
 	  	 					 				<input type="text" name="name" placeholder="Name" maxlength="20" required>
@@ -83,21 +89,65 @@
 	  								<div class = "input-fields">
 	  	 					 			 	<input type="text" name="zip_code" placeholder="Zip Code" maxlength="20" >
 	  	 					 		</div>
-
 										<div class = "input-fields">
-	  										<span >How many years house cleaning?</span>
+	  										<span >How many years experience?</span>
 	  										<input type="number" name="years" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 	  								</div>
-										<div class = "input-fields">
-	  										<span >Hourly Rate</span>
-	  										<input type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
-	  								</div>
+
 	  								<div class="form-group">
-	  										<textarea class="form-control" name="description" placeholder="Experience, Certifications, and Specialties. Days/Hours Available. | Experiencia, Certificaciones y Especialidades.  Horas días disponibles" rows="3"  maxlength="400"  required></textarea>
+	  										<textarea class="form-control" name="description" placeholder="Describe your Cleaning Service. Days/Hours Available. Payment Options" rows="3"  maxlength="400"  required></textarea>
 	  							  </div>
 
+										<p>How much do you charge for cleaning?</p>
 
-	  								<button class="btn btn-success btn-md ">Submit</button>
+	  								<div class = "input-fields">
+	  										<span >2-hour clean?</span>
+	  										<input type="number" name="two_hour" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+										<div class = "input-fields">
+	  										<span >3-hour clean?</span>
+	  										<input type="number" name="three_hour" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+										<div class = "input-fields">
+	  										<span >6-hour clean?</span>
+	  										<input type="number" name="six_hour" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+										<p>Check which cleaning items you supply.</p>
+										<div class="input-fields">
+	  										<input type="checkbox" name="broom"> Broom + Dust-Pan<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="mop"> Mop + Bucket<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="vacuum"> Vacuum<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="disinfectant"> Disinfectant + Glass Cleaner<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="soap_scum"> Soap Scum Remover<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="scrub_pads"> Scrub Pads<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="tooth_brush"> Toothbrush/Grout Brush<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="scraper"> Plastic Scraper<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="sponges"> Sponges/Wipes<br>
+	  								</div>
+										<div class="input-fields">
+	  										<input type="checkbox" name="paper_towels"> Paper Towels<br>
+	  								</div>
+
+
+
+
+	  								<button class="btn btn-success btn-md ">Sign Up</button>
   								</form>
   								</div>
 									<h3 class="text-center">Subscribe $2.99 Month</h3>

@@ -7,6 +7,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for, send_file # Import the class `Flask` from the `flask` module, written by someone else.
 from flask_session import Session
 # from flask_mail import Mail, Message
+# from flaskext.mail import Mail, Message
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -16,13 +17,11 @@ import json #for Python to Javascript
 import requests #for JSON
 import hashlib
 from werkzeug.utils import secure_filename
-from werkzeug.datastructures import ImmutableOrderedMultiDict
-from io import BytesIO
 
-import argparse
+
 import re
 
-
+#https://pythonhosted.org/flask-mail/  redo email
 
 
 
@@ -48,11 +47,10 @@ engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d9
 #Sending data to and from database
 db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 
+#ModuleNotFoundError: No module named 'flask_mail'
 
-#origin="NY"
-#destination="Tokyo"
 #flight = db.execute("SELECT * FROM flights WHERE origin = :origin AND destination = :dest",  {"origin": origin, "dest": destination} ).fetchone()
-#print("flight",flight)
+
 #db.execute("DELETE FROM flights WHERE origin = :origin", {"origin": origin})
 #there's this function encode in postgreSQL
 #encode(data bytea, format text)
@@ -61,30 +59,25 @@ db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 #encode(profilePic, 'base64')
 #db.execute("CREATE TABLE user(id SERIAL PRIMARY KEY, name VARCHAR, email VARCHAR, image BYTEA)")
 # db.execute("CREATE TABLE photos1(id SERIAL PRIMARY KEY, image BYTEA(max 30000))")
-#image = request.form.get("image") #from html form
+
 #db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":image})
-#db.execute("CREATE TABLE houseclean1(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL, password VARCHAR NOT NULL, phone VARCHAR NOT NULL UNIQUE, address VARCHAR NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, email VARCHAR NOT NULL, years SMALLINT NOT NULL, description VARCHAR NOT NULL, hourly_rate SMALLINT NOT NULL, paid_subscription BOOLEAN, image BYTEA)")
-#db.commit()
-#print("dbcreated")
+# db.execute("CREATE TABLE houseclean4(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL, password VARCHAR NOT NULL, phone VARCHAR NOT NULL UNIQUE, address VARCHAR NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, email VARCHAR NOT NULL, years SMALLINT NOT NULL,  description VARCHAR NOT NULL, two_hour SMALLINT NOT NULL, three_hour SMALLINT NOT NULL, six_hour SMALLINT NOT NULL ,paid_subscription BOOLEAN, image BYTEA,  broom BOOLEAN NOT NULL,  mop BOOLEAN NOT NULL,  vacuum BOOLEAN NOT NULL,  disinfectant BOOLEAN NOT NULL,  soap_scum BOOLEAN NOT NULL,  tooth_brush BOOLEAN NOT NULL,  scrub_pads BOOLEAN NOT NULL,  sponges BOOLEAN NOT NULL, scraper BOOLEAN NOT NULL,  paper_towels BOOLEAN NOT NULL)")
+# db.commit()
+# print("dbcreated")
 # image = db.execute("SELECT encode(image,'base64') FROM photos LIMIT 1").fetchone()
 
 
 
 #select encode(image,'base64') from photos limit 1 ****
 # encode(data bytea, format text)
-name_id = 16
-
-# image = db.execute("SELECT encode(image,'base64') FROM houseclean1 WHERE id = :id",{"id": name_id).fetchone()
-# image = db.execute("SELECT encode(image,'base64') FROM houseclean1 WHERE id = :id",{"id": 15}).fetchall()
-
 
 @app.route("/", methods = ["GET"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
 def index():
 	houseclean_list=[]
 	image_list=[]
 	image_string = None
-	image = db.execute("SELECT encode(image,'base64') FROM houseclean1").fetchall()
-	row_count = db.execute("SELECT COUNT(*) FROM houseclean1").fetchall()
+	image = db.execute("SELECT encode(image,'base64') FROM houseclean4").fetchall()
+	row_count = db.execute("SELECT COUNT(*) FROM houseclean4").fetchall()
 	print("row_count",(row_count[0][0]))
 	for i in range(row_count[0][0]):
 
@@ -95,7 +88,7 @@ def index():
 		x = re.sub("\n", "", image_string)
 
 		image_list.append(x)
-	housecleanDB = db.execute("SELECT * FROM houseclean1").fetchall()
+	housecleanDB = db.execute("SELECT * FROM houseclean4").fetchall()
 	index=0
 	for i in housecleanDB:
 
@@ -108,23 +101,26 @@ def index():
 		    "email": i.email,
 			"years": i.years,
 			"description": i.description,
-			"hourly_rate": i.hourly_rate,
+			"two_hour": i.two_hour,
+			"three_hour": i.three_hour,
+			"six_hour": i.six_hour,
+			"broom": i.broom,
+			"mop": i.mop,
+			"disinfectant": i.disinfectant,
+		    "vacuum": i.vacuum,
+			"soap_scum": i.soap_scum,
+			"tooth_brush": i.tooth_brush,
+			"scraper": i.scraper,
+			"sponges": i.sponges,
+			"scrub_pads": i.scrub_pads,
+			"paper_towels": i.paper_towels,
 			"image": image_list[index]
+
 		 	# "image": 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
 
 			}
 		index=index+1
-		# print("image*********************************",x)
 
-			# the result is a JSON string:
-
-
-		# print("image_string", image_string)
-		# return send_file(io.BytesIO(obj.logo.read()), attachment_filename='logo.png',mimetype='image/png')
-		# bytes=(BytesIO(i.image))
-		# print ("i.image",i.image)
-
-		# print ("image",i.image)
 
 
 		houseclean_list.append(houseclean_data)
@@ -140,7 +136,7 @@ def signup():
 @app.route("/delete_account/<string:phone>", methods = ["POST"]) #way to get sign in from index to sign-up page
 def delete_account(phone):
 
-	db.execute("DELETE FROM houseclean1 WHERE phone = :phone", {"phone": phone})
+	db.execute("DELETE FROM houseclean4 WHERE phone = :phone", {"phone": phone})
 	db.commit()
 	session["check_houseclean"] = False
 	return redirect(url_for("index"))
@@ -158,10 +154,10 @@ def user():
 	h = hashlib.md5(db_password.encode())
 	password = h.hexdigest()
 
-	if db.execute("SELECT * FROM houseclean1 WHERE name = :name AND password = :password", {"name": name, "password": password}).rowcount == 0:
+	if db.execute("SELECT * FROM houseclean4 WHERE name = :name AND password = :password", {"name": name, "password": password}).rowcount == 0:
 		return "name and password dont match"
 	else:
-		user = db.execute("SELECT * FROM houseclean1 WHERE name = :name AND password = :password", {"name": name, "password": password}).fetchall()
+		user = db.execute("SELECT * FROM houseclean4 WHERE name = :name AND password = :password", {"name": name, "password": password}).fetchall()
 	print ("user",user)
 	return render_template("user.html", user=user)
 
@@ -217,7 +213,7 @@ def signup_check():
 	string3 = str(phone3)
 	phone=string1+string2+string3
 
-	if db.execute("SELECT * FROM houseclean1 WHERE phone = :phone", {"phone": phone}).rowcount > 0:
+	if db.execute("SELECT * FROM houseclean4 WHERE phone = :phone", {"phone": phone}).rowcount > 0:
 		return "Number already taken, please contact support at 786-873-7526"
 	street = request.form.get("street")
 	city = request.form.get("city")
@@ -226,8 +222,69 @@ def signup_check():
 	email = request.form.get("email")
 	years = request.form.get("years")
 	description = request.form.get("description")
-	hourly_rate = request.form.get("hourly_rate")
+	two_hour = request.form.get("two_hour")
+	three_hour = request.form.get("three_hour")
+	six_hour = request.form.get("six_hour")
+	broom = request.form.get("broom")
+	mop = request.form.get("mop")
+	vacuum = request.form.get("vacuum")
+	disinfectant = request.form.get("disinfectant")
+	soap_scum = request.form.get("soap_scum")
+	tooth_brush = request.form.get("tooth_brush")
+	scraper = request.form.get("scraper")
+	sponges = request.form.get("sponges")
+	scrub_pads = request.form.get("scrub_pads")
+	paper_towels = request.form.get("paper_towels")
 
+	if broom=="on":
+		broom=True
+	else:
+		broom=False
+
+	if mop=="on":
+		mop=True
+	else:
+		mop=False
+
+	if vacuum=="on":
+		vacuum=True
+	else:
+		vacuum=False
+
+	if disinfectant=="on":
+		disinfectant=True
+	else:
+		disinfectant=False
+
+	if soap_scum=="on":
+		soap_scum=True
+	else:
+		soap_scum=False
+
+	if tooth_brush=="on":
+		tooth_brush=True
+	else:
+		tooth_brush=False
+
+	if scraper=="on":
+		scraper=True
+	else:
+		scraper=False
+
+	if sponges=="on":
+		sponges=True
+	else:
+		sponges=False
+
+	if scrub_pads=="on":
+		scrub_pads=True
+	else:
+		scrub_pads=False
+
+	if paper_towels=="on":
+		paper_towels=True
+	else:
+		paper_towels=False
 
 
 	address = street+", "+city+", "+state+", "+zip_code
@@ -254,7 +311,7 @@ def signup_check():
 		print("check_houseclean=False")
 
 
-	db.execute("INSERT INTO houseclean1(name, password, phone, address, email, latitude, longitude, years, description, hourly_rate, image) VALUES (:name, :password, :phone, :address, :email, :latitude, :longitude,  :years, :description, :hourly_rate, :image)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "latitude":latitude, "longitude":longitude,  "years":years, "description":description, "hourly_rate":hourly_rate, "image":image})
+	db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "years":years, "latitude":latitude, "longitude":longitude, "description":description, "two_hour":two_hour, "three_hour":three_hour, "six_hour":six_hour,"image":image, "broom":broom, "mop":mop, "vacuum":vacuum, "disinfectant":disinfectant, "soap_scum":soap_scum, "tooth_brush":tooth_brush, "scrub_pads":scrub_pads, "sponges":sponges, "scraper":scraper, "paper_towels":paper_towels})
 	db.commit()
 	session["check_houseclean"] = True
 	print("check_houseclean=True")
