@@ -16,7 +16,7 @@
           background-color: ;
           margin: 3%;
           padding: 0;
-          font: monseratt;
+          font-family: Montserrat;
         }
 				form{
 					margin-bottom: 15px;
@@ -45,10 +45,10 @@
     <div class="container-fluid text-center">
       <form action="{{ url_for('user') }}" method="post">
         <div class = "input-fields" >
-            <input type="text" name="name" placeholder="Name/Nombre" maxlength="20" required>
+            <input type="text" name="name" placeholder="Name" maxlength="20" required>
         </div>
         <div class = "input-fields" >
-            <input type="text" name="password" placeholder="Password/Contraseña" maxlength="20"  required>
+            <input type="text" name="password" placeholder="Password" maxlength="20"  required>
         </div>
         <button class="btn btn-success btn-md ">Submit</button>
       </form>

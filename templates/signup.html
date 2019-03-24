@@ -10,8 +10,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 		<style>
-
+				body{
+					font-family: Montserrat;
+				}
 				form{
+
 					margin-bottom: 15px;
 					margin-top: 10px;
           margin-right: 8%;
@@ -27,9 +30,12 @@
 					background-color: ;
 				}
 				p{
-					font-family: Montserrat;
-					color: blue;
+
+
 					font-size:15px;
+				}
+				.signin{
+					margin-top: -15px;
 				}
 		</style>
 		</head>
@@ -44,9 +50,9 @@
   						<div >
   								<h1>House Cleaner Sign Up</h1>
 								<div >
-									<span>Already a Member? Sign in.</span>
+									<h5>Already a Member? Sign in.</h5>
 									<form action="{{ url_for('signin') }}" method="post">
-										<button class="btn btn-primary btn-sm active" aria-pressed="true">Sign In</button>
+										<button class="btn btn-primary btn-sm active signin" aria-pressed="true">Sign In</button>
 									</form>
 								</div>
   								<form action="{{ url_for('signup_check') }}" method="post"  enctype = "multipart/form-data">
@@ -66,11 +72,9 @@
 	  	 					 		</div>
 										<div class = "input-fields" >
 
-											<input type = "file" name = "image" accept="image/x-png"/>
-											<!-- <input type="file" name="imagefilename"  /> -->
+											<input type = "file" name = "image" /> (Must be smaller than 1 Mb)
 
-											<!-- <input type = "submit"/> -->
-											<!-- <input type = "submit"/> -->
+										<!-- accept="image/x-png" -->
 	  	 					 		</div>
 
 										<div class = "input-fields">
@@ -92,7 +96,7 @@
 	  	 					 			 	<input type="text" name="zip_code" placeholder="Zip Code" maxlength="20" >
 	  	 					 		</div>
 										<div class = "input-fields">
-	  										<span >How many years experience?</span>
+	  									How many years experience?
 	  										<input type="number" name="years" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 	  								</div>
 

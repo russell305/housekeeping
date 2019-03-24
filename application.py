@@ -11,16 +11,13 @@ from flask_session import Session
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-# from pprint import pprint
+
 #import csv
 import json #for Python to Javascript
 import requests #for JSON
 import hashlib #password
 import re  #regex
-# import base64
 
-
-# import re
 
 #https://pythonhosted.org/flask-mail/  redo email
 
@@ -41,6 +38,7 @@ GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 Session (app)
 
 engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d98fa5468668d0d8aa3da415aed475d08f9b@ec2-54-225-227-125.compute-1.amazonaws.com:5432/d9prh5mib7dh2p")
@@ -195,10 +193,11 @@ def uploader():
 
 @app.route("/signup_check", methods = ["POST"])
 def signup_check():
-	imageF = request.files['image']
-
-	image = imageF.read()
-	
+	image_file = request.files['image']
+	image = image_file.read()
+	# image_size= os.path.getsize(image)
+	# image_size = os.stat(image).st_size
+	# print(h)
 	name = request.form.get("name")
 	password1 = request.form.get("password")
 	salt = "6Agz"
