@@ -11,23 +11,47 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<style>
-				img {
 
-				form{
-					margin-bottom: 15px;
-					margin-top: 10px
-				}
 				button{
 					margin-top:5px;
 				}
+				body {
+          height: 100%;
+          margin-left: 20%;
+          margin-right: 20%;
+          margin-top: 75px;
+          margin-bottom: 12px;
+					font-family: Montserrat;
+          font-size: 17px;
+					font-weight: 400;
+
+        }
 
 		</style>
 		</head>
 	<body>
-    <p>Thanks for your purchase!</p>
-
-
-
+		 <div class="container-fluid text-center">
+			 <p>Sign ups are done through Paypal with a debit card. Paypal offers the highest level of security for your
+			 sensitive bank information.  This button will take to to secure Paypal website.  You can also cancel through Paypal.
+		 </p>
+		<h5>Subscribe $2.99 Month</h5>
+		<form name="topaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+			<input type="hidden" name="cmd" value="_xclick-subscriptions">
+			<!-- <input type="hidden" name="custom" value="{{session['username']}}"/> -->
+			<input type="hidden" name="business" value="russm305@gmail.com">
+			<input type="hidden" name="item_name" value="subscription">
+			<input type="hidden" name="item_number" value="500">
+			<input type="hidden" name="no_shipping" value="1">
+			<input type="hidden" name="a3" value="2.99">
+			<input type="hidden" name="p3" value="1">
+			<input type="hidden" name="t3" value="M">
+			<input type="hidden" name="src" value="1">
+			<input type="hidden" name="sra" value="1">
+			<input type="hidden" name="return" value="http://104.236.221.91/success/">
+			<input type="hidden" name="cancel_return" value="http://104.236.221.91/">
+			<input type="hidden" name="notify_url" value="http://104.236.221.91/ipn/">
+			<input type="submit" class="btn btn-success btn-sm active bm" value="Subscribe" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
+		</div>
 
 	</body>
 </html>

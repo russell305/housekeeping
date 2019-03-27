@@ -1,7 +1,7 @@
 #export FLASK_APP=application.py
 #export DATABASE_URL="postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d98fa5468668d0d8aa3da415aed475d08f9b@ec2-54-225-227-125.compute-1.amazonaws.com:5432/d9prh5mib7dh2p"
 #key: 0S6vFxQgJiRIw2CZbc2Yg
-# http://exploreflask.com
+# http://exploreflask.com  #https://pythonhosted.org/flask-mail/  redo email
 #secret: 0kmzCjBS62odOXkfg4EcYnoBND3IM28ANuEFlTlWig
 #import datetime
 from flask import Flask, render_template, request, session, redirect, url_for, send_file # Import the class `Flask` from the `flask` module, written by someone else.
@@ -11,17 +11,10 @@ from flask_session import Session
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-
-#import csv
 import json #for Python to Javascript
 import requests #for JSON
 import hashlib #password
 import re  #regex
-
-
-#https://pythonhosted.org/flask-mail/  redo email
-
-
 
 app = Flask(__name__) # Instantiate a new web application called `app`, with `__name__` representing the current file
 # mail=Mail(app)
@@ -33,7 +26,6 @@ app.config['MAIL_PASSWORD'] = 'Brewster1!'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-# mail = Mail(app)
 GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
 app.config["SESSION_PERMANENT"] = False
@@ -46,7 +38,7 @@ engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d9
 #Sending data to and from database
 db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 
-#ModuleNotFoundError: No module named 'flask_mail'
+
 
 #flight = db.execute("SELECT * FROM flights WHERE origin = :origin AND destination = :dest",  {"origin": origin, "dest": destination} ).fetchone()
 
@@ -72,21 +64,18 @@ db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 
 @app.route("/", methods = ["GET"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
 def index():
+
 	houseclean_list=[]
 	image_list=[]
 	image_string = None
 	image = db.execute("SELECT encode(image,'base64') FROM houseclean4").fetchall()
 	row_count = db.execute("SELECT COUNT(*) FROM houseclean4").fetchall()
-	print("row_count",(row_count[0][0]))
+
 	for i in range(row_count[0][0]):
-
-
-		print("number",i)
 		image_string = "data:image/png;base64," + image[i][0]
-
 		x = re.sub("\n", "", image_string)
-
 		image_list.append(x)
+
 	housecleanDB = db.execute("SELECT * FROM houseclean4").fetchall()
 	index=0
 	for i in housecleanDB:
@@ -114,19 +103,11 @@ def index():
 			"scrub_pads": i.scrub_pads,
 			"paper_towels": i.paper_towels,
 			"image": image_list[index]
-
-		 	# "image": 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
-
 			}
 		index=index+1
-
-
-
 		houseclean_list.append(houseclean_data)
-	# print ("houseclean_data",houseclean_data)
-	headline = "Hello Russ"
-	# photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=='
-	return render_template("index.html", houseclean_list=houseclean_list, photo=image_list)
+
+	return render_template("index.html", houseclean_list=houseclean_list )
 
 @app.route("/signup", methods = ["POST"]) #way to get sign in from index to sign-up page
 def signup():
@@ -143,6 +124,10 @@ def delete_account(phone):
 @app.route("/sign-in", methods = ["POST"]) #way to get sign in from index to sign-in page
 def signin():
 	return render_template("sign-in.html")
+
+@app.route("/about", methods = ["POST"]) #way to get sign in from index to sign-in page
+def about():
+	return render_template("about.html")
 
 @app.route("/user", methods = ["POST"]) # user CRUD
 def user():
@@ -173,12 +158,23 @@ def ipn():
 				   .format(arg=arg)
 	r = requests.get(validate_url)
 	if r.text == 'VERIFIED':
-		return redirect(url_for("success"))
+		if session.get("check_houseclean") is True:
+			print("check_houseclean=True / cancel upload")
+			#return "Please delete account before uploading another"
+		else:
+			print("check_houseclean=False")
+
+		db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "years":years, "latitude":latitude, "longitude":longitude, "description":description, "two_hour":two_hour, "three_hour":three_hour, "six_hour":six_hour,"image":image, "broom":broom, "mop":mop, "vacuum":vacuum, "disinfectant":disinfectant, "soap_scum":soap_scum, "tooth_brush":tooth_brush, "scrub_pads":scrub_pads, "sponges":sponges, "scraper":scraper, "paper_towels":paper_towels})
+		db.commit()
+		session["check_houseclean"] = True
+		print("check_houseclean=True")
+		return redirect(url_for("index"))
 	else:
 		return "Failure"
 
 @app.route('/success/')
 def success():
+
 	return render_template("success.html")
 
 @app.route('/uploader', methods = ['GET', 'POST'])
@@ -193,19 +189,16 @@ def uploader():
 
 @app.route("/signup_check", methods = ["POST"])
 def signup_check():
+
+
 	image_file = request.files['image']
 	image = image_file.read()
-	# image_size= os.path.getsize(image)
-	# image_size = os.stat(image).st_size
-	# print(h)
 	name = request.form.get("name")
 	password1 = request.form.get("password")
 	salt = "6Agz"
 	db_password = password1+salt
 	h = hashlib.md5(db_password.encode())
 	password = h.hexdigest()
-	print("password", password)
-
 	phone1 = request.form.get("phone1")
 	phone2 = request.form.get("phone2")
 	phone3 = request.form.get("phone3")
@@ -213,7 +206,6 @@ def signup_check():
 	string2 = str(phone2)
 	string3 = str(phone3)
 	phone=string1+string2+string3
-
 	if db.execute("SELECT * FROM houseclean4 WHERE phone = :phone", {"phone": phone}).rowcount > 0:
 		return "Number already taken, please contact support at 786-873-7526"
 	street = request.form.get("street")
@@ -286,38 +278,21 @@ def signup_check():
 		paper_towels=True
 	else:
 		paper_towels=False
-
-
 	address = street+", "+city+", "+state+", "+zip_code
-	print(address)
-
-	#geocode
 	params = {
 		'address': address,
 		'key': 'AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM',
 	}
 	res = requests.get(GOOGLE_MAPS_API_URL, params=params)
 	response = res.json()
-	#print("jsonresonse",response)
+
 	latlng=response['results'][0]['geometry']['location']
 	latitude = latlng['lat']
 	longitude = latlng['lng']
-	print("lat", latlng['lat'])
-	print("lng", latlng['lng'])
-
-	if session.get("check_houseclean") is True:
-		print("check_houseclean=True / cancel upload")
-		#return "Please delete account before uploading another"
-	else:
-		print("check_houseclean=False")
 
 
-	db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "years":years, "latitude":latitude, "longitude":longitude, "description":description, "two_hour":two_hour, "three_hour":three_hour, "six_hour":six_hour,"image":image, "broom":broom, "mop":mop, "vacuum":vacuum, "disinfectant":disinfectant, "soap_scum":soap_scum, "tooth_brush":tooth_brush, "scrub_pads":scrub_pads, "sponges":sponges, "scraper":scraper, "paper_towels":paper_towels})
-	db.commit()
-	session["check_houseclean"] = True
-	print("check_houseclean=True")
 	# msg = Message('Hello From House Cleaning Miami', sender = 'housecleanmiami@gmail.com', recipients = [email])
 	# msg.body = 'Hello Testing'
 	# mail.send(msg)
-	#return "Mail Sent"
-	return redirect(url_for("index"))
+
+	return redirect(url_for("success"))

@@ -16,202 +16,6 @@
 			  crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-		<script>
-
-var houseclean_list=JSON.parse('{{ houseclean_list | tojson | safe }}');
-function initMap() {
-	var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 10,
-			center: {lat: 25.8317, lng: -80.2}
-	});
-
-	         var marker = {}
-	         var myLatLng =[]
-
-	         for (var i = 0; i < houseclean_list.length; i++) {
-
-						 if (houseclean_list[i]['broom']==true) {
-							  houseclean_list[i]['broom']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['broom']="NO"
-						 }
-
-						 if (houseclean_list[i]['mop']==true) {
-							  houseclean_list[i]['mop']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['mop']="NO"
-						 }
-
-						 if (houseclean_list[i]['vacuum']==true) {
-							  houseclean_list[i]['vacuum']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['vacuum']="NO"
-						 }
-
-						 if (houseclean_list[i]['disinfectant']==true) {
-							  houseclean_list[i]['disinfectant']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['disinfectant']="NO"
-						 }
-
-						 if (houseclean_list[i]['soap_scum']==true) {
-							  houseclean_list[i]['soap_scum']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['soap_scum']="NO"
-						 }
-
-						 if (houseclean_list[i]['tooth_brush']==true) {
-							  houseclean_list[i]['tooth_brush']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['tooth_brush']="NO"
-						 }
-
-						 if (houseclean_list[i]['scrub_pads']==true) {
-							  houseclean_list[i]['scrub_pads']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['scrub_pads']="NO"
-						 }
-
-						 if (houseclean_list[i]['sponges']==true) {
-							  houseclean_list[i]['sponges']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['sponges']="NO"
-						 }
-
-						 if (houseclean_list[i]['scraper']==true) {
-							  houseclean_list[i]['scraper']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['scraper']="NO"
-						 }
-
-						 if (houseclean_list[i]['paper_towels']==true) {
-							  houseclean_list[i]['paper_towels']="YES"
-						 }
-						 else	{
-								houseclean_list[i]['paper_towels']="NO"
-						 }
-
-						 var href = "tel:"+houseclean_list[i]['phone'];
-						 myLatLng[i] = {lat: houseclean_list[i]['latitude'], lng: houseclean_list[i]['longitude']};
-
-	           marker = new google.maps.Marker({
-	           position: myLatLng[i],
-	           map: map,
-	           });
-
-	           (function(marker, i) {
-	             google.maps.event.addListener(marker, 'click', function() {
-	                   infowindow = new google.maps.InfoWindow({
-	                       content: '<div class="container-fluid text-center">'+
-												 '<div class="row" id = "top-row">'+
-												 		'<div class="col-md-2 ">'+
-																'<p id = "column-title" >Name</p>'+
-																'<div>'+houseclean_list[i]['name']+'</div>'+
-														'</div>'+
-														'<div class="col-md-2 ">'+
-																'<p id = "column-title" >Photo</p>'+
-																'<div>'+'<img src='+houseclean_list[i]['image']+' alt="Red dot" width="64" height="64"" />'+'</div>'+
-																'</div>'+
-														'<div class="col-md-3">'+
-																'<p id = "column-title">Address</p>'+
-																'<div>'+houseclean_list[i]['address']+'</div>'+
-														'</div>'+
-														'<div class="col-md-2">'+
-																'<p id = "column-title">Experience</p>'+
-																'<div>'+"housecleaning for "+houseclean_list[i]['years']+" years"+'</div>'+
-														'</div>'+
-														'<div class="col-md-3">'+
-																'<p id = "column-title">Phone</p>'+
-																'<a href='+href+'>'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
-														'</div>'+
-													'</div>'+
-														'<div class="text-center" id = "description">'+'<b>'+"About: "+'</b>'+houseclean_list[i]['description']+'</div>'+
-														'<div class="text-center" id = "prices">'+"Cleaning Prices:"+'</div>'+
-														'<div class="row" id = "middle-row">'+
-
-																'<div class="col-md-4">'+
-																		'<p id = "column-middle">Two Hours of Cleaning:</p>'+
-																		'<div id = "hours">'+"$"+houseclean_list[i]['two_hour']+'</div>'+
-																'</div>'+
-																'<div class="col-md-4">'+
-																		'<p id = "column-middle">Three Hours of Cleaning:</p>'+
-																		'<div id = "hours">'+"$"+houseclean_list[i]['three_hour']+'</div>'+
-																'</div>'+
-
-																'<div class="col-md-4">'+
-																		'<p id = "column-middle">Six Hours of Cleaning:</p>'+
-																		'<div id = "hours">'+"$"+houseclean_list[i]['six_hour']+'</div>'+
-																'</div>'+
-
-														'</div>'+
-																'<div class="text-center" id = "prices">'+"Supplied By Housecleaner:"+'</div>'+
-																'<div class="row" id = "bottom-row">'+
-
-																		'<div class="col-md-2">'+
-																				'<div class="text-center">'+"Broom + Dustpan: "+houseclean_list[i]['broom']+'</div>'+
-																		'</div>'+
-																		'<div class="col-md-3">'+
-																				'<div class="text-center">'+"Mop + Bucket: "+houseclean_list[i]['mop']+'</div>'+
-																		'</div>'+
-
-																		'<div class="col-md-2">'+
-																				'<div class="text-center">'+"Vacuum: "+houseclean_list[i]['vacuum']+'</div>'+
-																		'</div>'+
-
-																		'<div class="col-md-3">'+
-																				'<div class="text-center">'+"Disinfectant + Glass Cleaner: "+houseclean_list[i]['disinfectant']+'</div>'+
-																		'</div>'+
-
-																		'<div class="col-md-2">'+
-																				'<div class="text-center">'+"Soap Scum Remover: "+houseclean_list[i]['soap_scum']+'</div>'+
-																		'</div>'+
-
-																'</div>'+
-																'<div class="row" id = "bottom2-row">'+
-
-																		'<div class="col-md-2">'+
-																				'<div class="text-center">'+"Toothbrush/Grout Brush: "+houseclean_list[i]['tooth_brush']+'</div>'+
-																		'</div>'+
-																		'<div class="col-md-3">'+
-																				'<div class="text-center">'+"Scrub Pads: "+houseclean_list[i]['scrub_pads']+'</div>'+
-																		'</div>'+
-
-																		'<div class="col-md-2">'+
-																				'<div class="text-center">'+"Sponges/Wipes: "+houseclean_list[i]['sponges']+'</div>'+
-																		'</div>'+
-
-																		'<div class="col-md-3">'+
-																				'<div class="text-center">'+"Paper Towels: "+houseclean_list[i]['paper_towels']+'</div>'+
-
-																		'</div>'+
-
-																		'<div class="col-md-2">'+
-																				'<div class="text-center">'+"Plastic Scraper: "+houseclean_list[i]['scraper']+'</div>'+
-																		'</div>'+
-
-																'</div>'+
-
-												 			'</div>'
-	                   });
-	                   infowindow.open(map, marker);
-	               });
-	           })(marker, i);
-	         }
-	     }
-			 $(document).ready(function() {
-				    initMap();
-				});
-
- 		 </script>
 
 		<style>
 				html, body {
@@ -290,7 +94,7 @@ function initMap() {
 				}
 
 				.bottom{
-					margin-bottom: 50px;
+					margin-bottom: 40px;
 				}
 
 				h4{
@@ -298,16 +102,23 @@ function initMap() {
 
 				}
 				h1{
-						margin-top: 15px;
-						margin-bottom: 12px;
+						margin-top: 25px;
+						margin-bottom: -4px;
 				}
 				#favicon{
 					margin-bottom: 3px;
 
 				}
+				#step1{
+					color:blue;
+				}
 				#step2{
-					margin-top: -5px;
+					margin-top: -7px;
 					margin-bottom: 10px;
+					color:blue;
+				}
+				.btn-info{
+					margin-top: 10px;
 				}
 		</style>
 	</head>
@@ -317,21 +128,219 @@ function initMap() {
 		<div>
 
 			<h1>House Cleaning Near Me </h1>
-			<h4>Step 1: Click on house cleaner markers close to you. </h4>
-			<h4 id = "step2">Step 2: Compare and press "Call" for the one you like.  </h4>
-
-
+			<h4>(and apartment cleaning)</h4>
+			<h4 id = "step1">Step 1: Click on  cleaner location markers close to you. </h4>
+			<h4 id = "step2">Step 2: Compare cleaners and call. </h4>
 
 		</div>
 			<div id="map" style="clear:both; height:500px;"></div>
 			<div class="row bottom container-fluid text-center" >
 				<img id = "favicon" src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="40" height="40">
-						<h7>House Cleaner? Sign up free!</h7>
+						<h7>House Cleaner? Sign up today!</h7>
 						<form action="{{ url_for('signup') }}" method="post">
 							<button class="btn btn-success btn-sm active bm" aria-pressed="true">Sign Up</button>
+						</form>
+						<form action="{{ url_for('about') }}" method="post">
+							<button class="btn btn-info btn-sm active bm" aria-pressed="true">About</button>
 						</form>
 
 		 </div>
 
   </body>
 </html>
+<script>
+
+var houseclean_list=JSON.parse('{{ houseclean_list | tojson | safe }}');
+function initMap() {
+var map = new google.maps.Map(document.getElementById('map'), {
+	zoom: 10,
+	center: {lat: 25.8317, lng: -80.2}
+});
+
+			 var marker = {}
+			 var myLatLng =[]
+
+			 for (var i = 0; i < houseclean_list.length; i++) {
+
+				 if (houseclean_list[i]['broom']==true) {
+						houseclean_list[i]['broom']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['broom']="NO"
+				 }
+
+				 if (houseclean_list[i]['mop']==true) {
+						houseclean_list[i]['mop']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['mop']="NO"
+				 }
+
+				 if (houseclean_list[i]['vacuum']==true) {
+						houseclean_list[i]['vacuum']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['vacuum']="NO"
+				 }
+
+				 if (houseclean_list[i]['disinfectant']==true) {
+						houseclean_list[i]['disinfectant']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['disinfectant']="NO"
+				 }
+
+				 if (houseclean_list[i]['soap_scum']==true) {
+						houseclean_list[i]['soap_scum']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['soap_scum']="NO"
+				 }
+
+				 if (houseclean_list[i]['tooth_brush']==true) {
+						houseclean_list[i]['tooth_brush']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['tooth_brush']="NO"
+				 }
+
+				 if (houseclean_list[i]['scrub_pads']==true) {
+						houseclean_list[i]['scrub_pads']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['scrub_pads']="NO"
+				 }
+
+				 if (houseclean_list[i]['sponges']==true) {
+						houseclean_list[i]['sponges']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['sponges']="NO"
+				 }
+
+				 if (houseclean_list[i]['scraper']==true) {
+						houseclean_list[i]['scraper']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['scraper']="NO"
+				 }
+
+				 if (houseclean_list[i]['paper_towels']==true) {
+						houseclean_list[i]['paper_towels']="YES"
+				 }
+				 else	{
+						houseclean_list[i]['paper_towels']="NO"
+				 }
+
+				 var href = "tel:"+houseclean_list[i]['phone'];
+				 myLatLng[i] = {lat: houseclean_list[i]['latitude'], lng: houseclean_list[i]['longitude']};
+
+				 marker = new google.maps.Marker({
+				 position: myLatLng[i],
+				 map: map,
+				 });
+
+				 (function(marker, i) {
+					 google.maps.event.addListener(marker, 'click', function() {
+								 infowindow = new google.maps.InfoWindow({
+										 content: '<div class="container-fluid text-center">'+
+										 '<div class="row" id = "top-row">'+
+												'<div class="col-md-2 ">'+
+														'<p id = "column-title" >Name</p>'+
+														'<div>'+houseclean_list[i]['name']+'</div>'+
+												'</div>'+
+												'<div class="col-md-2 ">'+
+														'<p id = "column-title" >Photo</p>'+
+														'<div>'+'<img src='+houseclean_list[i]['image']+' alt="Red dot" width="64" height="64"" />'+'</div>'+
+														'</div>'+
+												'<div class="col-md-3">'+
+														'<p id = "column-title">Address</p>'+
+														'<div>'+houseclean_list[i]['address']+'</div>'+
+												'</div>'+
+												'<div class="col-md-2">'+
+														'<p id = "column-title">Experience</p>'+
+														'<div>'+"housecleaning for "+houseclean_list[i]['years']+" years"+'</div>'+
+												'</div>'+
+												'<div class="col-md-3">'+
+														'<p id = "column-title">Phone</p>'+
+														'<a href='+href+'>'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
+												'</div>'+
+											'</div>'+
+												'<div class="text-center" id = "description">'+'<b>'+"About: "+'</b>'+houseclean_list[i]['description']+'</div>'+
+												'<div class="text-center" id = "prices">'+"Cleaning Prices:"+'</div>'+
+												'<div class="row" id = "middle-row">'+
+
+														'<div class="col-md-4">'+
+																'<p id = "column-middle">Two Hours of Cleaning:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['two_hour']+'</div>'+
+														'</div>'+
+														'<div class="col-md-4">'+
+																'<p id = "column-middle">Three Hours of Cleaning:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['three_hour']+'</div>'+
+														'</div>'+
+
+														'<div class="col-md-4">'+
+																'<p id = "column-middle">Six Hours of Cleaning:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['six_hour']+'</div>'+
+														'</div>'+
+
+												'</div>'+
+														'<div class="text-center" id = "prices">'+"Supplied By Housecleaner:"+'</div>'+
+														'<div class="row" id = "bottom-row">'+
+
+																'<div class="col-md-2">'+
+																		'<div class="text-center">'+"Broom + Dustpan: "+houseclean_list[i]['broom']+'</div>'+
+																'</div>'+
+																'<div class="col-md-3">'+
+																		'<div class="text-center">'+"Mop + Bucket: "+houseclean_list[i]['mop']+'</div>'+
+																'</div>'+
+
+																'<div class="col-md-2">'+
+																		'<div class="text-center">'+"Vacuum: "+houseclean_list[i]['vacuum']+'</div>'+
+																'</div>'+
+
+																'<div class="col-md-3">'+
+																		'<div class="text-center">'+"Disinfectant + Glass Cleaner: "+houseclean_list[i]['disinfectant']+'</div>'+
+																'</div>'+
+
+																'<div class="col-md-2">'+
+																		'<div class="text-center">'+"Soap Scum Remover: "+houseclean_list[i]['soap_scum']+'</div>'+
+																'</div>'+
+
+														'</div>'+
+														'<div class="row" id = "bottom2-row">'+
+
+																'<div class="col-md-2">'+
+																		'<div class="text-center">'+"Toothbrush/Grout Brush: "+houseclean_list[i]['tooth_brush']+'</div>'+
+																'</div>'+
+																'<div class="col-md-3">'+
+																		'<div class="text-center">'+"Scrub Pads: "+houseclean_list[i]['scrub_pads']+'</div>'+
+																'</div>'+
+
+																'<div class="col-md-2">'+
+																		'<div class="text-center">'+"Sponges/Wipes: "+houseclean_list[i]['sponges']+'</div>'+
+																'</div>'+
+
+																'<div class="col-md-3">'+
+																		'<div class="text-center">'+"Paper Towels: "+houseclean_list[i]['paper_towels']+'</div>'+
+
+																'</div>'+
+
+																'<div class="col-md-2">'+
+																		'<div class="text-center">'+"Plastic Scraper: "+houseclean_list[i]['scraper']+'</div>'+
+																'</div>'+
+
+														'</div>'+
+
+													'</div>'
+								 });
+								 infowindow.open(map, marker);
+						 });
+				 })(marker, i);
+			 }
+	 }
+	 $(document).ready(function() {
+				initMap();
+		});
+
+ </script>

@@ -30,12 +30,13 @@
 					background-color: ;
 				}
 				p{
-
-
 					font-size:15px;
 				}
 				.signin{
 					margin-top: -15px;
+				}
+				h1{
+					margin-top:25px;
 				}
 		</style>
 		</head>
@@ -49,12 +50,7 @@
   				<div class="col-md-8" align="center">
   						<div >
   								<h1>House Cleaner Sign Up</h1>
-								<div >
-									<h5>Already a Member? Sign in.</h5>
-									<form action="{{ url_for('signin') }}" method="post">
-										<button class="btn btn-primary btn-sm active signin" aria-pressed="true">Sign In</button>
-									</form>
-								</div>
+
   								<form action="{{ url_for('signup_check') }}" method="post"  enctype = "multipart/form-data">
 										<div class = "input-fields" >
 	  	 					 				<input type="text" name="name" placeholder="Name" maxlength="20" required>
@@ -72,9 +68,9 @@
 	  	 					 		</div>
 										<div class = "input-fields" >
 											Photo (Must be smaller than 1 Mb)
-											<input type = "file" name = "image" />
+											<input type = "file" name = "image" accept="image/x-png, image/jpeg, image/jpg"/>
 
-										<!-- accept="image/x-png" -->
+										<!-- accept="image/x-png, image/jpeg, image/jpg" -->
 	  	 					 		</div>
 
 										<div class = "input-fields">
@@ -83,6 +79,8 @@
 												<input type="number" name="phone2" placeholder="Phone" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 												<input type="number" name="phone3" placeholder="Number" oninput="if(value.length>4)value=value.slice(0,4)" min="1" max="99999" required>
 	  								</div>
+										<p>Address does not need be exact.  A general area of your location is fine so people
+											have an idea how close you are.</p>
 	  	 					 		<div class = "input-fields">
 	  	 					 			 	<input type="text" name="street" placeholder="Street" maxlength="90" required>
 	  	 					 		</div>
@@ -101,7 +99,7 @@
 	  								</div>
 
 	  								<div class="form-group">
-	  										<textarea class="form-control" name="description" placeholder="Describe your Cleaning Service. Days/Hours Available. Payment Options" rows="3"  maxlength="400"  required></textarea>
+	  										<textarea class="form-control" name="description" placeholder="Describe your Cleaning Service. Days/Hours Available. Payment Options." rows="3"  maxlength="400"  required></textarea>
 	  							  </div>
 
 										<p>How much do you charge for cleaning?</p>
@@ -155,8 +153,12 @@
 
 	  								<button class="btn btn-success btn-md ">Sign Up</button>
   								</form>
+									<h5>Already a Member? Sign in.</h5>
+									<form action="{{ url_for('signin') }}" method="post">
+										<button class="btn btn-primary btn-sm active signin" aria-pressed="true">Sign In</button>
+									</form>
   								</div>
-									<h3 class="text-center">Subscribe $2.99 Month</h3>
+									<!-- <h3 class="text-center">Subscribe $2.99 Month</h3> -->
 									<form name="topaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 										<input type="hidden" name="cmd" value="_xclick-subscriptions">
 										<!-- <input type="hidden" name="custom" value="{{session['username']}}"/> -->
@@ -172,7 +174,7 @@
 										<input type="hidden" name="return" value="http://104.236.221.91/success/">
 										<input type="hidden" name="cancel_return" value="http://104.236.221.91/">
 										<input type="hidden" name="notify_url" value="http://104.236.221.91/ipn/">
-										<input type="submit" value="Subscribe" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
+										<!-- <input type="submit" value="Subscribe" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary"> -->
 									<!-- </form> -->
 									<!-- <form action = "{{ url_for('uploader') }}" method = "POST" -->
 										 <!-- enctype = "multipart/form-data"> -->
