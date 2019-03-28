@@ -37,7 +37,49 @@ engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d9
 #talk to datbase wiTh SQL. Object used to manage connections to database.
 #Sending data to and from database
 db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
+image_file = None
+# image = None
+name = None
 
+password1 = None
+salt = None
+db_password = None
+h = None
+password = None
+phone1 = None
+phone2 = None
+phone3 = None
+string1 = None
+string2 = None
+string3 = None
+phone= None
+street = None
+city = None
+state = None
+zip_code = None
+email = None
+years = None
+description = None
+two_hour = None
+three_hour = None
+six_hour = None
+broom = None
+mop = None
+vacuum = None
+disinfectant = None
+soap_scum = None
+tooth_brush = None
+scraper = None
+sponges = None
+scrub_pads = None
+paper_towels = None
+address = None
+params = None
+res = None
+response = None
+latlng = None
+latitude = None
+longitude = None
 
 
 #flight = db.execute("SELECT * FROM flights WHERE origin = :origin AND destination = :dest",  {"origin": origin, "dest": destination} ).fetchone()
@@ -67,7 +109,7 @@ def index():
 
 	houseclean_list=[]
 	image_list=[]
-	image_string = None
+	image_string = ""
 	image = db.execute("SELECT encode(image,'base64') FROM houseclean4").fetchall()
 	row_count = db.execute("SELECT COUNT(*) FROM houseclean4").fetchall()
 
@@ -147,49 +189,55 @@ def user():
 
 @app.route('/ipn/',methods=['POST'])
 def ipn():
+
 	arg = ''
 	request.parameter_storage_class = ImmutableOrderedMultiDict
 	values = request.form
 	for x, y in values.iteritems():
 		arg += "&{x}={y}".format(x=x,y=y)
 
-	validate_url = 'https://www.paypal.com' \
+	validate_url = 'https://www.sandbox.paypal.com' \
 				   '/cgi-bin/webscr?cmd=_notify-validate{arg}' \
 				   .format(arg=arg)
 	r = requests.get(validate_url)
 	if r.text == 'VERIFIED':
-		if session.get("check_houseclean") is True:
-			print("check_houseclean=True / cancel upload")
-			#return "Please delete account before uploading another"
-		else:
-			print("check_houseclean=False")
-
-		db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "years":years, "latitude":latitude, "longitude":longitude, "description":description, "two_hour":two_hour, "three_hour":three_hour, "six_hour":six_hour,"image":image, "broom":broom, "mop":mop, "vacuum":vacuum, "disinfectant":disinfectant, "soap_scum":soap_scum, "tooth_brush":tooth_brush, "scrub_pads":scrub_pads, "sponges":sponges, "scraper":scraper, "paper_towels":paper_towels})
-		db.commit()
-		session["check_houseclean"] = True
-		print("check_houseclean=True")
 		return redirect(url_for("index"))
 	else:
 		return "Failure"
 
 @app.route('/success/')
 def success():
-
+	if session.get("check_houseclean") is True:
+		print("check_houseclean=True / cancel upload")
+		#return "Please delete account before uploading another"
+	else:
+		print("check_houseclean=False")
 	return render_template("success.html")
+	db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "years":years, "latitude":latitude, "longitude":longitude, "description":description, "two_hour":two_hour, "three_hour":three_hour, "six_hour":six_hour,"image":image, "broom":broom, "mop":mop, "vacuum":vacuum, "disinfectant":disinfectant, "soap_scum":soap_scum, "tooth_brush":tooth_brush, "scrub_pads":scrub_pads, "sponges":sponges, "scraper":scraper, "paper_towels":paper_towels})
+	db.commit()
+	session["check_houseclean"] = True
+	print("check_houseclean=True")
+	return "success"
+	# return render_template("success.html")
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def uploader():
-	if request.method == 'POST':
-		image = request.files['image']
-		image_binary = image.read()
-		print ("image_binary",image_binary)
-		db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":image_binary})
-		db.commit()
-		return 'file uploaded successfully'
+
+	image_file = request.files['image']
+	session['image']= image_file.read()
+	image = image_file.read()
+	return redirect(url_for("uploader2"))
+
+@app.route('/uploader2', methods = ['GET', 'POST'])
+def uploader2():
+	print ("image",session['image'])
+	db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":session['image']})
+	db.commit()
+	return 'file uploaded successfully'
+
 
 @app.route("/signup_check", methods = ["POST"])
 def signup_check():
-
 
 	image_file = request.files['image']
 	image = image_file.read()
@@ -290,9 +338,18 @@ def signup_check():
 	latitude = latlng['lat']
 	longitude = latlng['lng']
 
+	if session.get("check_houseclean") is True:
+		print("check_houseclean=True / cancel upload")
+		#return "Please delete account before uploading another"
+	else:
+		print("check_houseclean=False")
 
+	db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "years":years, "latitude":latitude, "longitude":longitude, "description":description, "two_hour":two_hour, "three_hour":three_hour, "six_hour":six_hour,"image":image, "broom":broom, "mop":mop, "vacuum":vacuum, "disinfectant":disinfectant, "soap_scum":soap_scum, "tooth_brush":tooth_brush, "scrub_pads":scrub_pads, "sponges":sponges, "scraper":scraper, "paper_towels":paper_towels})
+	db.commit()
+	session["check_houseclean"] = True
+	print("check_houseclean=True")
 	# msg = Message('Hello From House Cleaning Miami', sender = 'housecleanmiami@gmail.com', recipients = [email])
 	# msg.body = 'Hello Testing'
 	# mail.send(msg)
-
 	return redirect(url_for("success"))
+	return redirect(url_for("index"))
