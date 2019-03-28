@@ -37,49 +37,7 @@ engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d9
 #talk to datbase wiTh SQL. Object used to manage connections to database.
 #Sending data to and from database
 db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
-image_file = None
-# image = None
-name = None
 
-password1 = None
-salt = None
-db_password = None
-h = None
-password = None
-phone1 = None
-phone2 = None
-phone3 = None
-string1 = None
-string2 = None
-string3 = None
-phone= None
-street = None
-city = None
-state = None
-zip_code = None
-email = None
-years = None
-description = None
-two_hour = None
-three_hour = None
-six_hour = None
-broom = None
-mop = None
-vacuum = None
-disinfectant = None
-soap_scum = None
-tooth_brush = None
-scraper = None
-sponges = None
-scrub_pads = None
-paper_towels = None
-address = None
-params = None
-res = None
-response = None
-latlng = None
-latitude = None
-longitude = None
 
 
 #flight = db.execute("SELECT * FROM flights WHERE origin = :origin AND destination = :dest",  {"origin": origin, "dest": destination} ).fetchone()
@@ -119,6 +77,7 @@ def index():
 		image_list.append(x)
 
 	housecleanDB = db.execute("SELECT * FROM houseclean4").fetchall()
+	print (housecleanDB)
 	index=0
 	for i in housecleanDB:
 
@@ -240,103 +199,105 @@ def uploader2():
 def signup_check():
 
 	image_file = request.files['image']
-	image = image_file.read()
-	name = request.form.get("name")
+	session['image'] = image_file.read()
+	session['name'] = request.form.get("name")
 	password1 = request.form.get("password")
 	salt = "6Agz"
 	db_password = password1+salt
 	h = hashlib.md5(db_password.encode())
-	password = h.hexdigest()
+	session['password'] = h.hexdigest()
 	phone1 = request.form.get("phone1")
 	phone2 = request.form.get("phone2")
 	phone3 = request.form.get("phone3")
 	string1 = str(phone1)
 	string2 = str(phone2)
 	string3 = str(phone3)
-	phone=string1+string2+string3
-	if db.execute("SELECT * FROM houseclean4 WHERE phone = :phone", {"phone": phone}).rowcount > 0:
+	session['phone'] = string1 + string2 + string3
+	if db.execute("SELECT * FROM houseclean4 WHERE phone = :phone", {"phone": session['phone']}).rowcount > 0:
 		return "Number already taken, please contact support at 786-873-7526"
 	street = request.form.get("street")
 	city = request.form.get("city")
 	state = request.form.get("state")
 	zip_code = request.form.get("zip_code")
-	email = request.form.get("email")
-	years = request.form.get("years")
-	description = request.form.get("description")
-	two_hour = request.form.get("two_hour")
-	three_hour = request.form.get("three_hour")
-	six_hour = request.form.get("six_hour")
-	broom = request.form.get("broom")
-	mop = request.form.get("mop")
-	vacuum = request.form.get("vacuum")
-	disinfectant = request.form.get("disinfectant")
-	soap_scum = request.form.get("soap_scum")
-	tooth_brush = request.form.get("tooth_brush")
-	scraper = request.form.get("scraper")
-	sponges = request.form.get("sponges")
-	scrub_pads = request.form.get("scrub_pads")
-	paper_towels = request.form.get("paper_towels")
 
-	if broom=="on":
-		broom=True
-	else:
-		broom=False
+	session['email'] = request.form.get("email")
+	session['years'] = request.form.get("years")
+	session['description'] = request.form.get("description")
+	session['two_hour'] = request.form.get("two_hour")
+	session['three_hour'] = request.form.get("three_hour")
+	session['six_hour'] = request.form.get("six_hour")
+	session['broom'] = request.form.get("broom")
+	session['mop'] = request.form.get("mop")
+	session['vacuum'] = request.form.get("vacuum")
+	session['disinfectant'] = request.form.get("disinfectant")
+	session['soap_scum'] = request.form.get("soap_scum")
+	session['tooth_brush'] = request.form.get("tooth_brush")
+	session['scraper'] = request.form.get("scraper")
+	session['sponges'] = request.form.get("sponges")
+	session['scrub_pads'] = request.form.get("scrub_pads")
+	session['paper_towels'] = request.form.get("paper_towels")
 
-	if mop=="on":
-		mop=True
+	if session['broom']=="on":
+		session['broom']=True
 	else:
-		mop=False
+		session['broom']=False
 
-	if vacuum=="on":
-		vacuum=True
+	if session['mop']=="on":
+		session['mop']=True
 	else:
-		vacuum=False
+		session['mop']=False
 
-	if disinfectant=="on":
-		disinfectant=True
+	if session['vacuum']=="on":
+		session['vacuum']=True
 	else:
-		disinfectant=False
+		session['vacuum']=False
 
-	if soap_scum=="on":
-		soap_scum=True
+	if session['disinfectant']=="on":
+		session['disinfectant']=True
 	else:
-		soap_scum=False
+		session['disinfectant']=False
 
-	if tooth_brush=="on":
-		tooth_brush=True
+	if session['soap_scum']=="on":
+		session['soap_scum']=True
 	else:
-		tooth_brush=False
+		session['soap_scum']=False
 
-	if scraper=="on":
-		scraper=True
+	if session['tooth_brush']=="on":
+		session['tooth_brush']=True
 	else:
-		scraper=False
+		session['tooth_brush']=False
 
-	if sponges=="on":
-		sponges=True
+	if session['scraper']=="on":
+		session['scraper']=True
 	else:
-		sponges=False
+		session['scraper']=False
 
-	if scrub_pads=="on":
-		scrub_pads=True
+	if session['sponges']=="on":
+		session['sponges']=True
 	else:
-		scrub_pads=False
+		session['sponges']=False
 
-	if paper_towels=="on":
-		paper_towels=True
+	if session['scrub_pads']=="on":
+		session['scrub_pads']=True
 	else:
-		paper_towels=False
-	address = street+", "+city+", "+state+", "+zip_code
+		session['scrub_pads']=False
+
+	if session['paper_towels']=="on":
+		session['paper_towels']=True
+	else:
+		session['paper_towels']=False
+
+	session['address'] = street+", "+city+", "+state+", "+zip_code
 	params = {
-		'address': address,
+		'address': session['address'],
 		'key': 'AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM',
 	}
 	res = requests.get(GOOGLE_MAPS_API_URL, params=params)
 	response = res.json()
 
 	latlng=response['results'][0]['geometry']['location']
-	latitude = latlng['lat']
-	longitude = latlng['lng']
+	session['latitude'] = latlng['lat']
+	session['longitude'] = latlng['lng']
 
 	if session.get("check_houseclean") is True:
 		print("check_houseclean=True / cancel upload")
@@ -344,12 +305,12 @@ def signup_check():
 	else:
 		print("check_houseclean=False")
 
-	db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "years":years, "latitude":latitude, "longitude":longitude, "description":description, "two_hour":two_hour, "three_hour":three_hour, "six_hour":six_hour,"image":image, "broom":broom, "mop":mop, "vacuum":vacuum, "disinfectant":disinfectant, "soap_scum":soap_scum, "tooth_brush":tooth_brush, "scrub_pads":scrub_pads, "sponges":sponges, "scraper":scraper, "paper_towels":paper_towels})
+	db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":session['name'], "password":session['password'], "phone":session['phone'], "address":session['address'], "email":session['email'], "years":session['years'], "latitude":session['latitude'], "longitude":session['longitude'], "description":session['description'], "two_hour":session['two_hour'], "three_hour":session['three_hour'], "six_hour":session['six_hour'],"image":session['image'], "broom":session['broom'], "mop":session['mop'], "vacuum":session['vacuum'], "disinfectant":session['disinfectant'], "soap_scum":session['soap_scum'], "tooth_brush":session['tooth_brush'], "scrub_pads":session['scrub_pads'], "sponges":session['sponges'], "scraper":session['scraper'], "paper_towels":session['paper_towels']})
 	db.commit()
 	session["check_houseclean"] = True
 	print("check_houseclean=True")
 	# msg = Message('Hello From House Cleaning Miami', sender = 'housecleanmiami@gmail.com', recipients = [email])
 	# msg.body = 'Hello Testing'
 	# mail.send(msg)
-	return redirect(url_for("success"))
+	# return redirect(url_for("success"))
 	return redirect(url_for("index"))
