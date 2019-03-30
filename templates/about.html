@@ -15,20 +15,29 @@
           height: 100%;
           margin-left: 5%;
           margin-right: 5%;
-          margin-top: 25px;
+
           margin-bottom: 12px;
           padding: 0;
           font-family: Montserrat;
-          font-size: 20px;
-          font-weight: 400;
+
 					background-color: 	white ;
         }
-        h1{
-          margin-bottom: 5px;
+				p{
+					font-size: 20px;
+          font-weight: 400;
+				}
+        h2{
+					margin-top: 25px;
+          margin-bottom: 15px;
         }
         #green{
-          color:green;
+          color:darkgreen;
         }
+				button{
+					margin-top:-25px;
+
+				}
+
 
     </style>
 		</head>
@@ -38,20 +47,23 @@
 
 
   <div>
-    <h4>House Cleaning Near Me</h4>
-    <p>  I created this platform because I was unhappy with the options presented to house cleaners and consumers. I find other
-    platforms to be over-engineered and purely foucused on extracting as much money as possible from their users.
+    <h2>House Cleaning Near Me</h2>
+    <p>  I created this platform because I was unhappy with the options presented to house cleaners and consumers. Other
+    platforms are over-engineered and purely foucused on extracting as much money as possible from their users.
     As opposed to solving their user's issues.</p>
 
-    <p><b>House Cleaners:  </b>Some platforms extract a high percentage of every dollar a house cleaner earns.
-      Others will charge a $20 fee just if somebody spam emails the house cleaner through their website and no
-      revenue is earned. They call this a "Lead".  I find these practices unfair to the people doing the actual
+    <p><b>House Cleaners:  </b>Platforms extract a percentage of every dollar a house cleaner earns, or
+      they will charge a $20 fee if somebody emails the house cleaner to ask a queston.  They call this a "Lead".  These practices unfair to the people doing the actual
       work.  Here I offer a platform where house cleaners can offer their services for reasonable price.
-      <p id = "green">We charge only $2.99 per month. You can cancel at anytime with
+      <p id = "green">We charge only $2.99 per month.  You can cancel at anytime with
         no extra charges.</p>
+				<form action="{{ url_for('signup') }}" method="post">
+					<button class="btn btn-success btn-sm active " aria-pressed="true">Sign Up</button>
+				</form>
+
 
 <p><b>Consumers:  </b>Most platforms require users to insert personal data subjet to hackers.  Name, address, email, phone,
-  bank information, etc. Others make join a subscription service where you have your house cleaned 2x a month for a year.  Here
+  bank information, etc.  Others make you join a subscription service where you have your house cleaned twice a month for a year.  Here
   I want to simplify the process where you can compare house cleaning services, and call and talk to the ones you like.
 </p>
 <p><b>Contact:  </b>Russell: 786-873-7526

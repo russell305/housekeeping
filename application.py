@@ -126,7 +126,7 @@ def delete_account(phone):
 def signin():
 	return render_template("sign-in.html")
 
-@app.route("/about", methods = ["POST"]) #way to get sign in from index to sign-in page
+@app.route("/about", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def about():
 	return render_template("about.html")
 
@@ -160,7 +160,9 @@ def ipn():
 				   .format(arg=arg)
 	r = requests.get(validate_url)
 	if r.text == 'VERIFIED':
-		db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":session['name'], "password":session['password'], "phone":session['phone'], "address":session['address'], "email":session['email'], "years":session['years'], "latitude":session['latitude'], "longitude":session['longitude'], "description":session['description'], "two_hour":session['two_hour'], "three_hour":session['three_hour'], "six_hour":session['six_hour'],"image":session['image'], "broom":session['broom'], "mop":session['mop'], "vacuum":session['vacuum'], "disinfectant":session['disinfectant'], "soap_scum":session['soap_scum'], "tooth_brush":session['tooth_brush'], "scrub_pads":session['scrub_pads'], "sponges":session['sponges'], "scraper":session['scraper'], "paper_towels":session['paper_towels']})
+
+		session['paid_subscription'] = True
+		db.execute("INSERT INTO houseclean4(name, password, phone, address, email, years, latitude, longitude, description, two_hour, three_hour, six_hour, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels, paid_subscription) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :two_hour, :three_hour, :six_hour, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels, :paid_subscription)", {"paid_subscription":session['paid_subscription'], "name":session['name'], "password":session['password'], "phone":session['phone'], "address":session['address'], "email":session['email'], "years":session['years'], "latitude":session['latitude'], "longitude":session['longitude'], "description":session['description'], "two_hour":session['two_hour'], "three_hour":session['three_hour'], "six_hour":session['six_hour'],"image":session['image'], "broom":session['broom'], "mop":session['mop'], "vacuum":session['vacuum'], "disinfectant":session['disinfectant'], "soap_scum":session['soap_scum'], "tooth_brush":session['tooth_brush'], "scrub_pads":session['scrub_pads'], "sponges":session['sponges'], "scraper":session['scraper'], "paper_towels":session['paper_towels']})
 		db.commit()
 		return redirect(url_for("index"))
 	else:
