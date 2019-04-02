@@ -13,12 +13,13 @@ import json #for Python to Javascript
 import requests #for JSON
 import hashlib #password
 import re  #regex
-from flask_talisman import Talisman # https
-# from flask_sslify import SSLify
+# from flask_talisman import Talisman # https
+from flask_sslify import SSLify
 
 
 app = Flask(__name__) # Instantiate a new web application called `app`, with `__name__` representing the current file
-Talisman(app)
+# Talisman(app)
+sslify = SSLify(app)
 UPLOAD_FOLDER = '/static/image'
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
