@@ -9,7 +9,8 @@ Flask-Bootstrap==3.3.7.1
 Flask-Mail==0.9.1
 Flask-Session==0.3.1
 Flask-SQLAlchemy==2.3.2
-flask-talisman==0.6.0 
+flask-talisman==0.6.0
+Flask-SSLify==0.1.5
 future==0.17.1
 geocoder==1.38.1
 gunicorn==19.9.0
