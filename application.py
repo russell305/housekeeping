@@ -6,8 +6,6 @@
 #import datetime
 from flask import Flask, render_template, request, session, redirect, url_for, send_file # Import the class `Flask` from the `flask` module, written by someone else.
 from flask_session import Session
-# from flask_mail import Mail, Message
-# from flaskext.mail import Mail, Message
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -15,9 +13,11 @@ import json #for Python to Javascript
 import requests #for JSON
 import hashlib #password
 import re  #regex
+from flask_talisman import Talisman # https
+
 
 app = Flask(__name__) # Instantiate a new web application called `app`, with `__name__` representing the current file
-# mail=Mail(app)
+Talisman(app)
 UPLOAD_FOLDER = '/static/image'
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
