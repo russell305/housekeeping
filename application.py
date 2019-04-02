@@ -13,7 +13,7 @@ import json #for Python to Javascript
 import requests #for JSON
 import hashlib #password
 import re  #regex
-from flask_talisman import Talisman # https
+from flask-talisman import Talisman # https
 
 
 app = Flask(__name__) # Instantiate a new web application called `app`, with `__name__` representing the current file
