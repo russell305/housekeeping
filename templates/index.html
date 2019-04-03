@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title> House Cleaning Near Me  </title>
+		<title> House Cleaning Miami  </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -109,6 +109,9 @@
 				.about{
 					margin-bottom: 66px;
 				}
+				.bottom-row{
+					margin-top: 10px;
+				}
 		</style>
 	</head>
   <body>
@@ -119,7 +122,7 @@
 			<meta itemprop="serviceType" content="House cleaning" />
  			<span itemprop="provider" itemscope itemtype="http://schema.org/LocalBusiness">
 
-			<span itemprop="name"><h1>House Cleaning Near Me </h1></span>
+			<span itemprop="name"><h1>House Cleaning Miami </h1></span>
 			<span itemprop="name"><h4>(and apartment cleaning)</h4></span>
 		 	</span>
 	</div>
@@ -272,18 +275,33 @@ var map = new google.maps.Map(document.getElementById('map'), {
 												'<div class="row" id = "middle-row">'+
 
 														'<div class="col-md-4">'+
-																'<p id = "column-middle">Two Hours of Cleaning:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['two_hour']+'</div>'+
+																'<p id = "column-middle">Studio:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['studio']+'</div>'+
 														'</div>'+
 														'<div class="col-md-4">'+
-																'<p id = "column-middle">Three Hours of Cleaning:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['three_hour']+'</div>'+
+																'<p id = "column-middle">One Bedroom:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['one_bed']+'</div>'+
 														'</div>'+
 
 														'<div class="col-md-4">'+
-																'<p id = "column-middle">Six Hours of Cleaning:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['six_hour']+'</div>'+
+																'<p id = "column-middle">Two Bedroom:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['two_bed']+'</div>'+
 														'</div>'+
+
+														'<div class="col-md-4 bottom-row" >'+
+																'<p id = "column-middle">Three Bedroom:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['three_bed']+'</div>'+
+														'</div>'+
+														'<div class="col-md-4 bottom-row">'+
+																'<p id = "column-middle">Hourly Rate:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['hourly_rate']+'</div>'+
+														'</div>'+
+
+														'<div class="col-md-4 bottom-row">'+
+																'<p id = "column-middle">Deep Clean:</p>'+
+																'<div id = "hours">'+"$"+houseclean_list[i]['deep_clean']+'</div>'+
+														'</div>'+
+
 
 												'</div>'+
 														'<div class="text-center" id = "prices">'+"Supplied By Housecleaner:"+'</div>'+

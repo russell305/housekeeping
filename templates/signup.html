@@ -46,7 +46,7 @@
 					color:;
 				}
 				.image{
-					margin-bottom: 15px;
+					margin-bottom: 20px;
 					margin-top: 15px;
 				}
 		</style>
@@ -85,7 +85,7 @@
 
 										<div class = "input-fields">
 
-	  										<input type="number" name="phone1" placeholder="Area" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  										<input type="number" name="phone1" placeholder="Area Code" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 												<input type="number" name="phone2" placeholder="Phone" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 												<input type="number" name="phone3" placeholder="Number" oninput="if(value.length>4)value=value.slice(0,4)" min="1" max="99999" required>
 	  								</div>
@@ -115,16 +115,29 @@
 										<p>How much do you charge for cleaning?</p>
 
 	  								<div class = "input-fields">
-	  										<span >2-hour clean?</span>
-	  										<input type="number" name="two_hour" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  										<span >Studio</span>
+	  										<input type="number" name="studio" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 	  								</div>
 										<div class = "input-fields">
-	  										<span >3-hour clean?</span>
-	  										<input type="number" name="three_hour" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  										<span >1 Bed/ 1 Bath</span>
+	  										<input type="number" name="one_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 	  								</div>
 										<div class = "input-fields">
-	  										<span >6-hour clean?</span>
-	  										<input type="number" name="six_hour" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  										<span >2 Bed/ 2 Bath</span>
+	  										<input type="number" name="two_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+										<div class = "input-fields">
+	  										<span >3 Bed/ 3 Bath</span>
+	  										<input type="number" name="three_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+	  								</div>
+										<div class = "input-fields">
+	  										<span >Hourly Rate</span>
+	  										<input type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" >
+	  								</div>
+
+										<div class = "input-fields">
+	  										Deep Cleaning (Includes walls, baseboards, inside cabinets, refrigerator, oven, and microwave)
+	  										<input type="number" name="deep_clean" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 	  								</div>
 										<p>Check which cleaning items you supply.</p>
 
@@ -168,7 +181,7 @@
 									</form>
   								</div>
 
-									<h3 class="text-center">Subscribe $2.99 Month</h3>
+									<!-- <h3 class="text-center">Subscribe $2.99 Month</h3> -->
 
 									<form name="topaypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" enctype = "multipart/form-data">
 
@@ -188,7 +201,7 @@
 										<input type="hidden" name="return" value="http://104.236.221.91/success/">
 										<input type="hidden" name="cancel_return" value="http://104.236.221.91/">
 										<input type="hidden" name="notify_url" value="http://104.236.221.91/ipn/">
-								 		<input type="submit" value="Subscribe" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
+								 		<!-- <input type="submit" value="Subscribe" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary"> -->
 									</form>
 
 
