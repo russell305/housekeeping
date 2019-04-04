@@ -79,7 +79,7 @@ def index():
 		image_list.append(x)
 
 	housecleanDB = db.execute("SELECT * FROM houseclean6").fetchall()
-	print (housecleanDB)
+	# print (housecleanDB)
 	index=0
 	for i in housecleanDB:
 
@@ -232,6 +232,8 @@ def signup_check():
 	session['email'] = request.form.get("email")
 	session['years'] = request.form.get("years")
 	session['description'] = request.form.get("description")
+	regex = re.sub("\s", " ", session['description'])
+	session['description'] = regex
 	session['hourly_rate'] = request.form.get("hourly_rate")
 	session['studio'] = request.form.get("studio")
 	session['one_bed'] = request.form.get("one_bed")
