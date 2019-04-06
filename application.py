@@ -228,18 +228,30 @@ def signup_check():
 	city = request.form.get("city")
 	state = request.form.get("state")
 	zip_code = request.form.get("zip_code")
-
 	session['email'] = request.form.get("email")
 	session['years'] = request.form.get("years")
 	session['description'] = request.form.get("description")
 	regex = re.sub("\s", " ", session['description'])
 	session['description'] = regex
 	session['hourly_rate'] = request.form.get("hourly_rate")
+	if session['hourly_rate'] == "":
+		session['hourly_rate'] = 0
+	print("hourly", session['hourly_rate'] )
 	session['studio'] = request.form.get("studio")
+	if session['studio'] == "":
+		session['studio'] = 0
 	session['one_bed'] = request.form.get("one_bed")
+	if session['one_bed'] == "":
+		session['one_bed'] = 0
 	session['two_bed'] = request.form.get("two_bed")
+	if session['two_bed'] == "":
+		session['two_bed'] = 0
 	session['three_bed'] = request.form.get("three_bed")
+	if session['three_bed'] == "":
+		session['three_bed'] = 0
 	session['deep_clean'] = request.form.get("deep_clean")
+	if session['deep_clean'] == "":
+		session['deep_clean'] = 0
 	session['broom'] = request.form.get("broom")
 	session['mop'] = request.form.get("mop")
 	session['vacuum'] = request.form.get("vacuum")
@@ -251,55 +263,55 @@ def signup_check():
 	session['scrub_pads'] = request.form.get("scrub_pads")
 	session['paper_towels'] = request.form.get("paper_towels")
 
-	if session['broom']=="on":
-		session['broom']=True
+	if session['broom'] == "on":
+		session['broom'] = True
 	else:
-		session['broom']=False
+		session['broom'] = False
 
-	if session['mop']=="on":
-		session['mop']=True
+	if session['mop'] == "on":
+		session['mop'] = True
 	else:
-		session['mop']=False
+		session['mop'] = False
 
-	if session['vacuum']=="on":
-		session['vacuum']=True
+	if session['vacuum'] == "on":
+		session['vacuum'] = True
 	else:
-		session['vacuum']=False
+		session['vacuum'] = False
 
-	if session['disinfectant']=="on":
-		session['disinfectant']=True
+	if session['disinfectant'] == "on":
+		session['disinfectant'] = True
 	else:
-		session['disinfectant']=False
+		session['disinfectant'] = False
 
-	if session['soap_scum']=="on":
-		session['soap_scum']=True
+	if session['soap_scum'] == "on":
+		session['soap_scum'] = True
 	else:
-		session['soap_scum']=False
+		session['soap_scum'] = False
 
-	if session['tooth_brush']=="on":
-		session['tooth_brush']=True
+	if session['tooth_brush'] == "on":
+		session['tooth_brush'] = True
 	else:
-		session['tooth_brush']=False
+		session['tooth_brush'] = False
 
-	if session['scraper']=="on":
-		session['scraper']=True
+	if session['scraper'] == "on":
+		session['scraper'] = True
 	else:
-		session['scraper']=False
+		session['scraper'] = False
 
-	if session['sponges']=="on":
-		session['sponges']=True
+	if session['sponges'] == "on":
+		session['sponges'] = True
 	else:
-		session['sponges']=False
+		session['sponges'] = False
 
-	if session['scrub_pads']=="on":
-		session['scrub_pads']=True
+	if session['scrub_pads'] == "on":
+		session['scrub_pads'] = True
 	else:
-		session['scrub_pads']=False
+		session['scrub_pads'] = False
 
-	if session['paper_towels']=="on":
-		session['paper_towels']=True
+	if session['paper_towels'] == "on":
+		session['paper_towels'] = True
 	else:
-		session['paper_towels']=False
+		session['paper_towels'] = False
 
 	session['address'] = street+", "+city+", "+state+", "+zip_code
 	params = {
