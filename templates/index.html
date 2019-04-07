@@ -80,10 +80,7 @@
 					font-size:20px;
 				}
 
-				h4{
-					margin-top: 0px;
 
-				}
 				h1{
 						margin-top: 25px;
 						margin-bottom: 0px;
@@ -103,6 +100,12 @@
 					margin-bottom: 10px;
 					color:blue;
 				}
+				#step3{
+					/* color:blue; */
+				}
+				#ac{
+					margin-top: 0px;
+				}
 				.btn-info{
 					margin-top: 10px;
 				}
@@ -118,17 +121,19 @@
 
 	<div class="container-fluid text-center ">
 
-			<div itemscope itemtype="http://schema.org/Service">
+			<span itemscope itemtype="http://schema.org/Service">
 			<meta itemprop="serviceType" content="House cleaning" />
 		 			<span itemprop="provider" itemscope itemtype="http://schema.org/LocalBusiness">
 
-					<span itemprop="name"><h1>House Cleaning Miami </h1></span>
-					<span itemprop="name"><h4>(and apartment cleaning)</h4></span>
-					<h4 id = "step1" itemprop="description">Step 1: Click on house cleaner location markers close to you. </h4>
-					<h4 id = "step2" itemprop="description">Step 2: Compare house cleaning services and call. </h4>
+					<span itemprop="name"><h1>House Cleaning Miami Organiztion</h1></span>
+					<span itemprop="name"><h5 id = "ac">(and apartment cleaning)</h5></span>
+					<span itemprop="description"><h4 id = "step3">Independent house cleaners at affordable prices</h4></span>
+					<span itemprop="description"><h4 id = "step1">Step 1: Click on house cleaner location markers close to you.</h4></span>
+					<span itemprop="description"><h4 id = "step2">Step 2: Compare house cleaning services and call.</h4></span>
+
 
 				 	</span>
-			</div>
+			</span>
 
 
 
@@ -162,77 +167,83 @@ var map = new google.maps.Map(document.getElementById('map'), {
 
 			 for (var i = 0; i < houseclean_list.length; i++) {
 
-				 if (houseclean_list[i]['broom']==true) {
-						houseclean_list[i]['broom']="YES"
+				 if (houseclean_list[i]['broom'] == true) {
+						houseclean_list[i]['broom'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['broom']="NO"
+						houseclean_list[i]['broom'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['mop']==true) {
-						houseclean_list[i]['mop']="YES"
+				 if (houseclean_list[i]['mop'] == true) {
+						houseclean_list[i]['mop'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['mop']="NO"
+						houseclean_list[i]['mop'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['vacuum']==true) {
-						houseclean_list[i]['vacuum']="YES"
+				 if (houseclean_list[i]['vacuum'] == true) {
+						houseclean_list[i]['vacuum'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['vacuum']="NO"
+						houseclean_list[i]['vacuum'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['disinfectant']==true) {
-						houseclean_list[i]['disinfectant']="YES"
+				 if (houseclean_list[i]['disinfectant'] == true) {
+						houseclean_list[i]['disinfectant'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['disinfectant']="NO"
+						houseclean_list[i]['disinfectant'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['soap_scum']==true) {
-						houseclean_list[i]['soap_scum']="YES"
+				 if (houseclean_list[i]['soap_scum'] == true) {
+						houseclean_list[i]['soap_scum'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['soap_scum']="NO"
+						houseclean_list[i]['soap_scum'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['tooth_brush']==true) {
-						houseclean_list[i]['tooth_brush']="YES"
+				 if (houseclean_list[i]['tooth_brush'] == true) {
+						houseclean_list[i]['tooth_brush'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['tooth_brush']="NO"
+						houseclean_list[i]['tooth_brush'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['scrub_pads']==true) {
-						houseclean_list[i]['scrub_pads']="YES"
+				 if (houseclean_list[i]['scrub_pads'] == true) {
+						houseclean_list[i]['scrub_pads'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['scrub_pads']="NO"
+						houseclean_list[i]['scrub_pads'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['sponges']==true) {
-						houseclean_list[i]['sponges']="YES"
+				 if (houseclean_list[i]['sponges'] == true) {
+						houseclean_list[i]['sponges'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['sponges']="NO"
+						houseclean_list[i]['sponges'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['scraper']==true) {
-						houseclean_list[i]['scraper']="YES"
+				 if (houseclean_list[i]['scraper'] == true) {
+						houseclean_list[i]['scraper'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['scraper']="NO"
+						houseclean_list[i]['scraper'] = "NO"
 				 }
 
-				 if (houseclean_list[i]['paper_towels']==true) {
-						houseclean_list[i]['paper_towels']="YES"
+				 if (houseclean_list[i]['paper_towels'] == true) {
+						houseclean_list[i]['paper_towels'] = "YES"
 				 }
 				 else	{
-						houseclean_list[i]['paper_towels']="NO"
+						houseclean_list[i]['paper_towels'] = "NO"
 				 }
 				 if (houseclean_list[i]['hourly_rate'] == 0) {
 					 houseclean_list[i]['hourly_rate'] = "not available"
+				 }
+				 if (houseclean_list[i]['hourly_rate'] == 0) {
+					 houseclean_list[i]['hourly_rate'] = "not available"
+				 }
+				 if (houseclean_list[i]['numcleaners'] == 0 ) {
+					 houseclean_list[i]['numcleaners'] = "not available"
 				 }
 				 if (houseclean_list[i]['studio'] == 0) {
 					 houseclean_list[i]['studio'] = "not available"
@@ -299,30 +310,32 @@ var map = new google.maps.Map(document.getElementById('map'), {
 
 														'<div class="col-md-4">'+
 																'<p id = "column-middle">Studio:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['studio']+'</div>'+
+																'<div id = "hours">'+"$ "+houseclean_list[i]['studio']+'</div>'+
 														'</div>'+
 														'<div class="col-md-4">'+
 																'<p id = "column-middle">One Bedroom:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['one_bed']+'</div>'+
+																'<div id = "hours">'+"$ "+houseclean_list[i]['one_bed']+'</div>'+
 														'</div>'+
 
 														'<div class="col-md-4">'+
 																'<p id = "column-middle">Two Bedroom:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['two_bed']+'</div>'+
+																'<div id = "hours">'+"$ "+houseclean_list[i]['two_bed']+'</div>'+
 														'</div>'+
 
 														'<div class="col-md-4 bottom-row" >'+
 																'<p id = "column-middle">Three Bedroom:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['three_bed']+'</div>'+
+																'<div id = "hours">'+"$ "+houseclean_list[i]['three_bed']+'</div>'+
 														'</div>'+
 														'<div class="col-md-4 bottom-row">'+
 																'<p id = "column-middle">Hourly Rate:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['hourly_rate']+'</div>'+
+																'<div id = "hours">'+"$ "+houseclean_list[i]['hourly_rate']+'</div>'+
+																'<p id = "column-middle"># of Cleaners:</p>'+
+																'<div id = "hours">'+houseclean_list[i]['numcleaners']+'</div>'+
 														'</div>'+
 
 														'<div class="col-md-4 bottom-row">'+
 																'<p id = "column-middle">Deep Clean:</p>'+
-																'<div id = "hours">'+"$"+houseclean_list[i]['deep_clean']+'</div>'+
+																'<div id = "hours">'+"$ "+houseclean_list[i]['deep_clean']+'</div>'+
 														'</div>'+
 
 

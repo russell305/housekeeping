@@ -54,7 +54,7 @@ db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 # db.execute("CREATE TABLE photos1(id SERIAL PRIMARY KEY, image BYTEA(max 30000))")
 
 #db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":image})
-# db.execute("CREATE TABLE houseclean6(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL, password VARCHAR NOT NULL, phone VARCHAR NOT NULL UNIQUE, address VARCHAR NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, email VARCHAR NOT NULL, years SMALLINT NOT NULL,  description VARCHAR NOT NULL, hourly_rate SMALLINT, studio SMALLINT NOT NULL, one_bed SMALLINT NOT NULL, two_bed SMALLINT NOT NULL, three_bed SMALLINT NOT NULL, deep_clean SMALLINT NOT NULL ,paid_subscription BOOLEAN, image BYTEA,  broom BOOLEAN NOT NULL,  mop BOOLEAN NOT NULL,  vacuum BOOLEAN NOT NULL,  disinfectant BOOLEAN NOT NULL,  soap_scum BOOLEAN NOT NULL,  tooth_brush BOOLEAN NOT NULL,  scrub_pads BOOLEAN NOT NULL,  sponges BOOLEAN NOT NULL, scraper BOOLEAN NOT NULL,  paper_towels BOOLEAN NOT NULL)")
+# db.execute("CREATE TABLE houseclean7(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL, password VARCHAR NOT NULL, phone VARCHAR NOT NULL UNIQUE, address VARCHAR NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, email VARCHAR NOT NULL, years SMALLINT NOT NULL,  description VARCHAR NOT NULL, hourly_rate SMALLINT, numcleaners SMALLINT, studio SMALLINT, one_bed SMALLINT, two_bed SMALLINT, three_bed SMALLINT, deep_clean SMALLINT, paid_subscription BOOLEAN, image BYTEA,  broom BOOLEAN NOT NULL,  mop BOOLEAN NOT NULL,  vacuum BOOLEAN NOT NULL,  disinfectant BOOLEAN NOT NULL,  soap_scum BOOLEAN NOT NULL,  tooth_brush BOOLEAN NOT NULL,  scrub_pads BOOLEAN NOT NULL,  sponges BOOLEAN NOT NULL, scraper BOOLEAN NOT NULL,  paper_towels BOOLEAN NOT NULL)")
 # db.commit()
 # print("dbcreated")
 # image = db.execute("SELECT encode(image,'base64') FROM photos LIMIT 1").fetchone()
@@ -70,15 +70,15 @@ def index():
 	houseclean_list=[]
 	image_list=[]
 	image_string = ""
-	image = db.execute("SELECT encode(image,'base64') FROM houseclean6").fetchall()
-	row_count = db.execute("SELECT COUNT(*) FROM houseclean6").fetchall()
+	image = db.execute("SELECT encode(image,'base64') FROM houseclean7").fetchall()
+	row_count = db.execute("SELECT COUNT(*) FROM houseclean7").fetchall()
 
 	for i in range(row_count[0][0]):
 		image_string = "data:image/png;base64," + image[i][0]
 		x = re.sub("\n", "", image_string)
 		image_list.append(x)
 
-	housecleanDB = db.execute("SELECT * FROM houseclean6").fetchall()
+	housecleanDB = db.execute("SELECT * FROM houseclean7").fetchall()
 	# print (housecleanDB)
 	index=0
 	for i in housecleanDB:
@@ -93,6 +93,7 @@ def index():
 			"years": i.years,
 			"description": i.description,
 			"hourly_rate": i.hourly_rate,
+			"numcleaners": i.numcleaners,
 			"studio": i.studio,
 			"one_bed": i.one_bed,
 			"two_bed": i.two_bed,
@@ -122,7 +123,7 @@ def signup():
 @app.route("/delete_account/<string:phone>", methods = ["POST"]) #way to get sign in from index to sign-up page
 def delete_account(phone):
 
-	db.execute("DELETE FROM houseclean6 WHERE phone = :phone", {"phone": phone})
+	db.execute("DELETE FROM houseclean7 WHERE phone = :phone", {"phone": phone})
 	db.commit()
 	session["check_houseclean"] = False
 	return redirect(url_for("index"))
@@ -144,10 +145,10 @@ def user():
 	h = hashlib.md5(db_password.encode())
 	password = h.hexdigest()
 
-	if db.execute("SELECT * FROM houseclean6 WHERE name = :name AND password = :password", {"name": name, "password": password}).rowcount == 0:
+	if db.execute("SELECT * FROM houseclean7 WHERE name = :name AND password = :password", {"name": name, "password": password}).rowcount == 0:
 		return "name and password dont match"
 	else:
-		user = db.execute("SELECT * FROM houseclean6 WHERE name = :name AND password = :password", {"name": name, "password": password}).fetchall()
+		user = db.execute("SELECT * FROM houseclean7 WHERE name = :name AND password = :password", {"name": name, "password": password}).fetchall()
 	print ("user",user)
 	return render_template("user.html", user=user)
 
@@ -167,7 +168,7 @@ def ipn():
 	if r.text == 'VERIFIED':
 
 		session['paid_subscription'] = True
-		db.execute("INSERT INTO houseclean6(name, password, phone, address, email, years, latitude, longitude, description, hourly_rate, studio, one_bed, two_bed, three_bed, deep_clean, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels, paid_subscription) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :hourly_rate, :studio, :one_bed, :two_bed, :three_bed, :deep_clean, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels, :paid_subscription)", { "name":session['name'], "password":session['password'], "phone":session['phone'], "address":session['address'], "email":session['email'], "years":session['years'], "latitude":session['latitude'], "longitude":session['longitude'], "description":session['description'], "hourly_rate":session['hourly_rate'], "studio":session['studio'], "one_bed":session['one_bed'],"two_bed":session['two_bed'],"three_bed":session['three_bed'],"deep_clean":session['deep_clean'],"image":session['image'], "broom":session['broom'], "mop":session['mop'], "vacuum":session['vacuum'], "disinfectant":session['disinfectant'], "soap_scum":session['soap_scum'], "tooth_brush":session['tooth_brush'], "scrub_pads":session['scrub_pads'], "sponges":session['sponges'], "scraper":session['scraper'], "paper_towels":session['paper_towels'], "paid_subscription":session['paid_subscription']})
+		db.execute("INSERT INTO houseclean7(name, password, phone, address, email, years, latitude, longitude, description, hourly_rate, numcleaners, studio, one_bed, two_bed, three_bed, deep_clean, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels, paid_subscription) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :hourly_rate, :numcleaners, :studio, :one_bed, :two_bed, :three_bed, :deep_clean, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels, :paid_subscription)", { "name":session['name'], "password":session['password'], "phone":session['phone'], "address":session['address'], "email":session['email'], "years":session['years'], "latitude":session['latitude'], "longitude":session['longitude'], "description":session['description'], "hourly_rate":session['hourly_rate'], "numcleaners":session['numcleaners'], "studio":session['studio'], "one_bed":session['one_bed'],"two_bed":session['two_bed'],"three_bed":session['three_bed'],"deep_clean":session['deep_clean'],"image":session['image'], "broom":session['broom'], "mop":session['mop'], "vacuum":session['vacuum'], "disinfectant":session['disinfectant'], "soap_scum":session['soap_scum'], "tooth_brush":session['tooth_brush'], "scrub_pads":session['scrub_pads'], "sponges":session['sponges'], "scraper":session['scraper'], "paper_towels":session['paper_towels'], "paid_subscription":session['paid_subscription']})
 		db.commit()
 		return redirect(url_for("index"))
 	else:
@@ -181,12 +182,6 @@ def success():
 	else:
 		print("check_houseclean=False")
 	return render_template("success.html")
-	db.execute("INSERT INTO houseclean6(name, password, phone, address, email, years, latitude, longitude, description, hourly_rate, studio, one_bed, two_bed, three_bed, deep_clean, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :hourly_rate, :studio, :one_bed, :two_bed, :three_bed, :deep_clean, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels)", {"name":name, "password":password, "phone":phone, "address":address, "email":email, "years":years, "latitude":latitude, "longitude":longitude, "description":description, "hourly_rate":hourly_rate, "studio":studio, "one_bed":one_bed, "two_bed":two_bed, "three_bed":three_bed, "deep_clean":deep_clean, "image":image, "broom":broom, "mop":mop, "vacuum":vacuum, "disinfectant":disinfectant, "soap_scum":soap_scum, "tooth_brush":tooth_brush, "scrub_pads":scrub_pads, "sponges":sponges, "scraper":scraper, "paper_towels":paper_towels})
-	db.commit()
-	session["check_houseclean"] = True
-	print("check_houseclean=True")
-	return "success"
-	# return render_template("success.html")
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def uploader():
@@ -208,7 +203,11 @@ def uploader2():
 def signup_check():
 
 	image_file = request.files['image']
-	session['image'] = image_file.read()
+	if image_file == "":
+		session['image'] = 0
+	else:
+		session['image'] = image_file.read()
+	print ('sessi==', session['image'])	
 	session['name'] = request.form.get("name")
 	password1 = request.form.get("password")
 	salt = "6Agz"
@@ -222,7 +221,7 @@ def signup_check():
 	string2 = str(phone2)
 	string3 = str(phone3)
 	session['phone'] = string1 + string2 + string3
-	if db.execute("SELECT * FROM houseclean6 WHERE phone = :phone", {"phone": session['phone']}).rowcount > 0:
+	if db.execute("SELECT * FROM houseclean7 WHERE phone = :phone", {"phone": session['phone']}).rowcount > 0:
 		return "Number already taken, please contact support at 786-873-7526"
 	street = request.form.get("street")
 	city = request.form.get("city")
@@ -233,10 +232,15 @@ def signup_check():
 	session['description'] = request.form.get("description")
 	regex = re.sub("\s", " ", session['description'])
 	session['description'] = regex
+
 	session['hourly_rate'] = request.form.get("hourly_rate")
 	if session['hourly_rate'] == "":
 		session['hourly_rate'] = 0
-	print("hourly", session['hourly_rate'] )
+
+	session['numcleaners'] = request.form.get("numcleaners")
+	if session['numcleaners'] == "":
+		session['numcleaners'] = 0
+
 	session['studio'] = request.form.get("studio")
 	if session['studio'] == "":
 		session['studio'] = 0
@@ -331,7 +335,7 @@ def signup_check():
 	else:
 		print("check_houseclean=False")
 
-	db.execute("INSERT INTO houseclean6(name, password, phone, address, email, years, latitude, longitude, description, hourly_rate, studio, one_bed, two_bed, three_bed, deep_clean, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :hourly_rate, :studio, :one_bed, :two_bed, :three_bed, :deep_clean, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels )", { "name":session['name'], "password":session['password'], "phone":session['phone'], "address":session['address'], "email":session['email'], "years":session['years'], "latitude":session['latitude'], "longitude":session['longitude'], "description":session['description'], "hourly_rate":session['hourly_rate'], "studio":session['studio'], "one_bed":session['one_bed'],"two_bed":session['two_bed'],"three_bed":session['three_bed'],"deep_clean":session['deep_clean'],"image":session['image'], "broom":session['broom'], "mop":session['mop'], "vacuum":session['vacuum'], "disinfectant":session['disinfectant'], "soap_scum":session['soap_scum'], "tooth_brush":session['tooth_brush'], "scrub_pads":session['scrub_pads'], "sponges":session['sponges'], "scraper":session['scraper'], "paper_towels":session['paper_towels']})
+	db.execute("INSERT INTO houseclean7(name, password, phone, address, email, years, latitude, longitude, description, hourly_rate, numcleaners, studio, one_bed, two_bed, three_bed, deep_clean, image, broom, mop, vacuum, disinfectant, soap_scum, tooth_brush, scrub_pads, sponges, scraper, paper_towels) VALUES (:name, :password, :phone, :address, :email, :years, :latitude, :longitude, :description, :hourly_rate, :numcleaners, :studio, :one_bed, :two_bed, :three_bed, :deep_clean, :image, :broom, :mop, :vacuum, :disinfectant, :soap_scum, :tooth_brush, :scrub_pads, :sponges, :scraper, :paper_towels )", { "name":session['name'], "password":session['password'], "phone":session['phone'], "address":session['address'], "email":session['email'], "years":session['years'], "latitude":session['latitude'], "longitude":session['longitude'], "description":session['description'], "hourly_rate":session['hourly_rate'], "numcleaners":session['numcleaners'], "studio":session['studio'], "one_bed":session['one_bed'],"two_bed":session['two_bed'],"three_bed":session['three_bed'],"deep_clean":session['deep_clean'],"image":session['image'], "broom":session['broom'], "mop":session['mop'], "vacuum":session['vacuum'], "disinfectant":session['disinfectant'], "soap_scum":session['soap_scum'], "tooth_brush":session['tooth_brush'], "scrub_pads":session['scrub_pads'], "sponges":session['sponges'], "scraper":session['scraper'], "paper_towels":session['paper_towels']})
 	db.commit()
 	session["check_houseclean"] = True
 	print("check_houseclean=True")

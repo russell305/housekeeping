@@ -84,7 +84,7 @@
 	  	 					 		</div>
 										<div class = "input-fields image" >
 											Photo (Must be smaller than 1 Mb)
-											<input type = "file" name = "image" accept="image/x-png, image/jpeg, image/jpg"/>
+											<input type = "file" name = "image" accept="image/x-png, image/jpeg, image/jpg"/ required>
 	  	 					 		</div>
 
 										<div class = "input-fields">
@@ -113,35 +113,38 @@
 	  								</div>
 
 	  								<div class="form-group">
-	  										<textarea class="form-control" name="description" placeholder="Describe your Cleaning Service. Days/Hours Available. Payment Options." rows="3"  maxlength="400"  required></textarea>
+	  										<textarea class="form-control" name="description" placeholder="Describe your Cleaning Service. Days/Hours Available. Payment Options." rows="3"  maxlength="600"  required></textarea>
 	  							  </div>
 
 										<p>How much do you charge for cleaning?</p>
 
 	  								<div class = "input-fields">
 	  										<span >Studio</span>
-	  										<input type="number" name="studio" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" >
+	  										<input type="number" name="studio" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
 	  										<span >1 Bed/ 1 Bath</span>
-	  										<input type="number" name="one_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" >
+	  										<input type="number" name="one_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
 	  										<span >2 Bed/ 2 Bath</span>
-	  										<input type="number" name="two_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" >
+	  										<input type="number" name="two_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
 	  										<span >3 Bed/ 3 Bath</span>
-	  										<input type="number" name="three_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" >
+	  										<input type="number" name="three_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
 	  										<span >Hourly Rate</span>
-	  										<input type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" >
+	  										<input type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
+												<span ># of cleaners</span>
+												<input type="number" name="numcleaners" placeholder="#" oninput="if(value.length>2)value=value.slice(0,2)" min="1" max="99" >
 	  								</div>
+
 
 										<div class = "input-fields">
 	  										Deep Cleaning (Includes walls, baseboards, inside cabinets, refrigerator, oven, and microwave)
-	  										<input type="number" name="deep_clean" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" >
+	  										<input type="number" name="deep_clean" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<p>Check which cleaning items you supply.</p>
 
