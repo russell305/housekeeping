@@ -14,7 +14,7 @@ import requests #for JSON
 import hashlib #password
 import re  #regex
 # from flask_seasurf import SeaSurf
-# from flask_sslify import SSLify
+from flask_sslify import SSLify
 # from flask_talisman import Talisman # https  use this instead SSLify
 
 app = Flask(__name__) # Instantiate a new web application called `app`, with `__name__` representing the current file
@@ -32,7 +32,7 @@ GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
-# sslify = SSLify(app, age=300)
+sslify = SSLify(app, age=300)
 # csrf = SeaSurf(app)  # protection
 Session (app)
 engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d98fa5468668d0d8aa3da415aed475d08f9b@ec2-54-225-227-125.compute-1.amazonaws.com:5432/d9prh5mib7dh2p")
@@ -52,8 +52,8 @@ db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 #encode(profilePic, 'base64')
 #db.execute("CREATE TABLE user(id SERIAL PRIMARY KEY, name VARCHAR, email VARCHAR, image BYTEA)")
 # db.execute("CREATE TABLE photos1(id SERIAL PRIMARY KEY, image BYTEA(max 30000))")
-
-#db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":image})
+# db.execute("INSERT INTO houseclean7 (studio) WHERE id = 5 VALUES (90)")
+# db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":image})
 # db.execute("CREATE TABLE houseclean7(id SERIAL PRIMARY KEY, name VARCHAR NOT NULL, password VARCHAR NOT NULL, phone VARCHAR NOT NULL UNIQUE, address VARCHAR NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, email VARCHAR NOT NULL, years SMALLINT NOT NULL,  description VARCHAR NOT NULL, hourly_rate SMALLINT, numcleaners SMALLINT, studio SMALLINT, one_bed SMALLINT, two_bed SMALLINT, three_bed SMALLINT, deep_clean SMALLINT, paid_subscription BOOLEAN, image BYTEA,  broom BOOLEAN NOT NULL,  mop BOOLEAN NOT NULL,  vacuum BOOLEAN NOT NULL,  disinfectant BOOLEAN NOT NULL,  soap_scum BOOLEAN NOT NULL,  tooth_brush BOOLEAN NOT NULL,  scrub_pads BOOLEAN NOT NULL,  sponges BOOLEAN NOT NULL, scraper BOOLEAN NOT NULL,  paper_towels BOOLEAN NOT NULL)")
 # db.commit()
 # print("dbcreated")
@@ -113,7 +113,7 @@ def index():
 			}
 		index=index+1
 		houseclean_list.append(houseclean_data)
-
+		print ("houseclean_data",houseclean_data["description"])
 	return render_template("index.html", houseclean_list=houseclean_list )
 
 @app.route("/signup", methods = ["POST"]) #way to get sign in from index to sign-up page
@@ -230,7 +230,8 @@ def signup_check():
 	session['email'] = request.form.get("email")
 	session['years'] = request.form.get("years")
 	session['description'] = request.form.get("description")
-	regex = re.sub("\s", " ", session['description'])
+	quot = re.sub('"', '-', session['description'])
+	regex = re.sub("\s", " ",quot)
 	session['description'] = regex
 
 	session['hourly_rate'] = request.form.get("hourly_rate")
