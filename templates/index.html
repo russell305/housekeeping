@@ -38,6 +38,7 @@
 					padding: 0;
 					margin-bottom: 75px;
 					font-weight: 400;
+					/* background-image: url('static/image/favicon.png'); */
 				}
 
 
@@ -127,6 +128,7 @@
 				}
 		</style>
 	</head>
+
   <body>
 
 	<div class="container-fluid text-center ">
@@ -141,12 +143,8 @@
 					<span itemprop="description"><h4 id = "step1">Step 1: Click on house cleaner location markers close to you.</h4></span>
 					<span itemprop="description"><h4 id = "step2">Step 2: Compare house cleaning services and call.</h4></span>
 
-
 				 	</span>
 			</span>
-
-
-
 
 			<div id="map" style="clear:both; height:500px;"></div>
 			<div class="row bottom container-fluid text-center" >
@@ -168,7 +166,7 @@
 var houseclean_list=JSON.parse('{{ houseclean_list | tojson | safe }}');
 function initMap() {
 var map = new google.maps.Map(document.getElementById('map'), {
-	zoom: 10,
+	zoom: 9,
 	center: {lat: 25.8317, lng: -80.2}
 });
 
