@@ -164,7 +164,7 @@
   </body>
 </html>
 <script>
-
+var href
 var houseclean_list=JSON.parse('{{ houseclean_list | tojson | safe }}');
 function initMap() {
 var map = new google.maps.Map(document.getElementById('map'), {
@@ -273,7 +273,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 
 
 
-				 var href = "tel:"+houseclean_list[i]['phone'];
+				 href = "tel:"+houseclean_list[i]['phone'];
 				 myLatLng[i] = {lat: houseclean_list[i]['latitude'], lng: houseclean_list[i]['longitude']};
 
 				 marker = new google.maps.Marker({
@@ -310,8 +310,8 @@ var map = new google.maps.Map(document.getElementById('map'), {
 												'</div>'+
 												'<div class="col-md-3">'+
 														'<p id = "column-title">Phone</p>'+
-														'<div>'+"phone number: "+houseclean_list[i]['phone']+'</div>'+
-														// '<a href='+href+' itemprop="telephone" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
+														// '<div>'+"phone number: "+href+'</div>'+
+														'<a href='+"tel:"+houseclean_list[i]['phone']+' itemprop="telephone" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
 												'</div>'+
 											'</div>'+
 												'<div class="text-center" id = "description" itemprop="description"  >'+'<b>'+"About: "+'</b>'+houseclean_list[i]['description']+'</div>'+
