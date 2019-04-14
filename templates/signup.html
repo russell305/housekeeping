@@ -154,9 +154,12 @@
 	  										<input type="number" name="three_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
-	  										<label >Hourly Rate</label>
+											<div>
+												<label >Hourly Rate</label>
 	  										<input type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
-												<label ># of cleaners</label>
+											</div>
+
+												<label >Number of cleaners</label>
 												<input type="number" name="numcleaners" placeholder="#" oninput="if(value.length>2)value=value.slice(0,2)" min="1" max="99" >
 	  								</div>
 
@@ -165,7 +168,7 @@
 	  										<label>Deep Cleaning (Includes walls, baseboards, inside cabinets, refrigerator, oven, and microwave)</label>
 	  										<input type="number" name="deep_clean" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
-										<p>Check which cleaning items you supply.</p>
+										<label>Check which cleaning items you supply.</label>
 
 										<div class="input-fields">
 	  										<input type="checkbox" name="broom"> Broom + Dust-Pan<br>
