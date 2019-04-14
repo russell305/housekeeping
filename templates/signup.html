@@ -79,10 +79,13 @@
   								<h1>House Cleaner Sign Up</h1>
 
   								<form action="{{ url_for('signup_check') }}" method="post"  enctype = "multipart/form-data">
+
 										<div class = "input-fields" >
-	  	 					 				<input type="text" name="name" placeholder="Name" maxlength="40" required>
-	  	 					 		</div>
+												<label for="name_label">Name</label>
+	  	 					 				<input id="name_label"type="text" name="name" placeholder="Name" maxlength="40" required>
+	  						 		</div>
 										<div class = "input-fields" >
+												<label>Password</label>
 	  	 					 				<input type="text" placeholder="Password" maxlength="20" size = "20" required>
 	  	 					 		</div>
 										<div class = "input-fields" >
@@ -90,16 +93,18 @@
 	  	 					 		</div>
 
 										<div class = "input-fields" >
+											<label>Email</label>
 	  	 					 				<input type="text" name="email" placeholder="Email" maxlength="40" size = "25" required>
 
 	  	 					 		</div>
 										<div class = "input-fields image" >
-											Photo (Must be smaller than 1 Mb)
+											<label>Photo (Must be smaller than 1 Mb)</label>
+
 											<input type = "file" name = "image" accept="image/x-png, image/jpeg, image/jpg"/ required>
 	  	 					 		</div>
 
 										<div class = "input-fields">
-
+											<label>Phone</label>
 	  										<input type="number" name="phone1" placeholder="Area Code" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 												<input type="number" name="phone2" placeholder="Phone" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 												<input type="number" name="phone3" placeholder="Number" oninput="if(value.length>4)value=value.slice(0,4)" min="1" max="99999" required>
@@ -127,8 +132,8 @@
 	  										<textarea class="form-control" name="description" placeholder="Describe your Cleaning Service. Days/Hours Available. Payment Options." rows="3"  maxlength="600"  required></textarea>
 	  							  </div>
 
-										<p>How much do you charge for cleaning?</p>
-										<p>Only fill those that apply to your business.</p>
+										<p>How much do you charge for cleaning?</p>(Only fill those that apply to your business.)
+
 
 	  								<div class = "input-fields">
 	  										<span >Studio</span>
