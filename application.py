@@ -13,9 +13,9 @@ import json #for Python to Javascript
 import requests #for JSON
 import hashlib #password
 import re  #regex
-# from flask_seasurf import SeaSurf
 from flask_sslify import SSLify
 # from flask_talisman import Talisman # https  use this instead SSLify
+# from flask_seasurf import SeaSurf # goes with talisman
 
 app = Flask(__name__) # Instantiate a new web application called `app`, with `__name__` representing the current file
 # Talisman(app)
@@ -113,7 +113,7 @@ def index():
 			}
 		index=index+1
 		houseclean_list.append(houseclean_data)
-		print ("houseclean_data",houseclean_data["description"])
+		# print ("houseclean_data",houseclean_data["description"])
 	return render_template("index.html", houseclean_list=houseclean_list )
 
 @app.route("/signup", methods = ["POST"]) #way to get sign in from index to sign-up page
@@ -149,7 +149,7 @@ def user():
 		return "name and password dont match"
 	else:
 		user = db.execute("SELECT * FROM houseclean7 WHERE name = :name AND password = :password", {"name": name, "password": password}).fetchall()
-	print ("user",user)
+	# print ("user",user)
 	return render_template("user.html", user=user)
 
 @app.route('/ipn/',methods=['POST'])
@@ -193,10 +193,15 @@ def uploader():
 
 @app.route('/uploader2', methods = ['GET', 'POST'])
 def uploader2():
-	print ("image",session['image'])
+	# print ("image",session['image'])
 	db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":session['image']})
 	db.commit()
 	return 'file uploaded successfully'
+
+@app.route('/hi', methods = ['GET', 'POST'])
+def hi():
+
+	return 'hi tehre'
 
 
 @app.route("/signup_check", methods = ["POST"])

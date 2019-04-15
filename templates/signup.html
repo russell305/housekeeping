@@ -84,122 +84,157 @@
 												<label for="name_label">Name</label>
 	  	 					 				<input id="name_label"type="text" name="name" placeholder="Name" maxlength="40" required>
 	  						 		</div>
+
 										<div class = "input-fields" >
-												<label>Password</label>
-	  	 					 				<input type="text" placeholder="Password" maxlength="20" size = "20" required>
-	  	 					 		</div>
-										<div class = "input-fields" >
-	  	 					 				<input type="text" name="password" placeholder="Re-enter Password" maxlength="20" size = "20" required>
+												<label for="password_label">Password</label>
+	  	 					 				<input id="password_label" type="text" placeholder="Password" maxlength="20" size = "20" required>
 	  	 					 		</div>
 
 										<div class = "input-fields" >
-											<label>Email</label>
-	  	 					 				<input type="text" name="email" placeholder="Email" maxlength="40" size = "25" required>
-
+												<label for = "re_password_label">Re-enter Password</label>
+	  	 					 				<input id = "re_password_label" type="text" name="password" placeholder="Re-enter Password" maxlength="20" size = "20" required>
 	  	 					 		</div>
+
+										<div class = "input-fields" >
+												<label for = "email_label" >Email</label>
+	  	 					 				<input id = "email_label" type="text" name="email" placeholder="Email" maxlength="40" size = "25" required>
+										</div>
+
 										<div class = "input-fields image" >
-											<label>Photo (Must be smaller than 1 Mb)</label>
-
-											<input type = "file" name = "image" accept="image/x-png, image/jpeg, image/jpg"/ required>
+											<label for = "photo_label" >Photo (Smaller than 1 Mb)</label>
+											<input id = "photo_label" type = "file" name = "image" accept="image/x-png, image/jpeg, image/jpg"/ required>
 	  	 					 		</div>
 
 										<div class = "input-fields">
-											<label>Phone</label>
-	  										<input type="number" name="phone1" placeholder="Area Code" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
-												<input type="number" name="phone2" placeholder="Phone" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
-												<input type="number" name="phone3" placeholder="Number" oninput="if(value.length>4)value=value.slice(0,4)" min="1" max="99999" required>
+
+											<div>
+												<label>Phone</label>
+											</div>
+												<label for = "area_label" >Area Code</label>
+	  										<input id = "area_label" type="number" name="phone1" placeholder="Area Code" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+
+												<label for = "phone_label" >Phone</label>
+												<input id = "phone_label" type="number" name="phone2" placeholder="Phone" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+
+												<label for = "pnumber_label" >Number</label>
+												<input id = "pnumber_label" type="number" name="phone3" placeholder="Number" oninput="if(value.length>4)value=value.slice(0,4)" min="1" max="99999" required>
 	  								</div>
+
 										<label>Address does not need be exact.  A general area of your location so people
 											know how close you are.</label>
 	  	 					 		<div class = "input-fields">
-	  	 					 			 	<input type="text" name="street" placeholder="Street" maxlength="90" required>
+												<label for = "street_label" >Street</label>
+	  	 					 			 	<input id = "street_label" type="text" name="street" placeholder="Street" maxlength="90" required>
 	  	 					 		</div>
 	  	 					 		<div class = "input-fields">
-	  	 					 			 	<input type="text" name="city" placeholder="City" maxlength="20" required>
+												<label for = "city_label" >City</label>
+	  	 					 			 	<input id = "city_label" type="text" name="city" placeholder="City" maxlength="20" required>
 	  	 					 		</div>
 	  	 					 		<div class = "input-fields">
-	  	 					 			 	<input type="text" name="state" placeholder="State" maxlength="20" required>
+												<label for = "state_label" >State</label>
+	  	 					 			 	<input id = "state_label" type="text" name="state" placeholder="State" maxlength="20" required>
 	  	 					 		</div>
 	  								<div class = "input-fields">
-	  	 					 			 	<input type="text" name="zip_code" placeholder="Zip Code" maxlength="20" >
+												<label for = "zip_label" >Zip Code</label>
+	  	 					 			 	<input id = "zip_label" type="text" name="zip_code" placeholder="Zip Code" maxlength="20" >
 	  	 					 		</div>
 										<div class = "input-fields">
 
-											<label>How many years experience?</label>
-	  										<input type="number" name="years" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
+											<label for = "years_label" >How many years experience?</label>
+	  										<input id="years_label" type="number" name="years" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="99999" required>
 	  								</div>
 
 	  								<div class="form-group">
-											<label>Description</label>
-	  										<textarea class="form-control" name="description" placeholder="Describe your Cleaning Service. Days/Hours Available. Payment Options." rows="3"  maxlength="600"  required></textarea>
+											<label for = "description_label" >Description</label>
+	  										<textarea id="description_label" class="form-control" name="description" placeholder="Describe your Cleaning Service. Days/Hours Available. Payment Options." rows="3"  maxlength="600"  required></textarea>
 	  							  </div>
 
 										<label>How much do you charge for cleaning? (Only fill those that apply to your business.)</label>
 
 
 	  								<div class = "input-fields">
-	  										</label> Studio</label>
-	  										<input type="number" name="studio" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
+												<label for = "studio_label" > Studio</label>
+	  										<input id="studio_label" type="number" name="studio" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
-	  										<label>1 Bed/ 1 Bath</label>
-	  										<input type="number" name="one_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
+	  										<label for = "onebed_label" >1 Bed/ 1 Bath</label>
+	  										<input id="onebed_label" type="number" name="one_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
-	  										<label >2 Bed/ 2 Bath</label>
-	  										<input type="number" name="two_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
+	  										<label for = "twobed_label" >2 Bed/ 2 Bath</label>
+	  										<input id="twobed_label" type="number" name="two_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
-	  										<label >3 Bed/ 3 Bath</label>
-	  										<input type="number" name="three_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
+	  										<label for = "threebed_label" >3 Bed/ 3 Bath</label>
+	  										<input id="threebed_label" type="number" name="three_bed" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<div class = "input-fields">
 											<div>
-												<label >Hourly Rate</label>
-	  										<input type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
+												<label for = "hourlyrate_label" >Hourly Rate</label>
+	  										<input id="hourlyrate_label" type="number" name="hourly_rate" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 											</div>
 
-												<label >Number of cleaners</label>
-												<input type="number" name="numcleaners" placeholder="#" oninput="if(value.length>2)value=value.slice(0,2)" min="1" max="99" >
+												<label for = "numcleaners_label" >Number of cleaners</label>
+												<input id="numcleaners_label" type="number" name="numcleaners" placeholder="#" oninput="if(value.length>2)value=value.slice(0,2)" min="1" max="99" >
 	  								</div>
 
 
 										<div class = "input-fields">
-	  										<label>Deep Cleaning (Includes walls, baseboards, inside cabinets, refrigerator, oven, and microwave)</label>
-	  										<input type="number" name="deep_clean" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
+	  										<label for = "deepclean_label" >Deep Cleaning (Includes walls, baseboards, inside cabinets, refrigerator, oven, and microwave)</label>
+	  										<input id = "deepclean_label" type="number" name="deep_clean" placeholder="$" oninput="if(value.length>3)value=value.slice(0,3)" min="1" max="999" >
 	  								</div>
 										<label>Check which cleaning items you supply.</label>
 
 										<div class="input-fields">
-	  										<input type="checkbox" name="broom"> Broom + Dust-Pan<br>
+												<label for = "broom_label" >Broom + Dust-Pan</label>
+	  										<input id = "broom_label" type="checkbox" name="broom">
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="mop"> Mop + Bucket<br>
+												<label for = "mop_label" >Mop + Bucket</label>
+	  										<input id = "mop_label" type="checkbox" name="mop">
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="vacuum"> Vacuum<br>
+												<label for = "vacuum_label" >Vacuum</label>
+	  										<input id = "vacuum_label" type="checkbox" name="vacuum">
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="disinfectant"> Disinfectant + Glass Cleaner<br>
+												<label for = "disinfectant_label" >Disinfectant + Glass Cleaner</label>
+	  										<input id = "disinfectant_label" type="checkbox" name="disinfectant">
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="soap_scum"> Soap Scum Remover<br>
+												<label for = "ss_label" >Soap Scum Remover</label>
+	  										<input id = "ss_label" type="checkbox" name="soap_scum">
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="scrub_pads"> Scrub Pads<br>
+												<label for = "scrub_label" >Scrub Pads</label>
+	  										<input id = "scrub_label" type="checkbox" name="scrub_pads">
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="tooth_brush"> Toothbrush/Grout Brush<br>
+												<label for = "tb_label" >Toothbrush/Grout Brush</label>
+	  										<input id = "tb_label" type="checkbox" name="tooth_brush">
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="scraper"> Plastic Scraper<br>
+												<label for = "scraper_label" >Plastic Scraper</label>
+	  										<input id = "scraper_label" type="checkbox" name="scraper"> 
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="sponges"> Sponges/Wipes<br>
+												<label for = "sponges_label" >Sponges/Wipes</label>
+	  										<input id = "sponges_label" type="checkbox" name="sponges">
 	  								</div>
+
 										<div class="input-fields">
-	  										<input type="checkbox" name="paper_towels"> Paper Towels<br>
+												<label for = "pt_label" >Paper Towels</label>
+	  										<input id = "pt_label" type="checkbox" name="paper_towels">
 	  								</div>
+
 									</div>
 	  								<button class="btn btn-success btn-md ">Sign Up</button>
   								</form>
