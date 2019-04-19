@@ -9,7 +9,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM&callback=initMap">
       src = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM"
     </script>
-		<script src="https://unpkg.com/eva-icons"></script>
+		
 		<script
 			  src="https://code.jquery.com/jquery-3.3.1.js"
 			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -286,12 +286,6 @@ var map = new google.maps.Map(document.getElementById('map'), {
 										 '<div class="row" id = "top-row">'+
 												'<div class="col-md-2 ">'+
 														'<p id = "column-title" >Name</p>'+
-														'<span itemscope itemtype="http://schema.org/Service">'+
-															'<meta itemprop="serviceType" content="House cleaning" />'+
-												 			'<span itemprop="provider" itemscope itemtype="http://schema.org/LocalBusiness">'+
-																'<div>'+'<span itemprop="name">'+houseclean_list[i]['name']+'</span>'+'</div>'+
-															'</span>'+
-
 
 												'</div>'+
 												'<div class="col-md-2 ">'+
@@ -299,7 +293,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 														'<div>'+'<img src='+houseclean_list[i]['image']+' alt="image" width="64" height="64"" />'+'</div>'+
 														'</div>'+
 												'<div class="col-md-3">'+
-														'<p id = "column-title" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">Address</p>'+
+														'<p id = "column-title">Address</p>'+
 														'<div itemprop="streetAddress" >'+houseclean_list[i]['address']+'</div>'+
 												'</div>'+
 												'<div class="col-md-2">'+
@@ -308,12 +302,12 @@ var map = new google.maps.Map(document.getElementById('map'), {
 												'</div>'+
 												'<div class="col-md-3">'+
 														'<p id = "column-title">Phone</p>'+
-													// '	action="{{ url_for("hi") }}"'+
-														'<a href='+"tel:"+houseclean_list[i]['phone']+' itemprop="telephone" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
+
+														'<a href='+"tel:"+houseclean_list[i]['phone']+'" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
 												'</div>'+
 											'</div>'+
-												'<div class="text-center" id = "description" itemprop="description"  >'+'<b>'+"About: "+'</b>'+houseclean_list[i]['description']+'</div>'+
-												'</span>'+
+												'<div class="text-center" id = "description"   >'+'<b>'+"About: "+'</b>'+houseclean_list[i]['description']+'</div>'+
+
 												'<div class="text-center" id = "prices">'+"Cleaning Prices:"+'</div>'+
 												'<div class="row" id = "middle-row">'+
 
