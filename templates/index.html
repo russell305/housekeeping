@@ -140,9 +140,9 @@
 			<meta itemprop="serviceType" content="House cleaning" />
 		 			<span itemprop="provider" itemscope itemtype="http://schema.org/LocalBusiness">
 
-					<span itemprop="name"><h1>House Cleaning Miami</h1></span>
+					<span itemprop="name"><h1>HOUSE CLEANING MIAMI</h1></span>
 					<span itemprop="name"><h5 id = "ac">(and apartment cleaning)</h5></span>
-					<span itemprop="description"><h4 id = "step3">Independent house cleaners at affordable prices.</h4></span>
+					<span itemprop="description"><h4 id = "step3">INDEPENDENT HOUSE CLEANERS AT AFFORABLE PRICES.</h4></span>
 					<span itemprop="description"><h4 id = "step1">Step 1: Click on house cleaner location markers close to you.</h4></span>
 					<span itemprop="description"><h4 id = "step2">Step 2: Compare house cleaning services and call.</h4></span>
 
@@ -286,7 +286,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 										 '<div class="row" id = "top-row">'+
 												'<div class="col-md-2 ">'+
 														'<p id = "column-title" >Name</p>'+
-
+														'<div >'+houseclean_list[i]['name']+'</div>'+
 												'</div>'+
 												'<div class="col-md-2 ">'+
 														'<p id = "column-title" >Photo</p>'+
@@ -294,7 +294,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 														'</div>'+
 												'<div class="col-md-3">'+
 														'<p id = "column-title">Address</p>'+
-														'<div itemprop="streetAddress" >'+houseclean_list[i]['address']+'</div>'+
+														'<div >'+houseclean_list[i]['address']+'</div>'+
 												'</div>'+
 												'<div class="col-md-2">'+
 														'<p id = "column-title">Experience</p>'+
