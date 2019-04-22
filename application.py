@@ -13,7 +13,7 @@ import json #for Python to Javascript
 import requests #for JSON
 import hashlib #password
 import re  #regex
-from flask_sslify import SSLify
+
 # from flask_talisman import Talisman # https  use this instead SSLify
 # from flask_seasurf import SeaSurf # goes with talisman
 
@@ -32,6 +32,7 @@ GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
+from flask_sslify import SSLify
 sslify = SSLify(app, age=300)
 # csrf = SeaSurf(app)  # protection
 Session (app)
@@ -135,6 +136,10 @@ def signin():
 @app.route("/about", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def about():
 	return render_template("about.html")
+
+@app.route("/blog", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
+def blog():
+	return render_template("blog.html")
 
 @app.route("/user", methods = ["POST"]) # user CRUD
 def user():
