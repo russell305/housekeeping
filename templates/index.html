@@ -138,11 +138,12 @@
 				.bottom-row{
 					margin-top: 10px;
 				}
-				a,p{
+				p{
 					font-size:18px
 				}
-				#blog{
+				a{
 					margin-bottom: 40px;
+					font-size:18px
 				}
 		</style>
 	</head>
@@ -172,7 +173,7 @@
 
 				 </div>
 				 <div class="col-md-8">
-					 <div id="map" style="clear:both; height:500px;"></div>
+				 <div id="map" style="clear:both; height:500px;"></div>
 		 			<div class="row bottom" >
 		 				<img id = "favicon" src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="40" height="40">
 		 						<h7>House Cleaner? Sign up today!</h7>
@@ -184,9 +185,7 @@
 		 						</form>
 								<p>Housecleaning Blog</p>
 								<a id = "blog"  href="{{ url_for('blog') }}">Price,Service,Location</a>
-
-
-		 		 </div>
+					</div>
 				 </div>
 				 <div class="col-md-2">
 
