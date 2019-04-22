@@ -36,7 +36,7 @@
 					background-color: 	white;
 					margin: 0;
 					padding: 0;
-					margin-bottom: 75px;
+					/* margin-bottom: 75px; */
 					font-weight: 400;
 					margin-bottom: 50px;
 				}
@@ -135,16 +135,20 @@
 					margin-bottom: 20px;
 					margin-top: 20px;
 				}
-				.bottom-row{
-					margin-top: 10px;
+				.bottom{
+					margin-bottom: 100px;
 				}
 				p{
 					font-size:18px
 				}
 				a{
-					margin-bottom: 40px;
+					margin-bottom: 100px;
 					font-size:18px
 				}
+				#phone{
+					font-size:14px
+				}
+
 		</style>
 	</head>
 
@@ -184,7 +188,7 @@
 		 							<button class="btn btn-info btn-sm active about" aria-pressed="true">ABOUT</button>
 		 						</form>
 								<p>Housecleaning Blog</p>
-								<a href="{{ url_for('blog') }}">Price,Service,Location</a>
+								<a  href="{{ url_for('blog') }}">Price,Service,Location</a>
 					</div>
 				 </div>
 				 <div class="col-md-2">
@@ -337,7 +341,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 												'<div class="col-md-3">'+
 														'<p id = "column-title">Phone</p>'+
 
-														'<a href='+"tel:"+houseclean_list[i]['phone']+'" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
+														'<a id = "phone" href='+"tel:"+houseclean_list[i]['phone']+'" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
 												'</div>'+
 											'</div>'+
 												'<div class="text-center" id = "description"   >'+'<b>'+"About: "+'</b>'+houseclean_list[i]['description']+'</div>'+
