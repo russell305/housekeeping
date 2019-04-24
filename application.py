@@ -137,8 +137,8 @@ def signin():
 def about():
 	return render_template("about.html")
 
-@app.route("/blog", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
-def blog():
+@app.route("/blog/<string:date>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
+def blog(date,title):
 	return render_template("blog.html")
 
 @app.route("/user", methods = ["POST"]) # user CRUD
