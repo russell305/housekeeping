@@ -38,11 +38,12 @@
 					padding: 0;
 					/* margin-bottom: 75px; */
 					font-weight: 400;
-					margin-bottom: 50px;
+
 				}
 
 
 				#column-middle{
+					font-size:15px;
 					margin-bottom: 0px;
 					font-weight: 450;
 				}
@@ -56,10 +57,12 @@
 				}
 
 				#description{
+					font-size:15px;
 					margin-bottom: 15px;
 					font-weight: 400;
 				}
 				#prices{
+					font-size:15px;
 					margin-bottom: 10px;
 					margin-top: 10px;
 
@@ -142,11 +145,20 @@
 					font-size:18px
 				}
 				a{
-					margin-bottom: 100px;
-					font-size:18px
+
+					/* font-size:18px */
 				}
 				#phone{
 					font-size:14px
+				}
+				#blog{
+					font-size:22px;
+					margin-bottom: 0px
+				}
+				#psl{
+					/* margin-top: -130px; */
+					font-size:15px;
+
 				}
 
 		</style>
@@ -163,7 +175,6 @@
 		 			<span itemprop="provider" itemscope itemtype="http://schema.org/LocalBusiness">
 
 					<span itemprop="name"><h1>HOUSE CLEANING MIAMI</h1></span>
-					<span itemprop="name"><h5 id = "ac">(and apartment cleaning)</h5></span>
 					<span itemprop="description"><h4 id = "step3">INDEPENDENT HOUSE CLEANERS AT AFFORABLE PRICES.</h4></span>
 					<span itemprop="description"><h4 id = "step1">Step 1: Click on house cleaner location markers close to you.</h4></span>
 					<span itemprop="description"><h4 id = "step2">Step 2: Compare house cleaning services and call.</h4></span>
@@ -187,18 +198,14 @@
 		 						<form action="{{ url_for('about') }}" method="post">
 		 							<button class="btn btn-info btn-sm active about" aria-pressed="true">ABOUT</button>
 		 						</form>
-								<p>Housecleaning Blog</p>
-								<a  href="{{ url_for('blog') }}">Price,Service,Location</a>
+								<p id = "blog">Housecleaning Blog</p>
+								<a id = "psl" href="{{ url_for('blog') }}">Price,Service,Location</a>
 					</div>
 				 </div>
 				 <div class="col-md-2">
 
 				 </div>
 			 </div>
-
-
-
-
 
   </body>
 </html>
@@ -382,14 +389,14 @@ var map = new google.maps.Map(document.getElementById('map'), {
 
 
 												'</div>'+
-														'<div class="text-center" id = "prices">'+"Supplied By Housecleaner:"+'</div>'+
+														'<div class="text-center" id = "prices">'+"Supplied by Housecleaner:"+'</div>'+
 														'<div class="row" id = "bottom-row">'+
 
 																'<div class="col-md-2">'+
-																		'<div class="text-center">'+"Broom + Dustpan: "+houseclean_list[i]['broom']+'</div>'+
+																		'<div class="text-center">'+"Broom/Dustpan: "+houseclean_list[i]['broom']+'</div>'+
 																'</div>'+
 																'<div class="col-md-3">'+
-																		'<div class="text-center">'+"Mop + Bucket: "+houseclean_list[i]['mop']+'</div>'+
+																		'<div class="text-center">'+"Mop/Bucket: "+houseclean_list[i]['mop']+'</div>'+
 																'</div>'+
 
 																'<div class="col-md-2">'+
@@ -397,7 +404,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 																'</div>'+
 
 																'<div class="col-md-3">'+
-																		'<div class="text-center">'+"Disinfectant + Glass Cleaner: "+houseclean_list[i]['disinfectant']+'</div>'+
+																		'<div class="text-center">'+"Disinfectant/Glass Cleaner: "+houseclean_list[i]['disinfectant']+'</div>'+
 																'</div>'+
 
 																'<div class="col-md-2">'+

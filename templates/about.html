@@ -53,7 +53,10 @@
 				button{
 					margin-top:-5px;
 					margin-bottom: 20px;
-
+				}
+				img{
+					width:300px;
+					height:100px;
 				}
 
 
@@ -69,7 +72,7 @@
 				<span itemprop="provider" itemscope itemtype="http://schema.org/LocalBusiness">
 
 				<span itemprop="name"><h2>House Cleaning Miami</h2></span>
-
+				<img  src="{{ url_for("static", filename = "image/download.jpg") }}" alt="House Cleaning"  width="60%" >
 				<span itemprop="description"><p>Compare prices and services of independent, professional,
 					affordable house cleaners in your area. Call the ones you like.</p></span>
 
@@ -79,7 +82,7 @@
 					 <form action="{{ url_for('signup') }}" method="post">
 	 					<button class="btn btn-success btn-sm active " aria-pressed="true">SIGN UP</button>
 	 				</form>
-				<span itemprop="description"><p><b>Consumers:  </b>House cleaning websites require users to insert personal data subjet to hackers.  Name, address, email, phone,
+				<span itemprop="description"><p><b>Consumers:  </b>House cleanig websites require users to insert personal data subjet to hackers.  Name, address, email, phone,
 				  bank information, etc.  Many charge over $200 for a onetime 1/1 cleaning, pushing you join a subscription service
 					to get a better price.  Here we simplify the process where you can compare house cleaning services, and call the ones you like.</p></span>
 
