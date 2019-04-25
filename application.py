@@ -4,6 +4,7 @@
 # http://exploreflask.com  #https://pythonhosted.org/flask-mail/  redo email
 #secret: 0kmzCjBS62odOXkfg4EcYnoBND3IM28ANuEFlTlWig
 #import datetime
+# https://flask-bcrypt.readthedocs.io/en/latest/
 from flask import Flask, render_template, request, session, redirect, url_for, send_file # Import the class `Flask` from the `flask` module, written by someone else.
 from flask_session import Session
 import os
@@ -136,6 +137,12 @@ def signin():
 @app.route("/about", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def about():
 	return render_template("about.html")
+
+@app.route("/house_cleaning_blog/", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
+def house_cleaning_blog():
+	return render_template("blog.html")
+
+
 
 @app.route("/blog/<int:year>/<int:month>/<int:day>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blog(year,month,day,title):
