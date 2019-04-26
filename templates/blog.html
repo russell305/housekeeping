@@ -55,12 +55,15 @@ p{
 img{
 	margin-bottom: 20px;
 }
+button{
+	margin-bottom: 50px;
+}
 
 
 </style>
 
-	<body>
-    <div class="container-fluid text-center">
+	<body class="container-fluid text-center">
+    <div >
 			<h1> House Cleaning Miami Blog </h1>
 			  <img id = "favicon" src="{{ url_for("static", filename = "image/house-cleaning.jpg") }}" alt="House Cleaning"  width="60%" >
 			<h2>Prices, Services, Location</h2>
@@ -92,7 +95,7 @@ img{
           to mop after paying him to clean! Here we have a comprehensive checklist where
           house cleaners can check which supplies they bring.</p>
           <b>LOCATION:</b>
-          <p id ="bottom">
+          <p >
           Closer is always better.  Miami traffic is ridiculous and only getting worse.  To live in Aventura
           and have a house cleaner come from Kendall can take over 90 minutes of travel each way.   Costing
           time, gas, delaying start time, etc.  Wouldn’t it be nice to have someone who can clean your home
@@ -100,6 +103,9 @@ img{
 
 
     </div>
+		<form action="{{ url_for('index') }}" method="post">
+			<button class="btn btn-info btn-sm active about" aria-pressed="true">HOME</button>
+		</form>
 
 	</body>
 

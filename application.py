@@ -66,7 +66,7 @@ db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 #select encode(image,'base64') from photos limit 1 ****
 # encode(data bytea, format text)
 
-@app.route("/", methods = ["GET"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
+@app.route("/", methods = ['GET',"POST"]) # A decorator; when the user goes to the route `/`, exceute the function immediately below
 def index():
 
 	houseclean_list=[]
@@ -146,7 +146,10 @@ def house_cleaning_blog():
 
 @app.route("/blog/<int:year>/<int:month>/<int:day>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blog(year,month,day,title):
-	return render_template("blog.html")
+	if title == "Price-Service-Location":
+		return render_template("blog.html")
+	else:
+		return render_template("blog.html")
 
 @app.route("/user", methods = ["POST"]) # user CRUD
 def user():
@@ -209,12 +212,6 @@ def uploader2():
 	db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":session['image']})
 	db.commit()
 	return 'file uploaded successfully'
-
-@app.route('/hi', methods = ['GET', 'POST'])
-def hi():
-
-	return 'hi tehre'
-
 
 @app.route("/signup_check", methods = ["POST"])
 def signup_check():
