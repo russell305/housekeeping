@@ -197,7 +197,7 @@
 				 <div id="map" style="clear:both; height:500px;"></div>
 		 			<div class="row bottom" >
 		 				<img id = "favicon" src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="40" height="40">
-		 						<h7>House Cleaner? Sign up today!</h7>
+		 						<h7>House Cleaner? Sign up free!</h7>
 		 						<form action="{{ url_for('signup') }}" method="post">
 		 							<button class="btn btn-success btn-sm active " aria-pressed="true">SIGN UP</button>
 		 						</form>
@@ -207,15 +207,41 @@
 								<p id = "blog">Housecleaning Blog</p>
 
 								<a id = "psl" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post">Price,Service,Location</a>
+								<div class="">
+									<a id = "cm" href="{{ url_for('blog', year=2019, month=04, day=27 , title = 'Cuban-Mop') }}" method="post">What is a Cuban Mop?</a>
+								</div>
+
 					</div>
 				 </div>
 				 <div class="col-md-2">
 
 				 </div>
 			 </div>
+			 <!-- <div class='container'> -->
+			     <!-- <h3>Test</h3> -->
+			         <form>
+			             <!-- <a href=# id=test><button class='btn btn-default'>Test</button></a> -->
+			         </form>
 
+			 </div>
   </body>
 </html>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#test').bind('click', function() {
+            $.getJSON('/background_process_test',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
+
+
+
 <script>
 
 var houseclean_list=JSON.parse('{{ houseclean_list | tojson | safe }}');

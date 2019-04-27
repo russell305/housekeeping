@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> House Cleaning Miami Blog </title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.png') }}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111789653-3"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+			gtag('config', 'UA-111789653-3');
+		</script>
+
+
+		</head>
+<style>
+
+
+@media (max-width: 500px) {
+	html,body {
+		height: 100%;
+		font-size: 20px;
+		margin-bottom: 25px;
+		padding: 0;
+		font-family: Montserrat;
+		background-color: 	white ;
+		margin-left: 3%;
+		margin-right: 3%;
+		}
+}
+@media (min-width: 500px) {
+	html,body {
+		height: 100%;
+		font-size: 20px;
+		margin-bottom: 25px;
+		padding: 0;
+		font-family: Montserrat;
+		background-color: 	white ;
+		margin-left: 15%;
+		margin-right: 15%;
+		}
+}
+h1{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+h2{
+  margin-top: 25px;
+  margin-bottom: -5px;
+}
+
+h6{
+	margin-bottom: -25px;
+}
+
+p{
+	margin-bottom: 50px;
+}
+img{
+	margin-bottom: 20px;
+}
+button{
+	margin-bottom: 50px;
+}
+.list{
+	margin-bottom: 20px;
+}
+.top{
+	margin-bottom: 20px;
+}
+
+
+</style>
+
+	<body class="container-fluid text-center">
+    <div >
+			<div >
+			<h1> House Cleaning Miami Blog </h1>
+			  <img src="{{ url_for("static", filename = "image/cuban-mop.jpg") }}" alt="House Cleaning" >
+			<h2>What is a Cuban Mop?</h2>
+			<h6>4/27/2019</h6>
+
+      <p>
+				<div class="top">
+					A Cuban Mop is one of the simplest, most efficient tools used to clean a floor.  It is a piece of
+						wood in the shape of a T with an absorbent cloth folded on bottom T part.  The folded cloth
+						provides a large surface area for quick cleaning.  When the cloth gets really soiled, you can
+						just rinse it out and refold on bottom of mop.  When your done cleaning you can wash the cloth
+						and you don’t have a dirty wet mop hanging around.
+				</div>
+				<div class="top">
+					I believe the Cuban Mop was the inspiration for the wildly successful Swiffer Sweepers.  Notice
+					how they have very similar designs.  The difference is the Swiffer is designed to have you
+					purchase their chemical cleaning towels draining your wallet in perpetuity.  Also when your
+					finished these dirty towels will be one more item which will end up in the ocean.  I don’t think
+					I’ve ever had a cleaning service in Miami come over with a Swifter Sweeper.  If they did I would be wary.
+				</div>
+				<div class="">
+					The Cuban Mop is originated in the Caribbean and was brought to Miami.  It is called “el palo de
+					trapear” which translates to “the mopping stick”.  Again, simple and efficient.  Here are the
+					simple steps to create your own cuban mop.
+				</div>
+
+				 </p>
+				<img src="{{ url_for("static", filename = "image/cuban-mop-2.jpg") }}" alt="House Cleaning" >
+			</div>
+
+			<div class="list">
+				<li>Immerse towel in cleaning solution.</li>
+				<li>Squeeze and fold towel around T stick</li>
+				<li>Push the towel around the room to clean the dirt.</li>
+				<li>When cloth gets soiled, remove.</li>
+				<li>Rinse and repeat.</li>
+			</div>
+
+
+				<p class="text-center">The Cuban Mop will clean your floors faster, cheaper, and more eco-friendly than other mopping choices.
+					Make sure you or your housecleaner are using one!</p>
+
+
+    </div>
+		<form action="{{ url_for('index') }}" method="post">
+			<button class="btn btn-info btn-sm active about" aria-pressed="true">HOME</button>
+		</form>
+
+	</body>
+	</html>

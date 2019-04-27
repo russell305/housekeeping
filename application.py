@@ -142,12 +142,18 @@ def about():
 def house_cleaning_blog():
 	return render_template("blog.html")
 
+@app.route('/background_process_test')
+def background_process_test():
+    print ("Hello")
+    return "nothing"
 
 
 @app.route("/blog/<int:year>/<int:month>/<int:day>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blog(year,month,day,title):
 	if title == "Price-Service-Location":
 		return render_template("blog.html")
+	elif title == "Cuban-Mop":
+		return render_template("blog2.html")
 	else:
 		return render_template("blog.html")
 
