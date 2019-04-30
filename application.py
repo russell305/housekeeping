@@ -142,9 +142,9 @@ def about():
 def house_cleaning_blog():
 	return render_template("blog.html")
 
-@app.route('/background_process_test')
-def background_process_test():
-    print ("Hello")
+@app.route('/background_process_test/<string:phone>')
+def background_process_test(phone):
+    print ("Hello", phone)
     return "nothing"
 
 

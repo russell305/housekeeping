@@ -165,6 +165,9 @@
 					/* width:300px; */
 					/* height:100px; */
 				}
+				#klick{
+					margin-bottom: -10px;
+				}
 
 		</style>
 	</head>
@@ -317,7 +320,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 						houseclean_list[i]['scrub_pads'] = "Yes"
 				 }
 				 else	{
-						houseclean_list[i]['scrub_pads'] = "NO"
+						houseclean_list[i]['scrub_pads'] = "No"
 				 }
 
 				 if (houseclean_list[i]['sponges'] == true) {
@@ -338,32 +341,9 @@ var map = new google.maps.Map(document.getElementById('map'), {
 						houseclean_list[i]['paper_towels'] = "Yes"
 				 }
 				 else	{
-						houseclean_list[i]['paper_towels'] = "NO"
+						houseclean_list[i]['paper_towels'] = "No"
 				 }
-				 if (houseclean_list[i]['hourly_rate'] == 0) {
-					 houseclean_list[i]['hourly_rate'] = "not available"
-				 }
-				 if (houseclean_list[i]['hourly_rate'] == 0) {
-					 houseclean_list[i]['hourly_rate'] = "not available"
-				 }
-				 if (houseclean_list[i]['numcleaners'] == 0 ) {
-					 houseclean_list[i]['numcleaners'] = "not available"
-				 }
-				 if (houseclean_list[i]['studio'] == 0) {
-					 houseclean_list[i]['studio'] = "not available"
-				 }
-				 if (houseclean_list[i]['one_bed'] == 0) {
-					 houseclean_list[i]['one_bed'] = "not available"
-				 }
-				 if (houseclean_list[i]['two_bed'] == 0) {
-					 houseclean_list[i]['two_bed'] = "not available"
-				 }
-				 if (houseclean_list[i]['three_bed'] == 0) {
-					 houseclean_list[i]['three_bed'] = "not available"
-				 }
-				 if (houseclean_list[i]['deep_clean'] == 0) {
-					 houseclean_list[i]['deep_clean'] = "not available"
-				 }
+
 
 				 myLatLng[i] = {lat: houseclean_list[i]['latitude'], lng: houseclean_list[i]['longitude']};
 
@@ -395,7 +375,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 												'</div>'+
 												'<div class="col-md-3">'+
 														'<p id = "column-title">Phone</p>'+
-
+													// '	<a id = "klick" href="{{ url_for('background_process_test') }}">Klik Here</a> '+
 														'<a id = "phone" href='+"tel:"+houseclean_list[i]['phone']+'" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
 												'</div>'+
 											'</div>'+
