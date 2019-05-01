@@ -15,7 +15,7 @@
 			  src="https://code.jquery.com/jquery-3.3.1.js"
 			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 			  crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111789653-3"></script>
@@ -108,7 +108,7 @@
 		  	}
 
 				h1{
-						margin-top: 50px;
+						margin-top: 20px;
 						margin-bottom: 0px;
 				}
 				h7{
@@ -168,11 +168,42 @@
 				#klick{
 					margin-bottom: -10px;
 				}
+				nav ul {
+				  display: flex;
+				  flex-direction: row;
+				  justify-content: flex-end;
+				  /* width: 100%; */
+				  /* background-color: #e0ebe8; */
+				  /* position: fixed; */
+				}
+
+				nav ul li {
+				  display: flex;
+				  margin:5%;
+				  margin-bottom: 15px;
+				  margin-top: 15px;
+				  font-size: 16px;;
+				}
+
+				nav ul li a {
+				  color: black;
+				  text-decoration: none;
+				}
 
 		</style>
 	</head>
+	<nav class="navbar ">
+
 
   <body>
+		<nav>
+  <ul >
+    <!-- <li><a href="#welcome-section">About</a></li> -->
+    <!-- <li><a href="#project">Projects</a></li> -->
+    <!-- <li><a href="#contact" >Contact</a></li> -->
+
+  </ul>
+</nav>
 
 	<div class="container-fluid text-center ">
 
@@ -375,7 +406,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 												'</div>'+
 												'<div class="col-md-3">'+
 														'<p id = "column-title">Phone</p>'+
-													// '	<a id = "klick" href="{{ url_for('background_process_test') }}">Klik Here</a> '+
+
 														'<a id = "phone" href='+"tel:"+houseclean_list[i]['phone']+'" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
 												'</div>'+
 											'</div>'+
