@@ -33,8 +33,8 @@ GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
-# from flask_sslify import SSLify
-# sslify = SSLify(app, age=300)
+from flask_sslify import SSLify
+sslify = SSLify(app, age=300)
 # csrf = SeaSurf(app)  # protection
 Session (app)
 engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d98fa5468668d0d8aa3da415aed475d08f9b@ec2-54-225-227-125.compute-1.amazonaws.com:5432/d9prh5mib7dh2p")
@@ -118,7 +118,7 @@ def index():
 		# print ("houseclean_data",houseclean_data["description"])
 	return render_template("index.html", houseclean_list=houseclean_list )
 
-@app.route("/signup", methods = ["POST"]) #way to get sign in from index to sign-up page
+@app.route("/sign-up", methods = ['GET',"POST"]) #way to get sign in from index to sign-up page
 def signup():
 	return render_template("signup.html")
 
@@ -137,6 +137,10 @@ def signin():
 @app.route("/about", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def about():
 	return render_template("about.html")
+
+@app.route("/blog-page", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
+def blogpage():
+	return render_template("blogpage.html")
 
 @app.route("/house_cleaning_blog/", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def house_cleaning_blog():
