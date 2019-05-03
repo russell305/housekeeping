@@ -72,15 +72,15 @@ def index():
 	houseclean_list=[]
 	image_list=[]
 	image_string = ""
-	image = db.execute("SELECT encode(image,'base64') FROM houseclean7").fetchall()
-	row_count = db.execute("SELECT COUNT(*) FROM houseclean7").fetchall()
+	# image = db.execute("SELECT encode(image,'base64') FROM houseclean7").fetchall()
+	# row_count = db.execute("SELECT COUNT(*) FROM houseclean7").fetchall()
 
-	for i in range(row_count[0][0]):
-		image_string = "data:image/png;base64," + image[i][0]
-		x = re.sub("\n", "", image_string)
-		image_list.append(x)
+	# for i in range(row_count[0][0]):
+		# image_string = "data:image/png;base64," + image[i][0]
+		# x = re.sub("\n", "", image_string)
+		# image_list.append(x)
 
-	housecleanDB = db.execute("SELECT * FROM houseclean7").fetchall()
+	housecleanDB = db.execute("SELECT * FROM houseclean7 ").fetchall()
 	# print (housecleanDB)
 	index=0
 	for i in housecleanDB:
@@ -111,7 +111,7 @@ def index():
 			"sponges": i.sponges,
 			"scrub_pads": i.scrub_pads,
 			"paper_towels": i.paper_towels,
-			"image": image_list[index]
+			# "image": image_list[index]
 			}
 		index=index+1
 		houseclean_list.append(houseclean_data)
@@ -369,3 +369,7 @@ def signup_check():
 	# mail.send(msg)
 	# return redirect(url_for("success"))
 	return redirect(url_for("index"))
+	# '<div class="col-md-2 ">'+
+			# '<p id = "column-title" >Photo</p>'+
+			# '<div>'+'<img src='+houseclean_list[i]['image']+' alt="image" width="64" height="64"" />'+'</div>'+
+			# '</div>'+

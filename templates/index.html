@@ -247,7 +247,7 @@
 		 							<button class="btn btn-success btn-sm active " aria-pressed="true">SIGN UP</button>
 		 						</form>
 
-							
+
 
 					</div>
 
@@ -263,33 +263,7 @@
   </body>
 </html>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type=text/javascript>
-        $(function() {
-          $('a#test').bind('click', function() {
-            $.getJSON('/background_process_test',
-                function(data) {
-              //do nothing
-            });
-            return false;
-          });
-        });
-</script>
-<script>
-// Get the button, and when the user clicks on it, execute myFunction
-document.getElementById("#test").onclick = function() {myFunction()};
 
-/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
-function myFunction() {
-	function() {
-		$.getJSON('/background_process_test',
-				function(data) {
-			//do nothing
-		});
-		return false;
-	});
-}
-</script>
 
 
 
@@ -390,19 +364,16 @@ var map = new google.maps.Map(document.getElementById('map'), {
 								 infowindow = new google.maps.InfoWindow({
 										 content: '<div class="container-fluid text-center">'+
 										 '<div class="row" id = "top-row">'+
-												'<div class="col-md-2 ">'+
+												'<div class="col-md-3 ">'+
 														'<p id = "column-title" >Name</p>'+
 														'<div >'+houseclean_list[i]['name']+'</div>'+
 												'</div>'+
-												'<div class="col-md-2 ">'+
-														'<p id = "column-title" >Photo</p>'+
-														'<div>'+'<img src='+houseclean_list[i]['image']+' alt="image" width="64" height="64"" />'+'</div>'+
-														'</div>'+
+
 												'<div class="col-md-3">'+
 														'<p id = "column-title">Address</p>'+
 														'<div >'+houseclean_list[i]['address']+'</div>'+
 												'</div>'+
-												'<div class="col-md-2">'+
+												'<div class="col-md-3">'+
 														'<p id = "column-title">Experience</p>'+
 														'<div>'+"housecleaning for "+houseclean_list[i]['years']+" years"+'</div>'+
 												'</div>'+
