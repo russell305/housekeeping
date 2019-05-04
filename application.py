@@ -70,8 +70,8 @@ db = scoped_session(sessionmaker(bind=engine)) # for individual sessions
 def index():
 
 	houseclean_list=[]
-	image_list=[]
-	image_string = ""
+	# image_list=[]
+	# image_string = ""
 	# image = db.execute("SELECT encode(image,'base64') FROM houseclean7").fetchall()
 	# row_count = db.execute("SELECT COUNT(*) FROM houseclean7").fetchall()
 
@@ -79,9 +79,10 @@ def index():
 		# image_string = "data:image/png;base64," + image[i][0]
 		# x = re.sub("\n", "", image_string)
 		# image_list.append(x)
+		# print ("image_string ", image_string )
 
 	housecleanDB = db.execute("SELECT * FROM houseclean7 ").fetchall()
-	# print (housecleanDB)
+
 	index=0
 	for i in housecleanDB:
 
@@ -115,7 +116,7 @@ def index():
 			}
 		index=index+1
 		houseclean_list.append(houseclean_data)
-		# print ("houseclean_data",houseclean_data["description"])
+		print ("houseclean_data",houseclean_data["description"])
 	return render_template("index.html", houseclean_list=houseclean_list )
 
 @app.route("/sign-up", methods = ['GET',"POST"]) #way to get sign in from index to sign-up page
@@ -369,7 +370,7 @@ def signup_check():
 	# mail.send(msg)
 	# return redirect(url_for("success"))
 	return redirect(url_for("index"))
-	# '<div class="col-md-2 ">'+
-			# '<p id = "column-title" >Photo</p>'+
-			# '<div>'+'<img src='+houseclean_list[i]['image']+' alt="image" width="64" height="64"" />'+'</div>'+
-			# '</div>'+
+	#	'<div class="col-md-2 ">'+
+				# '<p id = "column-title" >Photo</p>'+
+				# '<div>'+'<img src='+houseclean_list[i]['image']+' alt="image" width="64" height="64"" />'+'</div>'+
+				# '</div>'+

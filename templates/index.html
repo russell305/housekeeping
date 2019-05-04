@@ -183,17 +183,18 @@
 
 				nav ul li {
 				  display: flex;
-				  margin:2%;
+				  margin:1%;
 				  margin-bottom: 15px;
-				  margin-top: 15px;
+				  margin-top: 10px;
 					 text-decoration: none;
-				  font-size: 16px;
+				  font-size: 15px;
 				}
-				@media (max-width: 499px) {
-					nav ul li {
-						margin: 1%;
 
-						font-size: 10px;
+				@media (min-width: 500px) {
+					nav ul li {
+						margin: 2%;
+						 /* text-decoration: none; */
+						font-size: 20px;
 					}
 		  	}
 
@@ -229,7 +230,7 @@
 		 			<span itemprop="provider" itemscope itemtype="http://schema.org/LocalBusiness">
 
 					<span itemprop="name"><h1>HOUSE CLEANING MIAMI</h1></span>
-					<img  src="{{ url_for("static", filename = "image/download-1.jpg") }}" alt="House Cleaning" >
+					<img  src="{{ url_for("static", filename = "image/download-1.jpg") }}" alt="House Cleaners Image" >
 					<span itemprop="description"><h4 id = "step3">Cleaning services in Miami.</h4></span>
 					<span itemprop="description"><h4 id = "step1">STEP 1: CLICK ON A HOUSE CLEANER MARKER NEAR YOU.</h4></span>
 					<span itemprop="description"><h4 id = "step2">STEP 2: COMPARE SERVICES AND PRICES, THAN CALL.</h4></span>
