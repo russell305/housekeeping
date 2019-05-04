@@ -116,7 +116,7 @@ def index():
 			}
 		index=index+1
 		houseclean_list.append(houseclean_data)
-		print ("houseclean_data",houseclean_data["description"])
+
 	return render_template("index.html", houseclean_list=houseclean_list )
 
 @app.route("/sign-up", methods = ['GET',"POST"]) #way to get sign in from index to sign-up page

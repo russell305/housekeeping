@@ -71,7 +71,7 @@
 				@media (min-width: 500px) {
 					nav ul li {
 						margin: 2%;
-					
+
 						font-size: 20px;
 					}
 		  	}
@@ -105,8 +105,10 @@
     <div class="container-fluid text-center">
 
 			<h1>Housecleaning Blog</h1>
-
-			<a id = "psl blog" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post">1. Price,Service,Location</a>
+				<img  src="{{ url_for("static", filename = "image/blogpage.jpg") }}" alt="House Cleaning"   >
+				<div>
+					<a id = "psl blog" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post">1. Price,Service,Location</a>
+				</div>
 			<div>
 				<a id = "cm blog" href="{{ url_for('blog', year=2019, month=04, day=27 , title = 'Cuban-Mop') }}" method="post">2. What is a Cuban Mop?</a>
 			</div>
