@@ -147,11 +147,6 @@ def blogpage():
 def house_cleaning_blog():
 	return render_template("blog.html")
 
-@app.route('/background_process_test/<string:phone>')
-def background_process_test(phone):
-    print ("Hello", phone)
-    return "nothing"
-
 
 @app.route("/blog/<int:year>/<int:month>/<int:day>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blog(year,month,day,title):
