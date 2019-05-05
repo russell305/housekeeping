@@ -204,21 +204,6 @@ def success():
 		print("check_houseclean=False")
 	return render_template("success.html")
 
-@app.route('/uploader', methods = ['GET', 'POST'])
-def uploader():
-
-	image_file = request.files['image']
-	session['image']= image_file.read()
-	image = image_file.read()
-	return redirect(url_for("uploader2"))
-
-@app.route('/uploader2', methods = ['GET', 'POST'])
-def uploader2():
-	# print ("image",session['image'])
-	db.execute("INSERT INTO photos(image) VALUES (:image)", {"image":session['image']})
-	db.commit()
-	return 'file uploaded successfully'
-
 @app.route("/signup_check", methods = ["POST"])
 def signup_check():
 
