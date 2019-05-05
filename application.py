@@ -143,11 +143,6 @@ def about():
 def blogpage():
 	return render_template("blogpage.html")
 
-@app.route("/house_cleaning_blog/", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
-def house_cleaning_blog():
-	return render_template("blog.html")
-
-
 @app.route("/blog/<int:year>/<int:month>/<int:day>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blog(year,month,day,title):
 	if title == "Price-Service-Location":
@@ -195,7 +190,7 @@ def ipn():
 	else:
 		return "Failure"
 
-@app.route('/success/')
+@app.route('/success')
 def success():
 	if session.get("check_houseclean") is True:
 		print("check_houseclean=True / cancel upload")
