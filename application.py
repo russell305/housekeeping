@@ -190,7 +190,7 @@ def ipn():
 	else:
 		return "Failure"
 
-@app.route('/success')
+@app.route('/success/')
 def success():
 	if session.get("check_houseclean") is True:
 		print("check_houseclean=True / cancel upload")
