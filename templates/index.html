@@ -203,7 +203,10 @@
 				  color: black;
 					text-decoration: none;
 				}
-
+				.text{
+					font-size: 25px;
+					color: black;
+				}
 
 		</style>
 	</head>
@@ -239,15 +242,17 @@
 				 	</span>
 			</span>
  				<div id="map" style="clear:both; height:500px;"></div>
-		 			<div class="row bottom" >
+					<div class="text">
+						<p>Find the right house cleaner for you.  Compare prices to match your budget.  Compare services
+						to ensure you are getting the right cleaning.  Compare locations to get a house cleaner close to you.
+						Press the call button to directly speak to the house cleaner doing the work. </p>
+					</div>
+		 			<div class="row bottom">
 		 				<img id = "favicon" src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="40" height="40">
 		 						<h7>House Cleaner? Sign up free!</h7>
 		 						<form action="{{ url_for('signup') }}" method="post">
-		 							<button class="btn btn-success btn-sm active " aria-pressed="true">SIGN UP</button>
+		 							<button class="btn btn-success btn-sm active" aria-pressed="true">SIGN UP</button>
 		 						</form>
-
-
-
 					</div>
 
 
