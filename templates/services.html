@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title> House Cleaning Miami: Blog </title>
+		<title> Miami Maid: Services </title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.png') }}">
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -25,16 +25,12 @@
           height: 100%;
           margin-left: 3%;
           margin-right: 3%;
-
-          /* margin-bottom: 12px; */
-          padding: 0;
+					margin-bottom: 25px;
           font-family: Montserrat;
-
 					background-color: 	white ;
         }
 				@media (min-width: 500px) {
 				  body {
-
 								margin-left: 10%;
 			          margin-right: 10%;
 					  }
@@ -45,13 +41,25 @@
 					margin-bottom: 15px;
 					margin-top: 15px;
 				}
-
+        h2{
+					margin-top: 20px;
+          margin-bottom: 15px;
+        }
+        #green{
+          color:darkgreen;
+        }
+				button{
+					margin-top:0px;
+					margin-bottom: 40px;
+				}
 				img{
 					width:300px;
 					height:150px;
 					margin-bottom: 20px;
 				}
-
+				#bottom{
+					margin-bottom: 50px;
+				}
 
 				nav ul {
 				  display: flex;
@@ -80,10 +88,8 @@
 				  color: black;
 					text-decoration: none;
 				}
-				#blog{
-					margin-bottom: 25px;
-					font-size: 25px;
-					color: red;
+				.font-size{
+					font-size:20px;
 				}
 
     </style>
@@ -96,7 +102,7 @@
 			    <li><a href="{{ url_for('about') }}">About</a></li>
 			    <li><a href="{{ url_for('blogpage') }}">Blog</a></li>
 					<li><a href="{{ url_for('signup') }}" >Signup</a></li>
-						<li><a href="{{ url_for('services') }}" >Services</a></li>
+					<li><a href="{{ url_for('services') }}" >Services</a></li>
 					<!-- <li><a href="#contact" >Areas Served</a></li> -->
 					<!-- <li><a href="#contact" >FAQ</a></li> -->
 					<!-- <li><a href="#contact" >Testimonials</a></li> -->
@@ -106,14 +112,31 @@
 
     <div class="container-fluid text-center">
 
-			<h1>Housecleaning Blog</h1>
-				<img  src="{{ url_for("static", filename = "image/blogpage.jpg") }}" alt="House Cleaning"   >
-				<div>
-					<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post">1. About Price, Service, Location.</a>
-				</div>
-			<div>
-				<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=27 , title = 'Cuban-Mop') }}" method="post">2. What is a Cuban Mop?</a>
-			</div>
+				<h1>House Cleaning Services</h1>
+				<img  src="{{ url_for("static", filename = "image/cleaningservice.jpg") }}" alt="House Cleaning"   >
+				<p>People require different types of cleanings depending on their personal circumstances.  Here
+				we compare the differnt types of cleanings available in Miami.  </p>
+
+				<p><b>One time cleaning:  </b> Having people over and don’t have time to do a thorough clean?
+					Just moved in or moving out?  Some people clean their houses regularly, but sometimes a thorough
+					clean from a professional is necessary.  If you are having guests and don’t have the time to mop and
+					scrub your whole house, sometimes it best to budget a quick thorough house cleaning.  Depending on
+					where you are in Miami you can find a cleaner close by.
+</p>
+
+			<p><b>Recurring cleanings:  </b>Do you need to have your house cleaned on a regular basis? Prices you see
+				are for One Time Cleanings so be sure to negotiate the price down a little because they will have recurring
+				income from you.  Depending on your budget and amount of cleaning that you need, you may want to have a
+				cleaner come by weekly, bi-weekly, or even just once a month.
+</p>
+<p><b>Move in/Move out cleanings:  </b>Moving requires a lot of work. On top of moving furniture you have to clean
+	your old home to avoid a penalty fee. Also you sometimes need to clean your new residence because the prior tenants
+	did not clean well enough.  So the stress of having to clean two apartments on top of moving can be too much.
+	In these cases we suggest hiring a budget cleaner for one or both  of these spaces.
+</p>
+
+
+
 
     </div>
 
