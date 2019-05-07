@@ -8,22 +8,37 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.png') }}">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM&callback=initMap">
+      src = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD9fytSdXXr6kVZdXLddFJyF9HT4JTt-qM"
+    </script>
 
+		<script
+			  src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			  crossorigin="anonymous"></script>
+
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111789653-3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+
   gtag('config', 'UA-111789653-3');
 </script>
+
+
 		<style>
 				html, body {
 					height: 100%;
 					margin-left: 3%;
 					margin-right: 3%;
+
+					/* margin-bottom: 12px; */
 					padding: 0;
 					font-family: Montserrat;
+
 					background-color: 	white ;
 				}
 				@media (min-width: 500px) {
@@ -111,12 +126,12 @@
 
 				}
 				#step1{
-					color:blue;
+					color:green;
 				}
 				#step2{
 					margin-top: -7px;
 					margin-bottom: 10px;
-					color:blue;
+					color:green;
 				}
 				#step3{
 					/* color:blue; */
@@ -190,7 +205,7 @@
 				}
 				.text{
 					font-size: 25px;
-
+					color: green;
 				}
 
 		</style>
@@ -205,7 +220,7 @@
     <li><a href="{{ url_for('blogpage') }}">Blog</a></li>
 
 		<li><a href="{{ url_for('signup') }}" >Signup</a></li>
-			<li><a href="{{ url_for('services') }}" >Services</a></li>
+		<li><a href="{{ url_for('services') }}" >Services</a></li>
 		<!-- <li><a href="#contact" >Areas Served</a></li> -->
 		<!-- <li><a href="#contact" >FAQ</a></li> -->
 		<!-- <li><a href="#contact" >Testimonials</a></li> -->
@@ -221,8 +236,8 @@
 					<span itemprop="name"><h1>House Cleaning Services in Miami</h1></span>
 					<img  src="{{ url_for("static", filename = "image/download-1.jpg") }}" alt="House Cleaners Image" >
 
-					<span itemprop="description"><h4 id = "step1">STEP 1: CLICK ON A HOUSE CLEANER MARKER NEAR YOU.</h4></span>
-					<span itemprop="description"><h4 id = "step2">STEP 2: COMPARE PRICES, SERVICES, LOCATION.</h4></span>
+					<span itemprop="description"><h4 id = "step1">STEP 1: Click on a house cleaner marker near you.</h4></span>
+					<span itemprop="description"><h4 id = "step2">STEP 2: Compare prices, services, location.</h4></span>
 
 				 	</span>
 			</span>
@@ -464,5 +479,8 @@ var map = new google.maps.Map(document.getElementById('map'), {
 				 })(marker, i);
 			 }
 	 }
+	 $(document).ready(function() {
+				initMap();
+		});
 
  </script>
