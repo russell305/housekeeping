@@ -21,11 +21,11 @@
 		</script>
 
 		<style>
-        html, body {
+      body {
           height: 100%;
           margin-left: 3%;
           margin-right: 3%;
-					margin-bottom: 25px;
+					margin-bottom: 100px;
           font-family: Montserrat;
 					background-color: 	white ;
         }
@@ -88,8 +88,15 @@
 				  color: black;
 					text-decoration: none;
 				}
-				.font-size{
-					font-size:20px;
+
+				p{
+					margin: 30px;
+				}
+				#ul {
+			    text-align: center;
+			    list-style-position: inside;
+					font-size:18px;
+					margin-top: -25px;
 				}
 
     </style>
@@ -114,8 +121,14 @@
 
 				<h1>House Cleaning Services</h1>
 				<img  src="{{ url_for("static", filename = "image/cleaningservice.jpg") }}" alt="House Cleaning"   >
-				<h4>People require different types of cleanings depending on their personal circumstances.  Here
-				we compare the different types of cleanings available in Miami.  </h4>
+				<p>People require different types of cleanings depending on their personal circumstances.  Here
+				we compare the different types of cleanings available in Miami. Some basic cleaning features are the following: </p>
+				<ul id = "ul">
+					<li><b>Kitchen:</b> Wipe down all surfaces and appliances.</li>
+					<li><b>Bathroom:</b> Clean and disinfect all surfaces.</li>
+					<li><b>All Rooms:</b> Dusting surfaces, items, blinds and window sills.</li>
+					<li><b>All Floors:</b> Sweep, mop, or vacuum.</li>
+				</ul>
 
 				<p><b>One time cleaning:  </b> Having people over and don’t have time to do a thorough clean?
 					Just moved in or moving out?  Some people clean their houses regularly, but sometimes a thorough
@@ -123,7 +136,7 @@
 					scrub your whole house, sometimes it best to budget a quick thorough house cleaning.  Depending on
 					where you are in Miami you can find a cleaner close by.
 </p>
-
+<!-- <img  src="{{ url_for("static", filename = "image/services1.jpg") }}" alt="House Cleaning"   > -->
 			<p><b>Recurring cleanings:  </b>Do you need to have your house cleaned on a regular basis? Prices you see
 				are for One Time Cleanings so be sure to negotiate the price down a little because they will have recurring
 				income from you.  Depending on your budget and amount of cleaning that you need, you may want to have a
@@ -133,6 +146,33 @@
 	your old home to avoid a penalty fee. Also you sometimes need to clean your new residence because the prior tenants
 	did not clean well enough.  So the stress of having to clean two apartments on top of moving can be too much.
 	In these cases we suggest hiring a budget cleaner for one or both  of these spaces.
+</p>
+
+<p><b>Airbnb cleanings:  </b>Do you have property that you rent out for short term rentals?  Airbnb cleanings
+	are unique and require a different checklist of cleaning requirements.  Find a cleaner close to your properties
+	on our platform:
+	<ul id = "ul">
+		<li><b>Kitchen:</b> Clean, wipe inside and outside of all appliances.
+		<li><b>Kitchen:</b> Wash dirty dishes, empty dishwasher.</li>
+		<li><b>All Rooms:</b> Dusting all visible surfaces.</li>
+		<li><b>All Rooms:</b> Cleaning and disinfecting all surfaces.</li>
+		<li><b>All Rooms:</b> Dusting window sills.</li>
+		<li><b>Bedrooms:</b> Change and wash bed linens, make bed.</li>
+		<li><b>All Rooms:</b> Remove all garbage from property.</li>
+</li>
+	</ul>
+</p>
+
+<p><b>Deep cleanings: </b>Apartments sometimes need to be cleaned above and beyond a regular cleaning.  A Deep Cleaning
+	is a regular cleaning plus the following:
+	<ul id = "ul">
+		<li><b>All Rooms:</b> Wipe down baseboards, light fixtures, and ceiling fans.</li>
+		<li><b>Bathroom:</b> Clean and disinfect all surfaces.</li>
+		<li><b>All Rooms:</b> Dusting surfaces, items, blinds and window sills.</li>
+		<li><b>All Rooms:</b> Wiping down inside and outside of all kitchen and bathroom cabinets.</li>
+		<li><b>All Rooms:</b> Clean and wipe inside all windows</li>
+		<li><b>Kitchen:</b> Cleaning inside and outside of all kitchen appliances. This includes refrigerator, oven, dishwasher and microwave.</li>
+	</ul>
 </p>
 
 
