@@ -139,6 +139,8 @@ def signin():
 def about():
 	return render_template("about.html")
 
+
+
 @app.route("/blog-page", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blogpage():
 	return render_template("blogpage.html")
@@ -149,12 +151,15 @@ def services():
 
 @app.route("/blog/<int:year>/<int:month>/<int:day>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blog(year,month,day,title):
+
 	if title == "Price-Service-Location":
 		return render_template("blog.html")
 	elif title == "Cuban-Mop":
 		return render_template("blog2.html")
 	else:
 		return render_template("blog.html")
+
+
 
 @app.route("/user", methods = ["POST"]) # user CRUD
 def user():

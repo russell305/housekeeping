@@ -187,17 +187,35 @@
 					/* color: green; */
 				}
 
+				#image{
+					width:300px;
+					height:150px;
+					margin-bottom: 20px;
+				}
+				@media (min-width: 500px) {
+				  #image {
+						width:500px;
+						height:250px;
+					  }
+				}
+				.testimonial{
+
+					font-size: 12px;
+					/* color: green; */
+				}
+				h4{
+					margin-top: 25px;
+				}
+
 		</style>
 	</head>
 		<body>
-
 
 <nav>
   <ul >
 		<li><a href="{{ url_for('index') }}">Home</a></li>
     <li><a href="{{ url_for('about') }}">About</a></li>
     <li><a href="{{ url_for('blogpage') }}">Blog</a></li>
-
 		<li><a href="{{ url_for('signup') }}" >Signup</a></li>
 		<li><a href="{{ url_for('services') }}" >Services</a></li>
 		<!-- <li><a href="#contact" >Areas Served</a></li> -->
@@ -213,7 +231,7 @@
 		 			<span itemprop="provider" itemscope itemtype="http://schema.org/LocalBusiness">
 
 					<span itemprop="name"><h1>House Cleaning Services in Miami</h1></span>
-					<img  src="{{ url_for("static", filename = "image/download-1.jpg") }}" alt="House Cleaners Image" >
+					<img  id = "image" src="{{ url_for("static", filename = "image/download-1.jpg") }}" alt="House Cleaners Image" >
 
 					<span itemprop="description"><h4 id = "step1">Step 1: Click on a house cleaner marker near you.</h4></span>
 					<span itemprop="description"><h4 id = "step2">Step 2: Compare prices, services, location.</h4></span>
@@ -233,6 +251,15 @@
 		 							<button class="btn btn-success btn-sm active" aria-pressed="true">SIGN UP</button>
 		 						</form>
 					</div>
+					<h4>Testimonial</h4>
+						<p class="testimonial">Aaron -"Needed my house cleaned up on fairly short notice.
+							Booked a cleaning from another website about 2 days
+							in advance and they ended up being a no-show. Very
+							frustrating. Used this site and managed to get someone
+							at my house in Miami Shores to clean within half an hour. Did a great
+							job and it ended up actually costing less than the
+							previous one.""</p>
+
 
 
 
