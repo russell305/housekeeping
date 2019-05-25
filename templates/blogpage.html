@@ -88,11 +88,23 @@
 					text-decoration: none;
 				}
 				#blog{
-					margin-bottom: 25px;
+					/* margin-bottom: 25px; */
 					font-size: 20px;
 					color: black;
 				}
-
+				.title{
+					margin-top: -15px;
+				}
+				.title1{
+					margin-bottom: 45px;
+				}
+				h1{
+					margin-bottom: 25px;
+				}
+				p{
+					font-size: 16px;
+					margin-top: 0px;
+				}
 
     </style>
 		</head>
@@ -115,13 +127,30 @@
     <div class="container-fluid text-center">
 
 			<h1>Housecleaning Blog</h1>
-				<img  src="{{ url_for("static", filename = "image/blogpage.jpg") }}" alt="House Cleaning"   >
-				<div>
-					<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post">1. About Price, Service, Location.</a>
+				<!-- <img  src="{{ url_for("static", filename = "image/blogpage.jpg") }}" alt="House Cleaning"   > -->
+				<div class = "title1">
+
+					<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post">
+						<img  src="{{ url_for("static", filename = "image/house-cleaning.jpg") }}" alt="House Cleaning">
+						<div class = "title">
+								About Price, Service, and Location.
+						</div>
+						</a>
+						<p>To get a house cleaner in Miami their are many options. Search Engines offer many individual websites, some better than others....</p>
+
 				</div>
-			<div>
-				<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=27 , title = 'Cuban-Mop') }}" method="post">2. What is a Cuban Mop?</a>
-			</div>
+				<div class = "title1">
+
+					<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=27 , title = 'Cuban-Mop') }}" method="post">
+						<img  src="{{ url_for("static", filename = "image/cuban-mop.jpg") }}" alt="cuban mop"   >
+						<div class = "title">
+								What is a Cuban Mop?
+						</div>
+						</a>
+						<p>A Cuban Mop is one of the simplest, most efficient tools used to clean a floor. It is a piece of
+							wood in the shape of a T...</p>
+
+				</div>
 
     </div>
 
