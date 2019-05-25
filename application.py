@@ -177,7 +177,7 @@ def user():
 	# print ("user",user)
 	return render_template("user.html", user=user)
 
-@app.route('/ipn/',methods=['POST'])
+'''@app.route('/ipn/',methods=['POST'])
 def ipn():
 
 	arg = ''
@@ -197,7 +197,7 @@ def ipn():
 		db.commit()
 		return redirect(url_for("index"))
 	else:
-		return "Failure"
+		return "Failure" '''
 
 @app.route('/success/')
 def success():
