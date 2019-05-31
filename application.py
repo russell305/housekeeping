@@ -145,9 +145,9 @@ def about():
 def blogpage():
 	return render_template("blogpage.html")
 
-@app.route("/services", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
+'''@app.route("/services", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def services():
-	return render_template("services.html")
+	return render_template("services.html")'''
 
 @app.route("/blog/<int:year>/<int:month>/<int:day>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blog(year,month,day,title):

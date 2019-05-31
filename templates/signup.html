@@ -53,15 +53,16 @@
 				.container-fluid{
 					background-color: ;
 				}
+				.signin{
+					margin-top:0px ;
+				}
 				p{
 					font-size: 18px;
 					color: black;
 					margin-bottom: -5px;
 					margin-top: 15px;
 				}
-				.signin{
-					margin-top: -10px;
-				}
+
 				h1{
 					margin-top: 25px;
 					color:;
@@ -75,7 +76,7 @@
 					margin-bottom: 12px;
 				}
 				#su{
-					margin-top: -25px;
+					margin-top: -10px;
 				}
 				img{
 					width:300px;
@@ -85,8 +86,8 @@
 				@media (min-width: 500px) {
 				  img {
 
-						width:600px;
-						height:300px;
+						width:300px;
+						height:150px;
 					  }
 				}
 				nav ul {
@@ -97,7 +98,7 @@
 
 				nav ul li {
 				  display: flex;
-				  margin:1%;
+				  margin:2%;
 				  margin-bottom: 15px;
 				  margin-top: 10px;
 					 text-decoration: none;
@@ -145,10 +146,7 @@
 				<li><a href="{{ url_for('about') }}">About</a></li>
 				<li><a href="{{ url_for('blogpage') }}">Blog</a></li>
 				<li><a href="{{ url_for('signup') }}" >Signup</a></li>
-					<li><a href="{{ url_for('services') }}" >Services</a></li>
-				<!-- <li><a href="#contact" >Areas Served</a></li> -->
-				<!-- <li><a href="#contact" >FAQ</a></li> -->
-				<!-- <li><a href="#contact" >Testimonials</a></li> -->
+
 
 			</ul>
 		</nav>
