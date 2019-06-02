@@ -21,6 +21,7 @@
 		</script>
 
 		<style>
+
        body {
           height: 100%;
           margin-left: 3%;
@@ -68,7 +69,7 @@
 
 				nav ul li {
 				  display: flex;
-				  margin:2%;
+				  margin:1%;
 				  margin-bottom: 15px;
 				  margin-top: 10px;
 					 text-decoration: none;
@@ -93,7 +94,7 @@
 					color: black;
 				}
 				.title{
-					margin-top: -15px;
+					margin-top: 0px;
 				}
 				.title1{
 					margin-bottom: 45px;
@@ -101,10 +102,11 @@
 				h1{
 					margin-bottom: 25px;
 				}
-				p{
-					font-size: 16px;
-					margin-top: 0px;
+				.list{
+					margin-bottom: 20px;
+					font-size: 20px;
 				}
+
 
     </style>
 		</head>
@@ -116,7 +118,7 @@
 			    <li><a href="{{ url_for('about') }}">About</a></li>
 			    <li><a href="{{ url_for('blogpage') }}">Blog</a></li>
 					<li><a href="{{ url_for('signup') }}" >Signup</a></li>
-		
+
 
 			  </ul>
 			</nav>
@@ -127,25 +129,89 @@
 				<!-- <img  src="{{ url_for("static", filename = "image/blogpage.jpg") }}" alt="House Cleaning"   > -->
 				<div class = "title1">
 
-					<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post">
+					
 						<img  src="{{ url_for("static", filename = "image/house-cleaning.jpg") }}" alt="House Cleaning">
-						<div class = "title">
-								About Price, Service, and Location.
-						</div>
-						</a>
-						<p>To get a house cleaner in Miami their are many options. Search Engines offer many individual websites, some better than others....</p>
+						<h2 class = "title">
+								Price, Service, Location.
+						</h2>
+						<h6>4/22/2019</h6>
+						<!-- </a> -->
+						<p> To get a house cleaner in Miami their are many options.  Search Engines
+			          offer many individual websites, some better than others.  Craigslist offers
+			          cleaners who decide to post their listing that day and pay $5. Many
+			          listings only give partial info,
+			          requiring you to make several calls before finding the person you need.
+			          On this platform we are able to compare prices, services,  and location of
+			          house cleaners.   </p>
+			          <h3>PRICING:</h3>
+			          <p>
+			          The price for a cleaning of a 1/1 can vary from $65 to over $120.
+			          Other Cleaners only charge by the hour, in three hour sets.  Some people may be
+			          price sensitive and require a cleaning at the low price range.  (
+			          Most likely not as thorough.) Here we provide a way where users can quickly
+			          compare prices from different providers without having to call several, write down and compare.  </p>
+			          <h3>SERVICES:</h3>
+			          <p>
+			          Some cleaners bring all necessary cleaning supplies,
+			          some bring partial supplies, and some bring nothing and you provide.
+			          Once, I hired a house cleaner for $90 on Groupon for a 1/1.  I assumed he
+			          would bring a broom and mop because I have ceramic floors.  Upon arrival he
+			          informed me that he just vacuums the tile floors with his vacuum.  I still had
+			          to mop after paying him to clean! Here we have a comprehensive checklist where
+			          house cleaners can check which supplies they bring.</p>
+			          <h3>LOCATION:</h3>
+			          <p >
+			          Closer is always better.  Miami traffic is ridiculous and only getting worse.  To live in Aventura
+			          and have a house cleaner come from Kendall can take over 90 minutes of travel each way.   Costing
+			          time, gas, delaying start time, etc.  Wouldn’t it be nice to have someone who can clean your home
+			          right around the corner?</p>
 
 				</div>
-				<div class = "title1">
+				<!-- <div class = "title1"> -->
 
-					<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=27 , title = 'Cuban-Mop') }}" method="post">
+
 						<img  src="{{ url_for("static", filename = "image/cuban-mop.jpg") }}" alt="cuban mop"   >
-						<div class = "title">
-								What is a Cuban Mop?
+
+
+						<h2>What is a Cuban Mop?</h2>
+						<h6>4/27/2019</h6>
+
+			      <p>
+
+								A Cuban Mop is one of the simplest, most efficient tools used to clean a floor.  It is a piece of
+									wood in the shape of a T with an absorbent cloth folded on bottom T part.  The folded cloth
+									provides a large surface area for quick cleaning.  When the cloth gets really soiled, you can
+									just rinse it out and refold on bottom of mop.  When your done cleaning you can wash the cloth
+									and you don’t have a dirty wet mop hanging around.
+							</p>
+							<p>
+								I believe the Cuban Mop was the inspiration for the wildly successful Swiffer Sweepers.  Notice
+								how they have very similar designs.  The difference is the Swiffer is designed to have you
+								purchase their chemical cleaning towels draining your wallet in perpetuity.  Also when your
+								finished these dirty towels will be one more item which will end up in the ocean.  I don’t think
+								I’ve ever had a cleaning service in Miami come over with a Swifter Sweeper.  If they did I would be wary.
+							</p>
+							<p>
+								The Cuban Mop is originated in the Caribbean and was brought to Miami.  It is called “el palo de
+								trapear” which translates to “the mopping stick”.  Again, simple and efficient.  Here are the
+								simple steps to create your own cuban mop.
+							</p>
+
+
+							<img src="{{ url_for("static", filename = "image/cuban-mop-2.jpg") }}" alt="House Cleaning" >
+						<!-- </div> -->
+
+						<div class="list">
+							<li>Immerse towel in cleaning solution.</li>
+							<li>Squeeze and fold towel around T stick</li>
+							<li>Push the towel around the room to clean the dirt.</li>
+							<li>When cloth gets soiled, remove.</li>
+							<li>Rinse and repeat.</li>
 						</div>
-						</a>
-						<p>A Cuban Mop is one of the simplest, most efficient tools used to clean a floor. It is a piece of
-							wood in the shape of a T...</p>
+
+
+							<p class="text-center">The Cuban Mop will clean your floors faster, cheaper, and more eco-friendly than other mopping choices.
+								Make sure you or your housecleaner are using one!</p>
 
 				</div>
 

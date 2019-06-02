@@ -147,8 +147,9 @@ def blogpage():
 
 '''@app.route("/services", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def services():
-	return render_template("services.html")'''
-
+	return render_template("services.html")
+'''
+'''
 @app.route("/blog/<int:year>/<int:month>/<int:day>/<string:title>", methods = ['GET',"POST"]) #way to get sign in from index to sign-in page
 def blog(year,month,day,title):
 
@@ -158,8 +159,9 @@ def blog(year,month,day,title):
 		return render_template("blog2.html")
 	else:
 		return render_template("blog.html")
-
-
+	<!-- <a id = "blog" href="{{ url_for('blogpage', year=2019, month=04, day=27 , title = 'Cuban-Mop') }}" method="post"> -->
+	<!-- <a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post"> -->
+'''
 
 @app.route("/user", methods = ["POST"]) # user CRUD
 def user():

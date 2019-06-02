@@ -105,11 +105,12 @@
 				#ul {
 			    text-align: center;
 			    list-style-position: inside;
-					font-size:18px;
+					font-size:20px;
 					margin-top: 0px;
 				}
 				#top{
-					font-size: 25px
+					font-size: 22px;
+					color: green;
 				}
 
     </style>
@@ -122,7 +123,7 @@
 			    <li><a href="{{ url_for('about') }}">About</a></li>
 			    <li><a href="{{ url_for('blogpage') }}">Blog</a></li>
 					<li><a href="{{ url_for('signup') }}" >Signup</a></li>
-				
+
 
 			  </ul>
 			</nav>
@@ -137,6 +138,7 @@
 
 				<span itemprop="name"><h1>House Cleaning Miami</h1></span>
 				<img  src="{{ url_for("static", filename = "image/services1.jpg") }}" alt="House Cleaning"   >
+				<h2>About</h2>
 				<span itemprop="description"><p id ="top">Compare prices and services of independent, professional,
 					affordable house cleaners in your area. Call the ones you like.</p></span>
 
@@ -208,7 +210,7 @@ In these cases we suggest hiring a budget cleaner for one or both  of these spac
 	</ul>
 </p>
 
-	<h3>Questions?</h3>
+	<h4>Questions?</h4>
 <div class="font-size">
 	<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 		<b>Address:</b>
