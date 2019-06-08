@@ -243,8 +243,10 @@
 
 					<span itemprop="name"><h1>House Cleaning Services in Miami</h1></span>
 					<span id = "indy" itemprop="description"><h4>Independent House Cleaners Near You</h4></span>
-					<img  id = "image" src="{{ url_for("static", filename = "image/download-1.jpg") }}" alt="House Cleaners Image" >
+					<div itemscope itemtype="http://schema.org/ImageObject">
 
+						<img  id = "image" src="{{ url_for("static", filename = "image/download-1.jpg") }}" alt="House Cleaners Image" >
+					</div>
 					<span itemprop="description"><h4 id = "step1">Step 1: Click on a house cleaner marker near you.</h4></span>
 					<span itemprop="description"><h4 id = "step2">Step 2: Compare prices, services, location.</h4></span>
 
