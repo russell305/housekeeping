@@ -66,11 +66,12 @@
 				#description{
 					font-size:15px;
 					margin-bottom: 15px;
+					margin-top: 15px;
 					font-weight: 400;
 				}
 				#prices{
 					font-size:15px;
-					margin-bottom: 10px;
+					margin-bottom: 5px;
 					margin-top: 10px;
 
 					font-weight: 450;
@@ -219,6 +220,9 @@
 				}
 				.checked {
 				  color: orange;
+				}
+				#hours{
+					margin-bottom: 15px;
 				}
 
 
@@ -476,29 +480,28 @@ var map = new google.maps.Map(document.getElementById('map'), {
 														'<a id = "phone" href='+"tel:"+houseclean_list[i]['phone']+'" >'+"Press to Call "+houseclean_list[i]['phone']+'</a>'+
 												'</div>'+
 											'</div>'+
-												'<div class="text-center" id = "description"   >'+'<b>'+"About: "+'</b>'+houseclean_list[i]['description']+'</div>'+
+
 
 												'<div class="text-center" id = "prices">'+"Cleaning Prices:"+'</div>'+
 												'<div class="row" id = "middle-row">'+
 
-														'<div class="col-md-3">'+
-																'<p id = "column-middle">Studio:</p>'+
-																'<div id = "hours">'+"$ "+houseclean_list[i]['studio']+'</div>'+
-														'</div>'+
-														'<div class="col-md-3">'+
+
+														'<div class="col-md-4">'+
 																'<p id = "column-middle">One Bedroom:</p>'+
 																'<div id = "hours">'+"$ "+houseclean_list[i]['one_bed']+'</div>'+
 														'</div>'+
 
-														'<div class="col-md-3">'+
+														'<div class="col-md-4">'+
 																'<p id = "column-middle">Two Bedroom:</p>'+
 																'<div id = "hours">'+"$ "+houseclean_list[i]['two_bed']+'</div>'+
 														'</div>'+
 
-														'<div class="col-md-3" >'+
+														'<div class="col-md-4" >'+
 																'<p id = "column-middle">Three Bedroom:</p>'+
 																'<div id = "hours">'+"$ "+houseclean_list[i]['three_bed']+'</div>'+
 														'</div>'+
+
+														'<div class="text-center" id = "description"   >'+'<b>'+"About: "+'</b>'+houseclean_list[i]['description']+'</div>'+
 
 														// '<div class="col-md-4 bottom-row">'+
 																// '<p id = "column-middle">Hourly Rate:</p>'+
