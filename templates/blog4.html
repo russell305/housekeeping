@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>House Cleaning Miami: 10 Places</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.png') }}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111789653-3"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+			gtag('config', 'UA-111789653-3');
+		</script>
+
+
+		</head>
+<style>
+
+@media (max-width: 500px) {
+	body {
+		height: 100%;
+		font-size: 20px;
+		margin-bottom: 100px;
+		padding: 0;
+		font-family: Montserrat;
+		background-color: 	white ;
+		margin-left: 3%;
+		margin-right: 3%;
+		}
+}
+@media (min-width: 500px) {
+	html,body {
+		height: 100%;
+		font-size: 20px;
+		margin-bottom: 25px;
+		padding: 0;
+		font-family: Montserrat;
+		background-color: 	white ;
+		margin-left: 15%;
+		margin-right: 15%;
+		}
+}
+h1{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+h2{
+  margin-top: 25px;
+  margin-bottom: -5px;
+}
+
+h6{
+	margin-bottom: 20px;
+}
+
+p{
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+img{
+	margin-bottom: 20px;
+}
+button{
+	margin-bottom: 50px;
+	margin-top: 25px;
+}
+
+
+</style>
+<html>
+	<body class="container-fluid text-center">
+    <div >
+			<h1> House Cleaning Miami Blog </h1>
+			  <img  src="{{ url_for("static", filename = "image/blog4.jpg") }}" alt="House Cleaning">
+			<h2>How to clean your computer.</h2>
+			<h6>6/28/2019</h6>
+			<p>Germs and bacteria often lurk in a variety of home office equipment. Keyboards, mouse, monitors
+				and smart phones are easily contaminated by hand contact. This  can pose health risks for you and
+				your family, making them sick and possibly transferring germs to other family members. Sanitize
+				your office equipment to prevent the spread of bacteria and disease. The process doesn’t require
+				a professional cleaning crew and can be done using a few household supplies.</p>
+				<div>
+					<li>Turn the power off to the computer. </li>
+					<li>Start by giving your keyboard a good clean. Unplug your keyboard from your computer, or turn
+						it if off if it's wireless. </li>
+						<li>If you have a laptop, turn it off and unplug the charging cord. If you can easily remove the
+							battery, it wouldn't hurt to do that too.</li>
+							<li>Turn the power off to the computer. </li>
+							<li>Start by giving your keyboard a good clean. Unplug your keyboard from your computer, or turn
+								it if off if it's wireless. </li>
+								<li>If you have a laptop, turn it off and unplug the charging cord. If you can easily remove the
+									battery, it wouldn't hurt to do that too.</li>
+				</div>
+				<p>Be sure to clean your computer at least once a week.  I hope these
+					tips will serve you and your family well! </p>
+
+    </div>
+		<form action="{{ url_for('blogpage') }}" method="post">
+			<button class="btn btn-success btn-sm active about" aria-pressed="true">HOME</button>
+		</form>
+
+	</body>
+	</html>

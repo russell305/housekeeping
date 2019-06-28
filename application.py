@@ -159,6 +159,8 @@ def blog(year,month,day,title):
 		return render_template("blog2.html")
 	elif title == "Ten-Places":
 		return render_template("blog3.html")
+	elif title == "Clean-Computer":
+		return render_template("blog4.html")
 	else:
 		return render_template("blog.html")
 

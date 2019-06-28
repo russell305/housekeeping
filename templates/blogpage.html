@@ -125,6 +125,21 @@
 
 			<h1>Housecleaning Blog</h1>
 			<div class = "title1">
+							<a id = "blog" href="{{ url_for('blog', year=2019, month=06, day=27 , title = 'Clean-Computer') }}" method="post">
+								<h3>
+										How to clean your computer.
+								</h3>
+
+								<h6>6/28/2019</h6>
+								<img  src="{{ url_for("static", filename = "image/blog4.jpg") }}" alt="House Cleaning">
+								</a>
+								<p> Germs and bacteria often lurk in a variety of home office equipment. Keyboards, mouse, monitors
+									and smart phones are easily contaminated by hand contact. This  can pose health risks for you and
+									your family, making them sick and possibly transferring germs to other family members. Sanitize
+									your office equipment to prevent the spread...   </p>
+
+			</div>
+			<div class = "title1">
 
 					<a id = "blog" href="{{ url_for('blog', year=2019, month=06, day=09 , title = 'Ten-Places') }}" method="post">
 				<h3 >
@@ -154,7 +169,7 @@
 									provides a large surface area...
 							</div>
 
-							<div class = "title1">
+				<div class = "title1">
 								<a id = "blog" href="{{ url_for('blog', year=2019, month=04, day=22 , title = 'Price-Service-Location') }}" method="post">
 									<h3>
 											Price, Service, Location.
@@ -168,8 +183,8 @@
 						          requiring you to make several calls before finding the person you need.
 						          On this platform we are able to compare prices, services,  and location of
 						          house cleaners...   </p>
-						         
-							</div>
+
+				</div>
 
 								<form action="{{ url_for('index') }}" method="post">
 								 <button class="btn btn-success btn-sm active" aria-pressed="true">Home</button>
