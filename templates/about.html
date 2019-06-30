@@ -53,8 +53,8 @@
           color:darkgreen;
         }
 				button{
-					margin-top:0px;
-					margin-bottom: 40px;
+					margin-top:30px;
+					margin-bottom: 0px;
 				}
 				img{
 					width:300px;
@@ -142,6 +142,9 @@
 
 				<span itemprop="name"><h1>House Cleaning Miami</h1></span>
 				<img  src="{{ url_for("static", filename = "image/services1.jpg") }}" alt="House Cleaning"   >
+				<div class="jumbotron">
+
+
 				<h2>About:</h2>
 				<span itemprop="description"><p id ="top">Compare prices, locations and services of house cleaners in your area. Call the ones you like.</p></span>
 
@@ -227,8 +230,9 @@ In these cases we suggest hiring a budget cleaner for one or both  of these spac
 </div>
 
 <form action="{{ url_for('blogpage') }}" method="post">
- <button class="btn btn-success btn-sm active bp" aria-pressed="true">Blog</button>
+ <button class="btn btn-success btn-lg active bp" aria-pressed="true">Blog</button>
 </form>
+</div>
 </span>
 
   </div>

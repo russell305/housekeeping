@@ -157,6 +157,9 @@
 
   								<h1>House Cleaner Sign Up</h1>
 									<img  src="{{ url_for("static", filename = "image/cleaningservice.jpg") }}" alt="House Cleaning"   >
+									<div class="jumbotron">
+
+
   								<form action="{{ url_for('signup_check') }}" method="post"  enctype = "multipart/form-data">
 
 										<div class = "input-fields" >
@@ -306,6 +309,7 @@
 									<form action="{{ url_for('signin') }}" method="post">
 										<button class="btn btn-primary btn-sm active signin" aria-pressed="true">Sign In</button>
 									</form>
+									</div>
   								</div>
 
 									<!-- <h3 class="text-center">Subscribe $2.99 Month</h3> -->

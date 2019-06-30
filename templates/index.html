@@ -224,6 +224,10 @@
 				#hours{
 					margin-bottom: 15px;
 				}
+				.about{
+					margin-top: 30px;
+				}
+
 
 
 		</style>
@@ -258,6 +262,9 @@
 				 	</span>
 			</span>
  				<div id="map" style="clear:both; height:500px;"></div>
+				<div class="jumbotron">
+
+
 					<div class="text">
 						<p>Find the right house cleaner for you.  Compare prices to match your budget.  Compare services
 						to ensure you are getting the right cleaning.  Compare locations to get a house cleaner close to you.
@@ -353,9 +360,9 @@
 									by offering a concierge cleaning service."</p>
 
 									<form action="{{ url_for('about') }}" method="post">
-	 								 <button class="btn btn-success btn-sm active" aria-pressed="true">About</button>
+	 								 <button class="btn btn-success btn-lg active about" aria-pressed="true">About</button>
 	 							 </form>
-
+							 </div>
 			 </div>
   </body>
 </html>
