@@ -233,8 +233,6 @@
 					margin-bottom: 20px;
 				}
 
-
-
 		</style>
 	</head>
 		<body>
@@ -245,8 +243,6 @@
     <li><a href="{{ url_for('about') }}">About</a></li>
     <li><a href="{{ url_for('blogpage') }}">Blog</a></li>
 		<li><a href="{{ url_for('signup') }}" >Signup</a></li>
-
-
   </ul>
 </nav>
 
@@ -262,7 +258,7 @@
 						<img  id = "image" src="{{ url_for("static", filename = "image/index.jpg") }}" alt="House Cleaners Image" >
 					</div>
 					<span itemprop="description"><h4 id = "step1">Step 1: Click on a house cleaner marker near you.</h4></span>
-					<span itemprop="description"><h4 id = "step2">Step 2: Compare prices, services, location.</h4></span>
+					<span itemprop="description"><h4 id = "step2">Step 2: Compare prices and call the best one!</h4></span>
 
 				 	</span>
 			</span>
@@ -275,13 +271,7 @@
 						to ensure you are getting the right cleaning.  Compare locations to get a house cleaner close to you.
 						Press the call button to directly speak to the house cleaner doing the work. </p>
 					</div>
-		 			<div class="row bottom">
-		 				<img id = "favicon" src="{{ url_for("static", filename = "image/favicon.png") }}" alt="User Image" width="40" height="40">
-		 						<h7>House Cleaner? Sign up free!</h7>
-		 						<form action="{{ url_for('signup') }}" method="post">
-		 							<button class="btn btn-success btn-sm active" aria-pressed="true">SIGN UP</button>
-		 						</form>
-					</div>
+
 					<h3>Testimonials</h3>
 					<!-- add schema review -->
 							<p class="testimonial">
