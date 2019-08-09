@@ -1,4 +1,3 @@
-#add kelley review
 #export FLASK_APP=application.py
 #export DATABASE_URL="postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d98fa5468668d0d8aa3da415aed475d08f9b@ec2-54-225-227-125.compute-1.amazonaws.com:5432/d9prh5mib7dh2p"
 #key: 0S6vFxQgJiRIw2CZbc2Yg
