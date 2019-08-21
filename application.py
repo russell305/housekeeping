@@ -35,7 +35,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 from flask_sslify import SSLify
 sslify = SSLify(app, age=300)
-# csrf = SeaSurf(app)  # protection
+
 Session (app)
 engine = create_engine("postgres://ayjxjjxhgpzlnl:f150cc319da46e38a1fb398ee335d98fa5468668d0d8aa3da415aed475d08f9b@ec2-54-225-227-125.compute-1.amazonaws.com:5432/d9prh5mib7dh2p")
 #talk to datbase wiTh SQL. Object used to manage connections to database.
