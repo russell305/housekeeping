@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>House Cleaning Miami: Bathroom Cleaning Tips</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.png') }}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111789653-3"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+			gtag('config', 'UA-111789653-3');
+		</script>
+
+
+		</head>
+<style>
+
+@media (max-width: 500px) {
+	body {
+		height: 100%;
+		font-size: 20px;
+		margin-bottom: 100px;
+		padding: 0;
+		font-family: Montserrat;
+		background-color: 	white ;
+		margin-left: 3%;
+		margin-right: 3%;
+		}
+}
+@media (min-width: 500px) {
+	html,body {
+		height: 100%;
+		font-size: 20px;
+		margin-bottom: 25px;
+		padding: 0;
+		font-family: Montserrat;
+		background-color: 	white ;
+		margin-left: 15%;
+		margin-right: 15%;
+		}
+}
+h1{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+h2{
+  margin-top: 25px;
+  margin-bottom: -5px;
+}
+
+h6{
+	margin-bottom: 20px;
+}
+
+p{
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+img{
+	margin-bottom: 20px;
+}
+button{
+	margin-bottom: 50px;
+	margin-top: 25px;
+}
+
+
+</style>
+<html>
+	<body class="container-fluid text-center">
+    <div >
+			<h1> House Cleaning Miami Blog </h1>
+			  <img  src="{{ url_for("static", filename = "image/b-toilet.jpg") }}" alt="House Cleaning">
+			<h2>5 Quick Bathroom Cleaning Tips</h2>
+			<h6>9/20/2019</h6>
+			<p>Cleaning the bathroom can cause anxiety and quickly become laborious.  Follow these handy 5 tips daily to lessen the amount of bathroom cleaning that needs to be done….</p>
+
+				<div>
+					<ol>
+						<img  src="{{ url_for("static", filename = "image/b-sink.png") }}" alt="House Cleaning"width="500" height="300">
+						<li>Sink - Use baby wipes daily!  Keep a box under the sink, and use to wipe down the sinks and toilet after your morning use.  When your, done just toss in the trash. </li>
+						<img  src="{{ url_for("static", filename = "image/b-mirror.png") }}" alt="House Cleaning" width="500" height="300">
+						<li>Bathroom mirror - Use warm water and a damp rag.  Try to use a rag not washed with a fabric softener.  Fabric softeners will leave streaks. </li>
+						<img  src="{{ url_for("static", filename = "image/b-shower.jpg") }}" alt="House Cleaning" width="500" height="300">
+							<li>Shower - While showering use a damp rag and some shampoo to wipe the walls of your shower.  The will keep your shower clean and smelling fresh for longer periods before a deep cleaning is necessary.  Don’t forget to wipe the shower head, handle, hose and shower knobs.</li>
+							<img  src="{{ url_for("static", filename = "image/b-toilet.jpg") }}" alt="House Cleaning"width="500" height="300">
+								<li>Toilet - Did you know?  Denture tablets like Polident can give a nice effervescent shine to the toilet bowl.  Simply drop one in and wait a few minutes for the table to work its magic!</li>
+								<img  src="{{ url_for("static", filename = "image/b-curtain.jpg") }}" alt="House Cleaning" width="500" height="300">
+								<li>Shower Curtain - When they start getting dirty and grimy, it can be difficult to just wipe it off.  Instead just toss in the washing machine and wash on regular cycle.</li>
+					</ol>
+
+
+				</div>
+				<p>Thank you for reading, hopefully using some of these tips will keep your house cleaner longer!  Saving money by not needing a house cleaner as soon as you normally would.
+</p>
+
+    </div>
+		<form action="{{ url_for('blogpage') }}" method="post">
+			<button class="btn btn-success btn-sm active about" aria-pressed="true">HOME</button>
+		</form>
+
+	</body>
+	</html>

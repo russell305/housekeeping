@@ -161,9 +161,10 @@ def blog(year,month,day,title):
 		return render_template("blog3.html")
 	elif title == "Clean-Computer":
 		return render_template("blog4.html")
+	elif title == "bathroom-cleaning-tips":
+		return render_template("blog5.html")
 	else:
 		return render_template("blog.html")
-
 
 @app.route("/user", methods = ["POST"]) # user CRUD
 def user():
