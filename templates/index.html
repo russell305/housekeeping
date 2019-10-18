@@ -41,8 +41,6 @@
 						}
 				}
 
-
-
 				#column-middle{
 					font-size:15px;
 					margin-bottom: 0px;
@@ -226,6 +224,16 @@
 					height:150px;
 					margin-bottom: 20px;
 				}
+				.row{
+					margin-top: -50px;
+					margin-bottom: 20px;
+				}
+				#column4{
+					margin-right: -120px;
+				}
+				#column4{
+					margin-left: -120px;
+				}
 
 		</style>
 	</head>
@@ -257,11 +265,36 @@
 				 	</span>
 			</span>
  				<div id="map" style="clear:both; height:500px;"></div>
+
 				<div class="jumbotron">
+					<div class="row ">
+						<div class="col-md-2">
+
+
+						</div>
+						<div class="col-md-2">
+
+
+						</div>
+						<div id = "column3" class="col-md-5">
+
+							<h5>House cleaner Sign up here.</h5>
+
+
+						</div>
+						<div id = "column4" class="col-md-3">
+							<form action="{{ url_for('signup') }}" method="post">
+
+								<button class="btn btn-primary btn-sm active signin" aria-pressed="true">Sign Up</button>
+							</form>
+
+
+						</div>
+						</div>
 
 
 					<div class="text">
-						<p>Find the right house cleaner for you in Miami.  Compare prices to match your budget.  Compare services
+						<p>Find the right house cleaner for you.  Compare prices to match your budget.  Compare services
 						to ensure you are getting the right cleaning.  Compare locations to get a house cleaner close to you.
 						Press the call button to directly speak to the house cleaner doing the work. </p>
 					</div>
@@ -291,7 +324,7 @@
 								<span class="fa fa-star checked"></span>
 								<span class="fa fa-star checked"></span>
 								<span class="fa fa-star checked"></span>
-						  -"<b>This is great website.</b>  I found 2 house cleaners within 5 minutes of my apartment.
+						  	-"<b>This is great website.</b>  I found 2 house cleaners within 5 minutes of my apartment.
 								I called one, they came by within the hour.
 								Fast an thorough, also very cheap!"</p>
 
