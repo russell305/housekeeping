@@ -187,7 +187,7 @@
 				#image{
 					width:300px;
 					height:150px;
-					margin-bottom: 20px;
+					/* margin-bottom: 20px; */
 				}
 				@media (min-width: 500px) {
 				  #image {
@@ -219,21 +219,15 @@
 				.about{
 					margin-top: 30px;
 				}
-				#image{
-					width:300px;
-					height:150px;
-					margin-bottom: 20px;
-				}
+
 				.row10{
 					margin-top: -50px;
 					margin-bottom: 20px;
 				}
 				#column4{
-					margin-right: -120px;
+					margin-right: -150px;
 				}
-				#column4{
-					margin-left: -120px;
-				}
+
 
 		</style>
 	</head>
@@ -267,27 +261,28 @@
  				<div id="map" style="clear:both; height:500px;"></div>
 
 				<div class="jumbotron">
-					<div class="row10">
-						<div class="col-md-2">
+					<div class="row row10">
+						<div class="col-md-1">
 
 
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-1">
 
 
 						</div>
 						<div id = "column3" class="col-md-5">
 
-							<h5>House cleaner Sign up here.</h5>
+							<h5>House cleaner Sign up here </h5>
+
 
 
 						</div>
-						<div id = "column4" class="col-md-3">
+						<div id = "column4" class="col-md-5">
+
 							<form action="{{ url_for('signup') }}" method="post">
 
 								<button class="btn btn-primary btn-sm active signin" aria-pressed="true">Sign Up</button>
 							</form>
-
 
 						</div>
 						</div>
